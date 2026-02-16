@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# COMMON SETTINGS
+dataset_name=SWE-bench/SWE-bench_Lite
+benchmark="swebench"
+slice_spec="0:301"
+output="output/swebench_lite"
+train_plan=no
+continuous_training=yes
+workers=16
+debug=False
+PLAN_ARGS_TEMPLATES=("" "")
+HISTORIES=("null" "null")
+IDS=(0) 
+port=18110
+
+# PARTICULAR SETTINGS
+PLAN_TYPES=("codex_planner" "claude_planner")
+exec_model=gpt-5.1-codex-mini
+generator=codex
+plan_model=gpt-5.1-codex-mini
+plan_generator=codex
+
+# Guard: arrays must be the same length
+if [[ ${#PLAN_TYPES[@]} -ne ${#PLAN_ARGS_TEMPLATES[@]} ]]; then
+  echo "Error: PLAN_TYPES and PLAN_ARGS_TEMPLATES must have the same length." >&2
+  exit 1
+fi
+
+
+
+for ID in "${IDS[@]}"; do
+    for ((i=0; i<${#PLAN_TYPES[@]}; i++)); do
+
+        plan_type="${PLAN_TYPES[i]}"
+        plan_args_template="${PLAN_ARGS_TEMPLATES[i]}"
+        HISTORY="${HISTORIES[i]}"
+
+        python scripts/agentbench/run_harness/generate.py \
+            --plan_type "$plan_type" \
+            --exec_model "$exec_model" \
+            --generator "$generator" \
+            --slice_spec "$slice_spec" \
+            --plan_args "${plan_args_template}${HISTORY}" \
+            --dataset_name "$dataset_name" \
+            --run_id "$ID" \
+            --port "$port" \
+            --output_dir "$output" \
+            --train_plan "$train_plan" \
+            --continuous_training "$continuous_training" \
+            --benchmark "$benchmark" \
+            --workers "$workers" \
+            --plan_model "$plan_model" \
+            --plan_generator "$plan_generator" \
+            --debug "$debug"
+    done
+done

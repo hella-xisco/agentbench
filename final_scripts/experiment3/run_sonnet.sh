@@ -1,0 +1,2 @@
+bash final_scripts/experiment3/agentbench/generate_sonnet.sh
+bash final_scripts/experiment3/swebench/generate_sonnet.sh

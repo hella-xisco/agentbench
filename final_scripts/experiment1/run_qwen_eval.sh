@@ -1,0 +1,2 @@
+bash final_scripts/experiment1/agentbench/evaluate_qwen.sh
+bash final_scripts/experiment1/swebench/evaluate_qwen.sh

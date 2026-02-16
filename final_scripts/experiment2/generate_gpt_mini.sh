@@ -1,0 +1,2 @@
+bash final_scripts/experiment2/agentbench/generate_gpt_mini.sh
+bash final_scripts/experiment2/swebench/generate_gpt_mini.sh
