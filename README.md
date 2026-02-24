@@ -132,3 +132,18 @@ If you want to reproduce the paper experiments exactly, use the curated scripts 
 
 Some code from this repository was forked from the [mini-swe-agent repo](https://github.com/SWE-agent/mini-swe-agent/blob/main/LICENSE.md).
 We thank the authors of mini-SWE-agent and we recommend checking their work!
+
+## Citation
+
+If you find our work useful, please cite out paper.
+```
+@misc{gloaguen2026evaluatingagentsmdrepositorylevelcontext,
+      title={Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?}, 
+      author={Thibaud Gloaguen and Niels Mündler and Mark Müller and Veselin Raychev and Martin Vechev},
+      year={2026},
+      eprint={2602.11988},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2602.11988}, 
+}
+```

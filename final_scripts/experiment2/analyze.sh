@@ -3,7 +3,7 @@
 # COMMON SETTINGS
 dataset_name=eth-sri/agentbench
 benchmark="agentbench"
-output="output/agentbench_v1_runs"
+output="output/agent_bench_traces"
 csv_file="experiment2.csv"
 PLAN_ARGS_TEMPLATES=("")
 HISTORIES=("null")
@@ -45,7 +45,7 @@ done
 
 # COMMON SETTINGS
 dataset_name=SWE-bench/SWE-bench_Lite
-output="output/swebench_lite"
+output="output/agent_bench_test_results"
 
 
 for IDX in "${!PLAN_TYPES_GLOBAL[@]}"; do
@@ -79,7 +79,7 @@ done
 ###############################################
 # COMMON SETTINGS
 dataset_name=eth-sri/agentbench
-output="output/agentbench_v1_runs"
+output="output/agent_bench_traces"
 
 
 # PARTICULAR SETTINGS
@@ -121,7 +121,7 @@ GENERATORS=("claude_code" "qwen_code" "codex")
 
 # COMMON SETTINGS
 dataset_name=SWE-bench/SWE-bench_Lite
-output="output/swebench_lite"
+output="output/agent_bench_test_results"
 
 
 for IDX in "${!EXEC_MODELS[@]}"; do

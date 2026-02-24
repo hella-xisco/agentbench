@@ -12,6 +12,23 @@ In each experiment folder, the general flow is:
 
 All scripts use the harness entrypoints in `scripts/agentbench/run_harness/`.
 
+## Released Artifacts
+
+The traces and test outputs are available [here](https://files.sri.inf.ethz.ch/agentbench/agentbench_traces.tar.zst).
+
+From the repository root, download `agentbench_traces.tar.zst` and extract it with:
+
+```bash
+tar -xf agentbench_traces.tar.zst --use-compress-program='zstd -d'
+```
+
+This creates:
+
+- `output/agent_bench_traces/`
+- `output/agent_bench_test_results/`
+
+The scripts in this folder are configured to use that layout.
+
 ## How experiments map to the paper
 
 - `experiment1` reproduces the main evaluation:

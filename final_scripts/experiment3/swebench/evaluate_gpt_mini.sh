@@ -3,7 +3,7 @@
 # COMMON SETTINGS
 dataset_name=SWE-bench/SWE-bench_Lite
 benchmark="swebench"
-output="output/swebench_lite"
+output="output/agent_bench_test_results"
 workers=32
 PLAN_ARGS_TEMPLATES=("" "")
 HISTORIES=("null" "null")

@@ -4,7 +4,7 @@
 dataset_name=SWE-bench/SWE-bench_Lite
 benchmark="swebench"
 slice_spec="0:301"
-output="output/swebench_lite"
+output="output/agent_bench_test_results"
 train_plan=no
 continuous_training=yes
 workers=16

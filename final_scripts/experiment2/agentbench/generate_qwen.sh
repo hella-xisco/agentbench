@@ -4,7 +4,7 @@
 dataset_name=eth-sri/agentbench
 benchmark="agentbench"
 slice_spec="0:139"
-output="output/agentbench_v1_runs"
+output="output/agent_bench_traces"
 train_plan=no
 continuous_training=yes
 workers=8

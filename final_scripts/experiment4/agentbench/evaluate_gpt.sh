@@ -3,7 +3,7 @@
 # COMMON SETTINGS
 dataset_name=eth-sri/agentbench
 benchmark="agentbench"
-output="output/agentbench_v1_runs_nodocs"
+output="output/agent_bench_test_results_nodocs"
 workers=32
 PLAN_ARGS_TEMPLATES=("" "" "")
 HISTORIES=("null" "null" "null")

@@ -3,7 +3,7 @@
 # COMMON SETTINGS
 dataset_name=eth-sri/agentbench
 benchmark="agentbench"
-output="output/agentbench_v1_runs_nodocs"
+output="output/agent_bench_test_results_nodocs"
 csv_file="experiment4.csv"
 PLAN_ARGS_TEMPLATES=("")
 HISTORIES=("null")
@@ -43,7 +43,7 @@ done
 ###############################################
 # COMMON SETTINGS
 dataset_name=eth-sri/agentbench
-output="output/agentbench_v1_runs_nodocs"
+output="output/agent_bench_test_results_nodocs"
 
 
 # PARTICULAR SETTINGS
