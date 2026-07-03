@@ -99,6 +99,18 @@ MODEL_GPT5_CODEX_MINI["model_name"] = "openai/gpt-5.1-codex-mini"
 MODEL_GPT5_2_CODEX = deepcopy(MODEL_GPT_5_MEDIUM)
 MODEL_GPT5_2_CODEX["model_name"] = "openai/gpt-5.2-codex"
 
+################
+# OPENROUTER   #
+################
+
+MODEL_CODEX_MINI_OR = {
+    "model_name": "openrouter/openai/gpt-4.1-mini",
+    "model_kwargs": {
+        "drop_params": True,
+        "api_key": OPENROUTER_API_KEY,
+    },
+}
+
 
 ###########
 # GPT OSS #
@@ -155,4 +167,5 @@ ALL_MODEL_CONFIGS = {
     "gpt-5.1-codex-mini": MODEL_GPT5_CODEX_MINI,
     "gpt-5.2-codex": MODEL_GPT5_2_CODEX,
     "gemini-3-flash": MODEL_GEMINI_FLASH,
+    "codex-mini-or": MODEL_CODEX_MINI_OR,
 }

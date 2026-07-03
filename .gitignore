@@ -1,7 +1,7 @@
 # Project specific files
 logs/
-output/
 benchmark_gen/
+# output/ intentionally tracked — move results between machines via git
 
 benchmark_gen_features/
 benchmark_gen_features2/
