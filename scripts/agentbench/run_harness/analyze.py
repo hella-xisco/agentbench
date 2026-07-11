@@ -72,6 +72,11 @@ CSV_COLUMNS = [
     "completion_tokens_first_read",
     "is_plan_ls",
     "reasoning_tokens",
+    "wall_time_seconds",
+    "cost_usd",
+    "prompt_tokens",
+    "completion_tokens",
+    "total_tokens",
 ]
 
 CSV_KEY_FIELDS = [
@@ -317,6 +322,12 @@ def _summarize_trace(trace: Trace | None, gold_patch: str) -> dict[str, Any]:
             "exit_code": {},
             "tool_calls": set(),
             "sys_prompt_size": 0,
+            "wall_time_seconds": None,
+            "cost_usd": None,
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "total_tokens": 0,
+            "reasoning_tokens": 0,
         }
 
     gold_patch = DiffFile.from_text(gold_patch, clean_diff=False)
@@ -348,14 +359,25 @@ def _summarize_trace(trace: Trace | None, gold_patch: str) -> dict[str, Any]:
         result["prompt_tokens_first_read"] = first_read.get("prompt_tokens", 0)
         result["completion_tokens_first_read"] = first_read.get("completion_tokens", 0)
 
-    # Compute reasoning tokens
+    # Compute reasoning tokens and total token counts
     token_usage = trace.get_token_usage()
     reasoning_tokens = 0
+    prompt_tokens = 0
+    completion_tokens = 0
     for key, value in token_usage.items():
         reasoning_tokens += value.reasoning_tokens
+        prompt_tokens += getattr(value, "prompt_tokens", 0) or 0
+        completion_tokens += getattr(value, "completion_tokens", 0) or 0
     result["reasoning_tokens"] = reasoning_tokens
+    result["prompt_tokens"] = prompt_tokens
+    result["completion_tokens"] = completion_tokens
+    result["total_tokens"] = prompt_tokens + completion_tokens
 
-    return result    
+    # Pull wall_time_seconds and cost_usd written by generate.py into trajectory info
+    result["wall_time_seconds"] = trace.info.get("wall_time_seconds")
+    result["cost_usd"] = trace.info.get("cost_usd")
+
+    return result
 
 
 def is_plan_ls(plan: str | None, model: Model) -> str:

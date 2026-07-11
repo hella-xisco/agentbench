@@ -246,18 +246,28 @@ def _attach_rich_console(console: Console) -> None:
             handler.console = console
 
 def update_preds_file(
-    output_path: Path, instance_id: str, model_name: str, result: str
+    output_path: Path,
+    instance_id: str,
+    model_name: str,
+    result: str,
+    wall_time_seconds: float | None = None,
+    cost_usd: float | None = None,
 ):
     """Update the output JSON file with results from a single instance."""
     with _OUTPUT_FILE_LOCK:
         output_data = {}
         if output_path.exists():
             output_data = json.loads(output_path.read_text())
-        output_data[instance_id] = {
+        entry: dict[str, Any] = {
             "model_name_or_path": model_name,
             "instance_id": instance_id,
             "model_patch": result,
         }
+        if wall_time_seconds is not None:
+            entry["wall_time_seconds"] = wall_time_seconds
+        if cost_usd is not None:
+            entry["cost_usd"] = cost_usd
+        output_data[instance_id] = entry
         output_path.write_text(json.dumps(output_data, indent=2))
 
 def process_instance(
@@ -370,6 +380,12 @@ def process_instance(
                 planner.update_plan(instance=instance, traces=generator.messages, result=result, base_dir=instance_dir, model=model)
 
             logger.info(f"Instance {instance.instance_id} finished with status {exit_status}")
+            end_time = time.monotonic()
+            final_cost = _get_instance_cost(model, generator) or 0.0
+            extra_info.update({
+                "wall_time_seconds": round(end_time - start_time, 2),
+                "cost_usd": final_cost,
+            })
             save_traj(
                 generator=generator,
                 path=instance_dir / f"{instance.instance_id}.traj.json",
@@ -379,7 +395,12 @@ def process_instance(
                 instance_id=instance.instance_id,
             )
             update_preds_file(
-                output_dir / "preds.json", instance.instance_id, model.config.model_name, result
+                output_dir / "preds.json",
+                instance.instance_id,
+                model.config.model_name,
+                result,
+                wall_time_seconds=extra_info.get("wall_time_seconds"),
+                cost_usd=extra_info.get("cost_usd"),
             )
 
             update_instance_metrics(
@@ -394,7 +415,12 @@ def process_instance(
     except Exception as e:
         logger.error(f"Error processing instance {instance.instance_id}: {e}", exc_info=True)
         exit_status, result = type(e).__name__, str(e)
-        extra_info = {"traceback": traceback.format_exc()}
+        end_time = time.monotonic()
+        extra_info = {
+            "traceback": traceback.format_exc(),
+            "wall_time_seconds": round(end_time - start_time, 2),
+            "cost_usd": _get_instance_cost(model, generator) or 0.0,
+        }
         update_instance_metrics(
             instance.instance_id,
             status=exit_status,
