@@ -14,6 +14,7 @@ _PLANNER_MAPPING = {
     "no_plan": "agentbench.planners.no_plan.NoPlanPlanner",
     "human_planner": "agentbench.planners.human_planner.HumanPlanner",
     "init_planner": "agentbench.planners.init_planner.InitPlanner",
+    "curated_planner": "agentbench.planners.curated_planner.CuratedPlanner",
 }
 
 

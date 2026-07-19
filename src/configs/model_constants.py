@@ -14,6 +14,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # input, output, cache, cache_creation
 MODEL_PRICES = {
     "Qwen3-Coder-30B-A3B-Instruct-FP8": (0.1, 0.3, 0.0, 0.0),
+    "GLM-5.2": (0.0, 0.0, 0.0, 0.0),  # local/free — placeholder, adjust if pricing ever matters
     "claude-haiku-4-5-20251001": (1.0, 5.0, 0.10, 1.25),
     "claude-sonnet-4-5-20250929": (3.0, 15.0, 0.3, 3.75),
     "gpt-5-codex": (1.25, 10.0, 0.125, 0.0),
@@ -150,6 +151,27 @@ MODEL_QWEN3_30B_CODER = {
     },
 }
 
+##########################
+# GLM (lokal, Hundhammer) #
+##########################
+
+# ⚠️ PLATZHALTER (19.07.) — noch nicht auf dem Server verifiziert:
+# 1) Welcher exakte HF-Checkpoint/Quant von GLM-5.2 tatsächlich auf der
+#    Hundhammer-Hardware läuft (VRAM/Multi-GPU-Split klären, ggf. FP8/AWQ-Variante).
+# 2) Ob der vLLM-Tool-Call-/Reasoning-Parser noch "glm45" heißt oder sich für
+#    GLM-5.2 geändert hat (s. scripts/local_lms/vllm_glm.sh).
+# Port 4002 gewählt, um Qwen (4000) und gpt-oss (4001) nicht zu belegen.
+MODEL_GLM_5_2 = {
+    "model_name": "hosted_vllm/zai-org/GLM-5.2",  # TODO: exakte Repo-ID/Quant bestätigen
+    "api_base": "http://localhost:4002/v1",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.0,  # ETH-Protokoll — im Varianz-Piloten verifizieren wie bei codex-mini
+        "api_key": "anything",
+        "stream": False,
+    },
+}
+
 ALL_MODEL_CONFIGS = {
     "gpt-5-mini-high": MODEL_GPT_5_MINI_HIGH,
     "gpt-5-mini-medium": MODEL_GPT_5_MINI_MEDIUM,
@@ -162,6 +184,7 @@ ALL_MODEL_CONFIGS = {
     "gpt-oss-20b-high": MODEL_GPTOSS_20B_HIGH,
     "gpt-5-codex": MODEL_GPT5_CODEX,
     "qwen3-30b-coder": MODEL_QWEN3_30B_CODER,
+    "glm-5.2": MODEL_GLM_5_2,
     "opus-4-5": MODEL_OPUS,
     "sonnet-4-5": MODEL_SONNET,
     "gpt-5.1-codex-mini": MODEL_GPT5_CODEX_MINI,

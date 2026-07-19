@@ -293,7 +293,10 @@ def process_instance(
     generator = None
     exit_status = "NotStarted"
     result = ""
-    extra_info = {}
+    extra_info = {
+        "generator_name": config.get("generator_name"),
+        "plan_generator_name": config.get("plan_generator_name"),
+    }
 
     start_time = time.monotonic()
     update_instance_metrics(
@@ -417,6 +420,8 @@ def process_instance(
         exit_status, result = type(e).__name__, str(e)
         end_time = time.monotonic()
         extra_info = {
+            "generator_name": config.get("generator_name"),
+            "plan_generator_name": config.get("plan_generator_name"),
             "traceback": traceback.format_exc(),
             "wall_time_seconds": round(end_time - start_time, 2),
             "cost_usd": _get_instance_cost(model, generator) or 0.0,
@@ -665,6 +670,10 @@ def main(
     if "generator_class" not in plan_generator_config:
         plan_generator_config["generator_class"] = "cli_agent"
     config["planner"]["generator_config"] = plan_generator_config
+
+    # Record which agent harness (generator) produced each trajectory
+    config["generator_name"] = generator
+    config["plan_generator_name"] = plan_generator
 
 
     if continuous_training:
