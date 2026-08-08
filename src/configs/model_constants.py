@@ -151,6 +151,21 @@ MODEL_QWEN3_30B_CODER = {
     },
 }
 
+# Studien-Variante (Smoke/Pilot/Hauptlauf, seit 08.08.): identischer Checkpoint,
+# aber temp 0 gemäß Protokoll (ETH-Replikation) statt der Qwen-Sampling-Empfehlung
+# (0.7/0.8, oben) — Abweichung bewusst, als Limitation dokumentiert.
+MODEL_QWEN3_30B_CODER_T0 = {
+    "model_name": "hosted_vllm/Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8",
+    "api_base": "http://localhost:4000/v1",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.0,
+        "api_key": "anything",
+        "stream": False,
+        "max_completion_tokens": 4096,
+    },
+}
+
 ##########################
 # GLM (lokal, Hundhammer) #
 ##########################
@@ -184,6 +199,7 @@ ALL_MODEL_CONFIGS = {
     "gpt-oss-20b-high": MODEL_GPTOSS_20B_HIGH,
     "gpt-5-codex": MODEL_GPT5_CODEX,
     "qwen3-30b-coder": MODEL_QWEN3_30B_CODER,
+    "qwen3-30b-coder-t0": MODEL_QWEN3_30B_CODER_T0,
     "glm-5.2": MODEL_GLM_5_2,
     "opus-4-5": MODEL_OPUS,
     "sonnet-4-5": MODEL_SONNET,
