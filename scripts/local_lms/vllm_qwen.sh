@@ -13,6 +13,13 @@
 #   export CUDA_VISIBLE_DEVICES=2 && vllm_qwen.sh 0.0.0.0 4000
 set -euo pipefail
 
+# Hundhammer hat kein CUDA-Toolkit (kein nvcc/ptxas, CUDA_HOME leer) — nur den Treiber.
+# vLLMs eigene Kernel sind vorkompiliert und stoert das nicht, aber jeder JIT-Pfad
+# scheitert: DeepGEMM faengt es beim Import ab (AssertionError-Warnung), der
+# FlashInfer-Sampler nicht — der reisst den EngineCore im Profiling-Dummy-Sampling ab.
+# Fallback auf den nativen PyTorch-Sampler; bei temperature 0 (greedy) folgenlos.
+export VLLM_USE_FLASHINFER_SAMPLER="${VLLM_USE_FLASHINFER_SAMPLER:-0}"
+
 HOST="${1:?Verwendung: vllm_qwen.sh <host> <port> [vllm-Flags...]}"
 PORT="${2:?Verwendung: vllm_qwen.sh <host> <port> [vllm-Flags...]}"
 shift 2
