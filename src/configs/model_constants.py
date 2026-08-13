@@ -7,6 +7,7 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+MOONSHOT_API_KEY = os.getenv("MOONSHOT_API_KEY")
 
 
 #### Costs
@@ -14,6 +15,9 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # input, output, cache, cache_creation
 MODEL_PRICES = {
     "Qwen3-Coder-30B-A3B-Instruct-FP8": (0.1, 0.3, 0.0, 0.0),
+    # Moonshot-Listenpreise (recherchiert 13.08.2026, Quellen im Decisions-Log)
+    "kimi-k2.5": (0.6, 3.0, 0.1, 0.0),
+    "kimi-k2.7-code": (0.95, 4.0, 0.19, 0.0),
     "GLM-5.2": (0.0, 0.0, 0.0, 0.0),  # local/free — placeholder, adjust if pricing ever matters
     "claude-haiku-4-5-20251001": (1.0, 5.0, 0.10, 1.25),
     "claude-sonnet-4-5-20250929": (3.0, 15.0, 0.3, 3.75),
@@ -134,6 +138,33 @@ MODEL_GPTOSS_20B_HIGH = deepcopy(MODEL_GPT_OSS_120B_HIGH)
 MODEL_GPTOSS_20B_HIGH["model_name"] = "hosted_vllm/openai/gpt-oss-20b"
 
 
+##########################
+# MOONSHOT / KIMI (API)  #
+##########################
+
+# OpenAI-kompatibler Endpoint (LiteLLM spricht ihn über den openai/-Provider an);
+# Anthropic-kompatibel waere https://api.moonshot.ai/anthropic — brauchen wir hier
+# nicht, weil der Harness ohnehin einen LiteLLM-Proxy davorsetzt.
+#
+# ACHTUNG kimi-k2.5: Moonshot hat eine Retirement-Notice zum 31.08.2026 veroeffentlicht.
+# Fuer Kalibrierung im August nutzbar, als Studienmodell fuer Pilot/Hauptlauf NICHT —
+# dafuer ist kimi-k2.7-code der coding-tuned Nachfolger.
+MODEL_KIMI_K25 = {
+    "model_name": "openai/kimi-k2.5",
+    "api_base": "https://api.moonshot.ai/v1",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.0,
+        "api_key": MOONSHOT_API_KEY,
+        "stream": False,
+        "max_completion_tokens": 4096,
+    },
+}
+
+MODEL_KIMI_K27_CODE = deepcopy(MODEL_KIMI_K25)
+MODEL_KIMI_K27_CODE["model_name"] = "openai/kimi-k2.7-code"
+
+
 ###############
 # QWEN MODELS #
 ###############
@@ -200,6 +231,8 @@ ALL_MODEL_CONFIGS = {
     "gpt-5-codex": MODEL_GPT5_CODEX,
     "qwen3-30b-coder": MODEL_QWEN3_30B_CODER,
     "qwen3-30b-coder-t0": MODEL_QWEN3_30B_CODER_T0,
+    "kimi-k2.5": MODEL_KIMI_K25,
+    "kimi-k2.7-code": MODEL_KIMI_K27_CODE,
     "glm-5.2": MODEL_GLM_5_2,
     "opus-4-5": MODEL_OPUS,
     "sonnet-4-5": MODEL_SONNET,

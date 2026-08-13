@@ -36,6 +36,29 @@ class BaseDockerEnvironment:
         raise NotImplementedError("Subclasses must implement _setup_apply_patch_script")
 
 
+def _default_run_args() -> list[str]:
+    """Default `docker run` args, including per-container resource caps.
+
+    Without caps, the number of harness workers is the only throttle: a single
+    pytest run can take every core on the host. That matters on a shared
+    machine. Both the generation path (agent containers) and the evaluation
+    path (test containers) construct environments through this config, so the
+    caps belong here rather than at one call site.
+
+    Tunable per run without code changes:
+        AGENTBENCH_CONTAINER_CPUS    (default 8; set to 0 or "" to uncap)
+        AGENTBENCH_CONTAINER_MEMORY  (default 16g; set to "" to uncap)
+    """
+    args = ["--rm"]
+    cpus = os.getenv("AGENTBENCH_CONTAINER_CPUS", "8")
+    memory = os.getenv("AGENTBENCH_CONTAINER_MEMORY", "16g")
+    if cpus and float(cpus) > 0:
+        args.append(f"--cpus={cpus}")
+    if memory:
+        args.append(f"--memory={memory}")
+    return args
+
+
 @dataclass
 class DockerEnvironmentConfig:
     image: str
@@ -52,9 +75,9 @@ class DockerEnvironmentConfig:
     """Timeout for executing commands in the container."""
     executable: str = os.getenv("MSWEA_DOCKER_EXECUTABLE", "docker")
     """Path to the docker/container executable."""
-    run_args: list[str] = field(default_factory=lambda: ["--rm"])
+    run_args: list[str] = field(default_factory=_default_run_args)
     """Additional arguments to pass to the docker/container executable.
-    Default is ["--rm"], which removes the container after it exits.
+    Defaults to ["--rm"] plus CPU/memory caps -- see `_default_run_args`.
     """
     container_timeout: str = "2h"
     """Max duration to keep container running. Uses the same format as the sleep command."""
