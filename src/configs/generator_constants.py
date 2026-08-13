@@ -1,3 +1,14 @@
+import os
+
+# Claude Code wird pro Container frisch installiert. Ohne Versionsargument liefert der
+# Bootstrap-Installer den jeweils aktuellen Stand aus -- der Harness waere dann zwischen
+# Laeufen (und bei langen Laeufen sogar innerhalb eines Laufs) nicht derselbe. In einem
+# Design, das den Harness als Untersuchungsgegenstand behandelt, ist das die unabhaengige
+# Variable, die davonlaeuft. Upstream pinnt qwen-code (@0.0.14) und codex (@0.55.0), aber
+# weder claude_code noch gemini-cli (@latest) -- wir ziehen das nach.
+# Der Installer akzeptiert `stable|latest|X.Y.Z`: `... | bash -s 2.1.223`.
+CLAUDE_CODE_VERSION = os.getenv("AGENTBENCH_CLAUDE_CODE_VERSION", "2.1.223")
+
 QWEN_GENERATOR_CONFIG = {
     "launch_command": "OPENAI_API_KEY={api_key} OPENAI_BASE_URL={base_url} OPENAI_MODEL={model} qwen --yolo -p {prompt}",
     "install_commands": [
@@ -46,9 +57,12 @@ CODEX_GENERATOR_CONFIG = {
 CLAUDE_CODE_GENERATOR_CONFIG = {
     "launch_command": "IS_SANDBOX=1 ANTHROPIC_BASE_URL={base_url} ANTHROPIC_AUTH_TOKEN={api_key} ~/.local/bin/claude --dangerously-skip-permissions --model {model} -p {prompt}",
     "install_commands": [
-        "curl -fsSL https://claude.ai/install.sh | bash",
+        f"curl -fsSL https://claude.ai/install.sh | bash -s {CLAUDE_CODE_VERSION}",
     ],
-    "post_install_commands": [],
+    "post_install_commands": [
+        # Zur Kontrolle in der Container-Ausgabe: was ist tatsaechlich installiert?
+        "~/.local/bin/claude --version",
+    ],
     "post_exec_commands": [],
     "cli_name": "claude_code",
 }
