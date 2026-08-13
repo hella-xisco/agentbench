@@ -21,6 +21,9 @@ MODEL_PRICES = {
     "GLM-5.2": (0.0, 0.0, 0.0, 0.0),  # local/free — placeholder, adjust if pricing ever matters
     "claude-haiku-4-5-20251001": (1.0, 5.0, 0.10, 1.25),
     "claude-sonnet-4-5-20250929": (3.0, 15.0, 0.3, 3.75),
+    # Sonnet-5-Listenpreis; Aktionspreis 2.0/10.0 laeuft bis 31.08.2026
+    "claude-sonnet-5": (3.0, 15.0, 0.3, 3.75),
+    "claude-sonnet-4-6": (3.0, 15.0, 0.3, 3.75),
     "gpt-5-codex": (1.25, 10.0, 0.125, 0.0),
     "gpt-5.1-codex-mini": (0.25, 2.0, 0.025, 0.0),
     "gpt-5-mini-2025-08-07": (0.25, 2.0, 0.02, 0.0),
@@ -62,6 +65,39 @@ MODEL_SONNET = {
     "model_kwargs": {
         "drop_params": True,
         "temperature": 0.0,
+        "api_key": ANTHROPIC_API_KEY,
+    },
+}
+
+# Proprietaerer Referenzpunkt, EMPFOHLENE Variante (13.08.):
+# Sonnet 4.6 statt Sonnet 5, aus zwei Gruenden —
+#   1. Leistungsklasse naeher an kimi-k2.7-code (SWE-V 79.6 % vs. Sonnet 5 85.2 %;
+#      Kimi-Nachfolger von K2.5 @ 76.8 % Moonshot-Eigenangabe) => vergleichbarer
+#      Referenzpunkt statt Ausreisser nach oben.
+#   2. akzeptiert temperature=0 => protokollkonsistent zu Qwen/Kimi.
+MODEL_SONNET_4_6 = {
+    "model_name": "anthropic/claude-sonnet-4-6",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.0,
+        "api_key": ANTHROPIC_API_KEY,
+    },
+}
+
+# Proprietaerer Referenzpunkt (13.08.): aktuelles Sonnet-Coding-Modell.
+#
+# ⚠️ KEIN temperature-Feld — Sonnet 5 lehnt nicht-default temperature/top_p/top_k
+# mit 400 ab. Diese Zelle laeuft also zwangslaeufig im As-shipped-Sampling-Regime,
+# nicht bei temp 0 wie der Rest des Protokolls. Als Limitation berichten.
+# Temp-0-faehige Alternativen derselben Familie: claude-sonnet-4-6 (gleicher Preis,
+# eine Generation aelter) oder claude-haiku-4-5 (billiger, naeher an Kimi-K2.7-Preis).
+#
+# Ausserdem: Sonnet 5 denkt per Default adaptiv (thinking-Feld weggelassen = an) —
+# das verbraucht Output-Budget. max_completion_tokens grosszuegig lassen.
+MODEL_SONNET_5 = {
+    "model_name": "anthropic/claude-sonnet-5",
+    "model_kwargs": {
+        "drop_params": True,
         "api_key": ANTHROPIC_API_KEY,
     },
 }
@@ -236,6 +272,8 @@ ALL_MODEL_CONFIGS = {
     "glm-5.2": MODEL_GLM_5_2,
     "opus-4-5": MODEL_OPUS,
     "sonnet-4-5": MODEL_SONNET,
+    "sonnet-4-6": MODEL_SONNET_4_6,
+    "sonnet-5": MODEL_SONNET_5,
     "gpt-5.1-codex-mini": MODEL_GPT5_CODEX_MINI,
     "gpt-5.2-codex": MODEL_GPT5_2_CODEX,
     "gemini-3-flash": MODEL_GEMINI_FLASH,
