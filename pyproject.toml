@@ -20,7 +20,15 @@ dependencies = [
     "litellm",
     "litellm[proxy]",
     "jsonlines",
-    "githubkit>=0.14.0"
+    "githubkit>=0.14.0",
+    # FastAPI 0.140.0 hat `get_flat_dependant` aus fastapi.dependencies.utils entfernt;
+    # litellm[proxy] (bis mind. 1.96.2, 11.08.2026) importiert es weiterhin ueber
+    # management_endpoints/management_v1/common.py. Der Proxy stirbt dann beim Import,
+    # der Port bleibt zu, und der Agent bekommt ConnectionRefused -- ohne dass der
+    # Harness es merkt, weil serve() nach Popen nur 5 s pauschal wartet.
+    # litellms eigene Angabe "fastapi<1.0,>=0.136.3" ist zu weit: FastAPI liefert vor
+    # 1.0 Breaking Changes aus, 0.141.1 erfuellt die Bedingung und ist trotzdem kaputt.
+    "fastapi>=0.136.3,<0.140",
 ]
 
 [tool.setuptools]

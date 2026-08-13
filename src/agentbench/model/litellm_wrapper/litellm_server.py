@@ -189,8 +189,42 @@ class LitellmServer(Model):
         self.logger.debug(f"LiteLLM proxy started with PID: {self._server_proc.pid}")
 
         # Ensure litellm process is started (else get connection errors)
-        time.sleep(self._startup_wait_s)
+        self._wait_until_ready()
         self._start_cost_watcher()
+
+    def _wait_until_ready(self, timeout_s: float = 120.0) -> None:
+        """Block until the proxy accepts connections, or raise.
+
+        Upstream slept `startup_wait_s` seconds here and continued regardless of the
+        outcome. A proxy that died on import -- or was merely slower than the sleep --
+        left the port closed, and every agent in the run failed with
+        `ConnectionRefused` at zero API calls. In the results those instances are
+        indistinguishable from an agent that genuinely could not solve the task, so
+        the failure does not surface as an error but as a lower resolve rate. For a
+        benchmark that is a data-integrity problem, not a nuisance: fail loudly here
+        instead of silently mismeasuring.
+        """
+        budget_s = max(timeout_s, self._startup_wait_s)
+        deadline = time.time() + budget_s
+        log_hint = f"see {self._log_dir}/proxy_{self._port}.log"
+        while time.time() < deadline:
+            if self._server_proc is not None and self._server_proc.poll() is not None:
+                raise RuntimeError(
+                    f"LiteLLM proxy exited with code {self._server_proc.returncode} "
+                    f"before becoming ready; {log_hint}"
+                )
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+                probe.settimeout(1.0)
+                if probe.connect_ex((self._bind_host, self._port)) == 0:
+                    self.logger.debug(
+                        f"LiteLLM proxy ready on {self._bind_host}:{self._port}"
+                    )
+                    return
+            time.sleep(0.5)
+        raise RuntimeError(
+            f"LiteLLM proxy not ready on {self._bind_host}:{self._port} "
+            f"after {budget_s:.0f}s; {log_hint}"
+        )
 
     def stop(self) -> None:
         """Stop the proxy and clean up temp files."""
