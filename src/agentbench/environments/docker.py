@@ -1,5 +1,6 @@
 # Forked from: https://github.com/SWE-agent/mini-swe-agent
 
+import atexit
 import errno
 import logging
 import os
@@ -57,6 +58,41 @@ def _default_run_args() -> list[str]:
     if memory:
         args.append(f"--memory={memory}")
     return args
+
+
+_LIVE_CONTAINERS: set[tuple[str, str]] = set()
+"""(executable, container_id) of containers this process started and has not stopped.
+
+Deliberately holds plain strings, not Environment objects: an atexit hook bound to a
+live instance would keep it alive and stop `__del__` from ever firing, so containers
+would pile up until the process ended instead of being released per instance.
+"""
+
+
+def _stop_container(executable: str, container_id: str) -> None:
+    """Stop a container in the background; fall back to a forced removal."""
+    cmd = (
+        f"(timeout 60 {executable} stop {container_id} "
+        f"|| {executable} rm -f {container_id}) >/dev/null 2>&1 &"
+    )
+    subprocess.Popen(cmd, shell=True)
+    _LIVE_CONTAINERS.discard((executable, container_id))
+
+
+@atexit.register
+def _stop_leftover_containers() -> None:
+    """Last line of defence: stop whatever survived to process exit.
+
+    Containers run detached with `sleep <container_timeout>` and `--rm` only removes
+    them *after* they stop, so anything not stopped explicitly keeps running for the
+    full timeout -- occupying names, holding their CPU/memory caps, and distorting any
+    utilisation measurement taken via `docker ps`. On a shared machine that is not
+    acceptable, and relying on the garbage collector to call `__del__` is not a
+    guarantee: as long as any reference to the environment survives (the generator
+    holds one, the cost watcher thread holds the generator), the container stays up.
+    """
+    for executable, container_id in list(_LIVE_CONTAINERS):
+        _stop_container(executable, container_id)
 
 
 @dataclass
@@ -126,6 +162,7 @@ class DockerEnvironment(BaseDockerEnvironment, Environment):
         )
         self.logger.info(f"Started container {container_name} with ID {result.stdout.strip()}")
         self.container_id = result.stdout.strip()
+        _LIVE_CONTAINERS.add((self.config.executable, self.container_id))
 
         # copy /testbed to /projects/main
         if self.config.cwd == "/project/testbed":
@@ -447,8 +484,7 @@ class DockerEnvironment(BaseDockerEnvironment, Environment):
     def cleanup(self):
         """Stop and remove the Docker container."""
         if getattr(self, "container_id", None) is not None:  # if init fails early, container_id might not be set
-            cmd = f"(timeout 60 {self.config.executable} stop {self.container_id} || {self.config.executable} rm -f {self.container_id}) >/dev/null 2>&1 &"
-            subprocess.Popen(cmd, shell=True)
+            _stop_container(self.config.executable, self.container_id)
 
     def __del__(self):
         """Cleanup container when object is destroyed."""
