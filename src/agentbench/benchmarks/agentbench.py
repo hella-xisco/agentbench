@@ -167,14 +167,35 @@ class AgentbenchInstance(Instance):
         env.execute("rm -f test_results.json", timeout=False)
 
         # Execute the repo test command
+        outputs = []
         for cmd in self.repo_test_commands:
-            env.execute(cmd, timeout=False)
+            outputs.append((cmd, env.execute(cmd, timeout=False)))
 
         # Fetch the test_results.json file created by the test runner in the environment
         test_results = env.read_file("test_results.json")
-        test_results = json.loads(test_results)
+        return self._parse_test_results(test_results, "test_results.json", outputs)
 
-        return test_results
+    @staticmethod
+    def _parse_test_results(raw: str, filename: str, outputs: list) -> dict:
+        """Parse a test runner's JSON output, or fail with the runner's own output.
+
+        The test commands' stdout/stderr used to be discarded, so a runner that
+        crashed left only `JSONDecodeError: Expecting value: line 1 column 1` --
+        which says that the file is empty, but nothing about why. The tail of the
+        actual command output is what identifies the cause (missing dependency,
+        collection error, OOM kill under the container memory cap, ...).
+        """
+        try:
+            return json.loads(raw)
+        except (json.JSONDecodeError, TypeError) as exc:
+            detail = "\n".join(
+                f"$ {cmd}\n{str((res or {}).get('output', ''))[-2000:]}"
+                for cmd, res in outputs
+            )
+            raise RuntimeError(
+                f"Test runner produced no usable {filename} "
+                f"({type(exc).__name__}: {exc}). Command output was:\n{detail}"
+            ) from exc
 
     def _setup_instance_test(self, env: Environment) -> None:
         # Write the test files
@@ -191,14 +212,13 @@ class AgentbenchInstance(Instance):
         env.execute("rm -f pr_test_results.json", timeout=False)
 
         # Execute the instance test commands
+        outputs = []
         for cmd in self.test_commands:
-            env.execute(cmd, timeout=False)
+            outputs.append((cmd, env.execute(cmd, timeout=False)))
 
         # Fetch the test_results.json file created by the test runner in the environment
         test_results = env.read_file("pr_test_results.json")
-        test_results = json.loads(test_results)
-
-        return test_results
+        return self._parse_test_results(test_results, "pr_test_results.json", outputs)
 
     def _parse_task(self) -> Dict[str, str]:
 
@@ -256,6 +276,8 @@ class AgentbenchInstance(Instance):
 
         logger.info(f"Solving instance {self.instance_id} in repo {self.repo} at commit {self.commit}")
 
+        evaluation_error: str | None = None
+
         try:
             env = self.setup({})
 
@@ -301,6 +323,12 @@ class AgentbenchInstance(Instance):
             repo_test_pass = False
             repo_test_after = {}
             repo_test_after_pr_patch = {}
+            # Ein Evaluationsfehler ist keine nicht geloeste Aufgabe. Ohne diese
+            # Unterscheidung schreibt jeder Container-, Timeout- oder Testrunner-Fehler
+            # ein resolved=False in den Report und senkt still die Resolve-Rate,
+            # anstatt als Fehler aufzufallen. Der Grund wird deshalb mitgeschrieben und
+            # muss bei der Auswertung von den echten Misserfolgen getrennt werden.
+            evaluation_error = f"{type(e).__name__}: {e}"
 
         # Save the results
         output_file = base_dir / f"{self.instance_id}" / "report.json"
@@ -311,6 +339,7 @@ class AgentbenchInstance(Instance):
             "resolved": resolved,
             "instance_test_passed": base_passed,
             "repo_test_passed": repo_test_pass,
+            "evaluation_error": evaluation_error,
             "model_patch": model_patch,
             "repo_test_after_pr_patch": repo_test_after_pr_patch,
             "repo_test_after": repo_test_after,
