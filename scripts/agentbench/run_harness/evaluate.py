@@ -43,6 +43,7 @@ def main(
     output_dir: str = "output",
     workers: int = 8,
     plan_args: Any = None,
+    filter_spec: str = "",
 ) -> None:
     
     if isinstance(plan_args, str):
@@ -92,24 +93,28 @@ def main(
         )
         config["planner"].update(plan_args) # Add any additional plan args that we want to be dynamic
 
-    # Add plan model to planner config
-    if plan_model is None:
-        plan_model = exec_model
-    else: # We need to initialize the model server in advance + use special port to avoid conflicts
-        plan_model_config = deepcopy(ALL_MODEL_CONFIGS[plan_model])
-        if "model_class" not in plan_model_config:
-            plan_model_config["model_class"] = "litellm_server"
-        config["planner"]["model_config"] = plan_model_config # Update the config with the port
-    config["planner"]["plan_model"] = plan_model
+    # Add plan/generator config -- only where a planner exists. Upstream ran this
+    # unconditionally; in pr_patch mode `config` is built without a "planner" key
+    # (line above), so the released oracle-validation path died with a KeyError
+    # before doing anything. Fork fix 14.08.2026.
+    if not use_pr_patch:
+        # Add plan model to planner config
+        if plan_model is None:
+            plan_model = exec_model
+        else: # We need to initialize the model server in advance + use special port to avoid conflicts
+            plan_model_config = deepcopy(ALL_MODEL_CONFIGS[plan_model])
+            if "model_class" not in plan_model_config:
+                plan_model_config["model_class"] = "litellm_server"
+            config["planner"]["model_config"] = plan_model_config # Update the config with the port
+        config["planner"]["plan_model"] = plan_model
 
-
-    # Add generator model to planner config
-    if plan_generator is None:
-        plan_generator = generator
-    plan_generator_config = deepcopy(ALL_GENERATOR_CONFIGS[plan_generator])
-    if "generator_class" not in plan_generator_config:
-        plan_generator_config["generator_class"] = "cli_agent"
-    config["planner"]["generator_config"] = plan_generator_config
+        # Add generator model to planner config
+        if plan_generator is None:
+            plan_generator = generator
+        plan_generator_config = deepcopy(ALL_GENERATOR_CONFIGS[plan_generator])
+        if "generator_class" not in plan_generator_config:
+            plan_generator_config["generator_class"] = "cli_agent"
+        config["planner"]["generator_config"] = plan_generator_config
 
 
     if use_pr_patch:
@@ -148,9 +153,10 @@ def main(
             train_plan=False,
         )
 
-    # Setup benchmark config
+    # Setup benchmark config. filter_spec was hardcoded to "" upstream; we pass it
+    # through so a subset can be evaluated (smoke tests, re-runs of single instances).
     config["benchmark"]["dataset_name"] = dataset_name
-    config["benchmark"]["filter_spec"] = ""
+    config["benchmark"]["filter_spec"] = filter_spec
     config["benchmark"]["slice_spec"] = None
 
     # Load the benchmark
