@@ -10,6 +10,7 @@ import random
 from tqdm import tqdm
 from tqdm.contrib.logging import logging_redirect_tqdm
 import json
+import time
 import traceback
 import textwrap
 import os
@@ -277,6 +278,11 @@ class AgentbenchInstance(Instance):
         logger.info(f"Solving instance {self.instance_id} in repo {self.repo} at commit {self.commit}")
 
         evaluation_error: str | None = None
+        # Eval-Dauer pro Instanz mitschreiben: sie streut von ~30 s bis 30+ min
+        # (Testsuiten laufen single-threaded) und ist damit Budget-Groesse fuer den
+        # Varianz-Piloten (k=10 Evals je Instanz) und Grundlage eines etwaigen
+        # vorregistrierten Laufzeit-Kriteriums der Testmengen-Auswahl.
+        eval_started = time.monotonic()
 
         try:
             env = self.setup({})
@@ -340,6 +346,7 @@ class AgentbenchInstance(Instance):
             "instance_test_passed": base_passed,
             "repo_test_passed": repo_test_pass,
             "evaluation_error": evaluation_error,
+            "eval_wall_time_seconds": round(time.monotonic() - eval_started, 2),
             "model_patch": model_patch,
             "repo_test_after_pr_patch": repo_test_after_pr_patch,
             "repo_test_after": repo_test_after,
