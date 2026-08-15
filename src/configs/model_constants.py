@@ -29,6 +29,10 @@ MODEL_PRICES = {
     "gpt-5-mini-2025-08-07": (0.25, 2.0, 0.02, 0.0),
     "gpt-5.2-codex": (1.75, 14.0, 0.175, 0.0),
     "gemini-3-flash-preview": (0.25, 1.5, 0.05, 0.0),
+    # OpenRouter-Routen: Provider-Listenpreise; OR-Fee (~5 %) faellt beim
+    # Guthabenkauf an, nicht pro Token -- Logging nutzt Listenpreise
+    "openrouter/moonshotai/kimi-k2.7-code": (0.95, 4.0, 0.19, 0.0),
+    "openrouter/anthropic/claude-sonnet-4.6": (3.0, 15.0, 0.3, 3.75),
 }
 
 
@@ -149,6 +153,34 @@ MODEL_CODEX_MINI_OR = {
     "model_kwargs": {
         "drop_params": True,
         "api_key": OPENROUTER_API_KEY,
+    },
+}
+
+# OpenRouter ist ein Router: dasselbe Modell kann je nach Lage von verschiedenen
+# Hostern (teils in anderer Quantisierung) bedient werden -- fuer eine Messung ist
+# der Modellname allein deshalb kein ausreichender Identifikator. Beide Eintraege
+# pinnen den Provider hart: allow_fallbacks=False laesst den Request LAUT scheitern,
+# statt still einen anderen Hoster zu messen. Der tatsaechlich bedienende Provider
+# steht in jeder OpenRouter-Response und wird im Smoke verifiziert.
+# (Modell-Slugs beim Smoke gegen /v1/models pruefen -- Stand 15.08.2026 unverifiziert.)
+
+MODEL_KIMI_K27_CODE_OR = {
+    "model_name": "openrouter/moonshotai/kimi-k2.7-code",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.0,
+        "api_key": OPENROUTER_API_KEY,
+        "extra_body": {"provider": {"order": ["moonshotai"], "allow_fallbacks": False}},
+    },
+}
+
+MODEL_SONNET_4_6_OR = {
+    "model_name": "openrouter/anthropic/claude-sonnet-4.6",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.0,   # Sonnet 4.6 akzeptiert temp 0 (anders als Sonnet 5)
+        "api_key": OPENROUTER_API_KEY,
+        "extra_body": {"provider": {"order": ["anthropic"], "allow_fallbacks": False}},
     },
 }
 
@@ -273,6 +305,8 @@ ALL_MODEL_CONFIGS = {
     "opus-4-5": MODEL_OPUS,
     "sonnet-4-5": MODEL_SONNET,
     "sonnet-4-6": MODEL_SONNET_4_6,
+    "kimi-k2.7-code-or": MODEL_KIMI_K27_CODE_OR,
+    "sonnet-4-6-or": MODEL_SONNET_4_6_OR,
     "sonnet-5": MODEL_SONNET_5,
     "gpt-5.1-codex-mini": MODEL_GPT5_CODEX_MINI,
     "gpt-5.2-codex": MODEL_GPT5_2_CODEX,
