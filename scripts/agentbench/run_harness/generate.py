@@ -343,9 +343,27 @@ def process_instance(
                 )
                 instance._clean_git_history(env)
 
-            # Commit all changes so far to have a clean state
-            env.execute("git add .")
-            env.execute('git commit -m "Prepare environment for execution"')
+            # Commit all changes so far to have a clean state.
+            # -c user.*: containers ship without git identity — without it the commit
+            # aborts ("Please tell me who you are") and env.execute swallows the error;
+            # setup artifacts (in-repo venvs/conda, 65/89 instances) then pollute the
+            # final `git add -A && git diff --cached` with GB-sized diffs.
+            env.execute("git add -A", timeout=False)
+            commit_result = env.execute(
+                'git -c user.email=agentbench@local -c user.name=agentbench '
+                'commit --quiet --allow-empty -m "Prepare environment for execution"',
+                timeout=False,
+            )
+            status_after = env.execute(
+                "git status --porcelain | head -5", timeout=False
+            ).get("output", "").strip()
+            if status_after:
+                logger.warning(
+                    f"{instance.instance_id}: baseline commit left a dirty tree "
+                    f"(setup artifacts will leak into the agent diff). "
+                    f"status: {status_after!r} | commit output: "
+                    f"{str(commit_result.get('output', ''))[-500:]!r}"
+                )
 
             # Solve the instance itself
             generator = get_generator(
