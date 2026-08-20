@@ -103,9 +103,8 @@ PI_GENERATOR_CONFIG = {
         "[{{\"id\":\"{model}\",\"name\":\"study-model\",\"contextWindow\":131072,"
         "\"maxTokens\":8192}}]}}}}}}' > ~/.pi/agent/models.json && "
         "pi -p -a --provider litellm --model {model} --session-dir /tmp/pi-sessions "
-        "--append-system-prompt \"You operate non-interactively. Never end your turn with "
-        "only a plan or announcement - always proceed by calling tools until the task is "
-        "complete, then finish with a summary of your changes.\" {prompt}"
+        "--system-prompt \"You are an autonomous coding agent. Complete the task by "
+        "using the provided tools.\" {prompt}"
     ),
     "install_commands": [
         "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash",
