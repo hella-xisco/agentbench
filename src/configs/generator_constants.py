@@ -86,6 +86,38 @@ GEMINI_CLI_GENERATOR_CONFIG = {
 
 
 
+# Pi (badlogic/earendil) — neutraler Studien-Harness (Pivot §12). Anbindung wie alle
+# CLIs ueber den harness-eigenen LiteLLM-Proxy ({base_url}/{api_key}/{model} aus
+# get_openai_args), damit Traces/Tokens in der .traj.json landen und temp 0 aus dem
+# Registry-Eintrag (glm-4.5-air-t0) request-seitig erzwungen wird. Pi kennt keinen
+# Base-URL-Flag -> models.json wird im launch_command mit den Laufzeitwerten
+# geschrieben (doppelte Klammern = Literale fuers .format()). --session-dir liegt
+# bewusst AUSSERHALB von /testbed, sonst landen Session-Dateien im finalen git diff.
+# -p = print mode, -a = Trust fuer projektlokale Dateien (AGENTS.md/Skills-Delivery!).
+# Version gepinnt (0.84.2 = Stand Skill-Gate 16.08.); Node via nvm wie qwen/codex.
+PI_GENERATOR_CONFIG = {
+    "launch_command": (
+        "mkdir -p ~/.pi/agent /tmp/pi-sessions && "
+        "printf '%s' '{{\"providers\":{{\"litellm\":{{\"baseUrl\":\"{base_url}\","
+        "\"api\":\"openai-completions\",\"apiKey\":\"{api_key}\",\"models\":"
+        "[{{\"id\":\"{model}\",\"name\":\"study-model\",\"contextWindow\":131072,"
+        "\"maxTokens\":8192}}]}}}}}}' > ~/.pi/agent/models.json && "
+        "pi -p -a --provider litellm --model {model} --session-dir /tmp/pi-sessions {prompt}"
+    ),
+    "install_commands": [
+        "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash",
+        '. "$HOME/.nvm/nvm.sh"',
+        "nvm install 24",
+        "npm install -g --ignore-scripts @earendil-works/pi-coding-agent@0.84.2",
+    ],
+    "post_install_commands": [
+        "pi --version",
+    ],
+    "post_exec_commands": [],
+    "cli_name": "pi",
+}
+
+
 MINI_SWE_AGENTS_CONFIG = {\
     "step_limit": 200,
 }
@@ -102,4 +134,5 @@ ALL_GENERATOR_CONFIGS = {
     "miniswe_agents": add_generator_class(MINI_SWE_AGENTS_CONFIG, "miniswe_agents"),
     "claude_code": add_generator_class(CLAUDE_CODE_GENERATOR_CONFIG, "cli_agent"),
     "gemini_cli": add_generator_class(GEMINI_CLI_GENERATOR_CONFIG, "cli_agent"),
+    "pi": add_generator_class(PI_GENERATOR_CONFIG, "cli_agent"),
 }
