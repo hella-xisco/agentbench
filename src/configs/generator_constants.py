@@ -9,6 +9,16 @@ import os
 # Der Installer akzeptiert `stable|latest|X.Y.Z`: `... | bash -s 2.1.223`.
 CLAUDE_CODE_VERSION = os.getenv("AGENTBENCH_CLAUDE_CODE_VERSION", "2.1.223")
 
+# Per-Instanz-Timeout um den CLI-Aufruf (Beschluss Francisco 20.08., Fork-Delta #27):
+# verhindert degenerierte Endlos-Loops (beobachtet: identische No-op-Edits ueber >1 h,
+# VP Stufe 1 / diagnose-no-action.md Nachtrag 2), die sonst erst am 2h-Container-Cap
+# sterben. GNU timeout: TERM, nach 60 s Nachfrist KILL; der Lauf endet als Fehlschlag
+# MIT der bis dahin geloggten Trajektorie. Gilt IDENTISCH fuer alle CLI-Generatoren
+# (Vergleichbarkeit ueber Harnesses). Timeout-Laeufe = eigene Taxonomie-Unterkategorie
+# (auswertung §1b). FINAL 20.08. (Francisco): 660 s = P95 legitimer Wall-Times der
+# VP-Stufe-1 (410 s) x 1,5 — vorregistriert aus 100 gemessenen Laeufen.
+CLI_TIMEOUT_SECONDS = os.getenv("AGENTBENCH_CLI_TIMEOUT", "660")
+
 QWEN_GENERATOR_CONFIG = {
     "launch_command": "OPENAI_API_KEY={api_key} OPENAI_BASE_URL={base_url} OPENAI_MODEL={model} qwen --yolo -p {prompt}",
     "install_commands": [
@@ -55,7 +65,7 @@ CODEX_GENERATOR_CONFIG = {
 }
 
 CLAUDE_CODE_GENERATOR_CONFIG = {
-    "launch_command": "IS_SANDBOX=1 ANTHROPIC_BASE_URL={base_url} ANTHROPIC_AUTH_TOKEN={api_key} ~/.local/bin/claude --dangerously-skip-permissions --model {model} -p {prompt}",
+    "launch_command": f"timeout -k 60 {CLI_TIMEOUT_SECONDS} env " + "IS_SANDBOX=1 ANTHROPIC_BASE_URL={base_url} ANTHROPIC_AUTH_TOKEN={api_key} ~/.local/bin/claude --dangerously-skip-permissions --model {model} -p {prompt}",
     "install_commands": [
         f"curl -fsSL https://claude.ai/install.sh | bash -s {CLAUDE_CODE_VERSION}",
     ],
@@ -102,6 +112,7 @@ PI_GENERATOR_CONFIG = {
         "\"api\":\"openai-completions\",\"apiKey\":\"{api_key}\",\"models\":"
         "[{{\"id\":\"{model}\",\"name\":\"study-model\",\"contextWindow\":131072,"
         "\"maxTokens\":8192}}]}}}}}}' > ~/.pi/agent/models.json && "
+        f"timeout -k 60 {CLI_TIMEOUT_SECONDS} "
         "pi -p -a --provider litellm --model {model} --session-dir /tmp/pi-sessions "
         "--system-prompt \"You are an autonomous coding agent. Complete the task by "
         "using the provided tools.\" {prompt}"
