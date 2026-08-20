@@ -269,12 +269,27 @@ MODEL_QWEN3_30B_CODER_T0 = {
 # GLM (lokal, Hundhammer) #
 ##########################
 
-# ⚠️ PLATZHALTER (19.07.) — noch nicht auf dem Server verifiziert:
-# 1) Welcher exakte HF-Checkpoint/Quant von GLM-5.2 tatsächlich auf der
-#    Hundhammer-Hardware läuft (VRAM/Multi-GPU-Split klären, ggf. FP8/AWQ-Variante).
-# 2) Ob der vLLM-Tool-Call-/Reasoning-Parser noch "glm45" heißt oder sich für
-#    GLM-5.2 geändert hat (s. scripts/local_lms/vllm_glm.sh).
-# Port 4002 gewählt, um Qwen (4000) und gpt-oss (4001) nicht zu belegen.
+# Laufmodell der Studie (Pivot §12, seit 16.08. produktiv auf dem Server):
+# GLM-4.5-Air-FP8 via vLLM auf GPU 2+3, TP=2, Port 4001, --served-model-name
+# glm-4.5-air-fp8, Parser glm45 (scripts/local_lms/vllm_glm.sh). temp 0 gemäß
+# ETH-Protokoll; Determinismus am 16.08. per Doppel-Request verifiziert (inkl.
+# identischem Reasoning-Text). ⚠️ Hybrid-Reasoning: Thinking ist per
+# Serving-Default AN (offene-entscheidungen #10 — Default belassen, dokumentieren);
+# max_completion_tokens deshalb großzügiger als bei Qwen (Reasoning zählt mit).
+MODEL_GLM_45_AIR_T0 = {
+    "model_name": "hosted_vllm/glm-4.5-air-fp8",
+    "api_base": "http://localhost:4001/v1",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.0,
+        "api_key": "anything",
+        "stream": False,
+        "max_completion_tokens": 8192,
+    },
+}
+
+# ⚠️ OBSOLET (16.08.): GLM-5.2-Plan-A wurde aufgehoben (753B passt nie auf
+# 2xH100, Pivot §10); Eintrag bleibt nur als Historie, nicht verwenden.
 MODEL_GLM_5_2 = {
     "model_name": "hosted_vllm/zai-org/GLM-5.2",  # TODO: exakte Repo-ID/Quant bestätigen
     "api_base": "http://localhost:4002/v1",
@@ -301,7 +316,8 @@ ALL_MODEL_CONFIGS = {
     "qwen3-30b-coder-t0": MODEL_QWEN3_30B_CODER_T0,
     "kimi-k2.5": MODEL_KIMI_K25,
     "kimi-k2.7-code": MODEL_KIMI_K27_CODE,
-    "glm-5.2": MODEL_GLM_5_2,
+    "glm-4.5-air-t0": MODEL_GLM_45_AIR_T0,
+    "glm-5.2": MODEL_GLM_5_2,  # obsolet, s. Kommentar oben
     "opus-4-5": MODEL_OPUS,
     "sonnet-4-5": MODEL_SONNET,
     "sonnet-4-6": MODEL_SONNET_4_6,
