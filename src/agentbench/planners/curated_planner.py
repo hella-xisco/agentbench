@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 import json
 import re
 import shlex
@@ -39,7 +39,11 @@ class CuratedPlanner(Planner):
     """
 
     def __init__(self, **kwargs) -> None:
-        self.config = CuratedPlannerConfig(**kwargs)
+        # generate.py reichert jede Planner-Config zur Laufzeit um Harness-Keys an
+        # (plan_model, generator_config, model_config, ...) — nur die eigenen
+        # Dataclass-Felder uebernehmen, den Rest ignorieren.
+        known = {f.name for f in fields(CuratedPlannerConfig)}
+        self.config = CuratedPlannerConfig(**{k: v for k, v in kwargs.items() if k in known})
         self.logger = logging.getLogger(f"agentbench.curated_planner.{self.config.condition}")
         with open(self.config.manifest_path) as f:
             self._manifest: dict[str, dict[str, str]] = json.load(f)
