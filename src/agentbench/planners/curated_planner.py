@@ -89,6 +89,15 @@ class CuratedPlanner(Planner):
             skill_name = m.group(1)
             for d in SKILL_DIRS:
                 self._write_file(env, f"{d}/{skill_name}/SKILL.md", content)
+            # Verifikation: sind die Dateien wirklich im Container gelandet?
+            probe = env.execute(
+                "pwd && ls -la .claude/skills/*/ .agents/skills/*/ .pi/skills/*/ 2>&1 | head -20",
+                timeout=False,
+            )
+            self.logger.info(
+                f"[skill-verify] {instance.instance_id}/{self.config.condition} "
+                f"rc={probe.get('returncode')} output:\n{probe.get('output', '')[:800]}"
+            )
         else:
             self._write_file(env, "AGENTS.md", content)
 
