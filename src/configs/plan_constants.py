@@ -37,27 +37,28 @@ HUMAN_PLANNER = {
     "storage_dir": "output/plans",
 }
 
-# Curated K1/K2 conditions — content lives in one manifest (M1-C output), the
-# `condition` key is the only thing that differs between these configs.
-_CURATED_MANIFEST_PATH = "context/global/data/m1c/curated_manifest.json"
+# Curated conditions (final cell set 20.08.: K0d/K1/K1s/K2/K2s) — content lives
+# in one manifest (M1-C output), the `condition` key is the only thing that
+# differs between these configs. K0 runs via no_plan, not via this manifest.
+_CURATED_MANIFEST_PATH = "data/m1c/curated_manifest.json"
 
-CURATED_K1A_CONFIG = {  # no file, docs stripped separately via --remove_docs
+CURATED_K0D_CONFIG = {  # original DEV file verbatim as AGENTS.md
     "planner_class": "curated_planner",
     "manifest_path": _CURATED_MANIFEST_PATH,
-    "condition": "k1a",
+    "condition": "k0d",
     "storage_dir": "output/plans",
 }
-CURATED_K1B_CONFIG = deepcopy(CURATED_K1A_CONFIG)
-CURATED_K1B_CONFIG["condition"] = "k1b"
+CURATED_K1_CONFIG = deepcopy(CURATED_K0D_CONFIG)   # procedural, AGENTS.md
+CURATED_K1_CONFIG["condition"] = "k1"
 
-CURATED_K1C_CONFIG = deepcopy(CURATED_K1A_CONFIG)
-CURATED_K1C_CONFIG["condition"] = "k1c"
+CURATED_K1S_CONFIG = deepcopy(CURATED_K0D_CONFIG)  # procedural, SKILL.md
+CURATED_K1S_CONFIG["condition"] = "k1s"
 
-CURATED_K2A_CONFIG = deepcopy(CURATED_K1A_CONFIG)
-CURATED_K2A_CONFIG["condition"] = "k2a"
+CURATED_K2_CONFIG = deepcopy(CURATED_K0D_CONFIG)   # descriptive, AGENTS.md
+CURATED_K2_CONFIG["condition"] = "k2"
 
-CURATED_K2B_CONFIG = deepcopy(CURATED_K1A_CONFIG)
-CURATED_K2B_CONFIG["condition"] = "k2b"
+CURATED_K2S_CONFIG = deepcopy(CURATED_K0D_CONFIG)  # descriptive, SKILL.md
+CURATED_K2S_CONFIG["condition"] = "k2s"
 
 ALL_PLAN_CONFIGS = {
     "baseline": BASELINE_PLAN_CONFIG,
@@ -68,11 +69,11 @@ ALL_PLAN_CONFIGS = {
     "claude_planner": CLAUDE_PLAN_CONFIG,
     "qwen_planner": QWEN_PLAN_CONFIG,
     "gemini_planner": GEMINI_PLAN_CONFIG,
-    "curated_k1a": CURATED_K1A_CONFIG,
-    "curated_k1b": CURATED_K1B_CONFIG,
-    "curated_k1c": CURATED_K1C_CONFIG,
-    "curated_k2a": CURATED_K2A_CONFIG,
-    "curated_k2b": CURATED_K2B_CONFIG,
+    "curated_k0d": CURATED_K0D_CONFIG,
+    "curated_k1": CURATED_K1_CONFIG,
+    "curated_k1s": CURATED_K1S_CONFIG,
+    "curated_k2": CURATED_K2_CONFIG,
+    "curated_k2s": CURATED_K2S_CONFIG,
 }
 
 
