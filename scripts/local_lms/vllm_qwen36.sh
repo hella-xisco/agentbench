@@ -10,6 +10,12 @@
 #   GPU_MEM_UTIL   Anteil des VRAM, den vLLM belegen darf (Default 0.85)
 #   MAX_LEN        --max-model-len (Default 131072; nativ 262144, 128k reicht bei
 #                  4 parallelen Agenten mit Pi-Compaction und spart KV-Cache)
+#   MAX_SEQS       --max-num-seqs (Default 32). ⚠️ PFLICHT bei Qwen3.6: das Modell
+#                  ist ein Hybrid mit Gated-DeltaNet-Linear-Attention; jede
+#                  Decode-Sequenz braucht einen Mamba-State-Block. vLLMs Default
+#                  (1024) sprengt die verfuegbaren Bloecke (~696 bei util 0.85) und
+#                  bricht die CUDA-Graph-Capture ab -> EngineCore-Start scheitert
+#                  (verifiziert 22.08.). 32 >> 4 Generate-Worker je Engine.
 #
 # Parser-Flags laut Model-Card (huggingface.co/Qwen/Qwen3.6-27B): tool-call-parser
 # qwen3_coder, reasoning-parser qwen3. Hybrid-Thinking bleibt AN (Paritaet zu
@@ -31,6 +37,7 @@ vllm serve Qwen/Qwen3.6-27B-FP8 \
   --host "$HOST" \
   --tensor-parallel-size 1 \
   --max-model-len "${MAX_LEN:-131072}" \
+  --max-num-seqs "${MAX_SEQS:-32}" \
   --enable-auto-tool-choice \
   --tool-call-parser qwen3_coder \
   --reasoning-parser qwen3 \
