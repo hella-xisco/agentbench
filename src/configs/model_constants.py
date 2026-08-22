@@ -296,8 +296,12 @@ MODEL_GLM_45_AIR_T0 = {
 # gleiche Last je Engine wie bei GLM (Varianz-Parameter). Der Port wird per
 # generate.py --exec_model_api_base je Treiber gesetzt (run_0 -> 4002, run_1 -> 4003);
 # Default hier = 4002. Hybrid-Thinking bleibt AN (Paritaet zu GLM-4.5-Air, #10);
-# temp 0 statt der empfohlenen 0.6 (Protokollkonstanz, ETH). max_completion_tokens
-# wie GLM (Reasoning zaehlt mit).
+# temp 0 statt der empfohlenen 0.6 (Protokollkonstanz, ETH).
+# max_completion_tokens 32768 (NICHT 8192 wie GLM): Smoke 22.08. zeigte in 2/6 Zellen
+# ein mitten im Gedanken abgeschnittenes Reasoning (39k Zeichen, kein Loop) -> leerer
+# Content, kein Tool-Call -> Lauf endet wie No-Action. Das Cap ist eine technische
+# Obergrenze, kein Treatment, und darf nicht binden (Cap-Regel, Decisions-Log 22.08.);
+# Schutz vor Endlos-Denken bleibt das Timeout 660 s (#27), identisch fuer beide Modelle.
 MODEL_QWEN36_27B_T0 = {
     "model_name": "hosted_vllm/qwen3.6-27b-fp8",
     "api_base": "http://localhost:4002/v1",
@@ -306,7 +310,7 @@ MODEL_QWEN36_27B_T0 = {
         "temperature": 0.0,
         "api_key": "anything",
         "stream": False,
-        "max_completion_tokens": 8192,
+        "max_completion_tokens": 32768,
     },
 }
 
