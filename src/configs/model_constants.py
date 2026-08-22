@@ -288,6 +288,28 @@ MODEL_GLM_45_AIR_T0 = {
     },
 }
 
+# Zweites Modell der Studie — RQ4-Reserve (Beschluss 22.08., Erweiterung nach dem
+# Design-Freeze, Decisions-Log 22.08.): Qwen3.6-27B-FP8 (dense, Apache 2.0) via vLLM
+# auf EINER H100, Parser qwen3_coder + reasoning-parser qwen3 (Model-Card-Kommando),
+# --served-model-name qwen3.6-27b-fp8 (scripts/local_lms/vllm_qwen36.sh).
+# Zwei Instanzen (GPU 2 -> Port 4002, GPU 3 -> Port 4003), je Treiber 4 Worker =
+# gleiche Last je Engine wie bei GLM (Varianz-Parameter). Der Port wird per
+# generate.py --exec_model_api_base je Treiber gesetzt (run_0 -> 4002, run_1 -> 4003);
+# Default hier = 4002. Hybrid-Thinking bleibt AN (Paritaet zu GLM-4.5-Air, #10);
+# temp 0 statt der empfohlenen 0.6 (Protokollkonstanz, ETH). max_completion_tokens
+# wie GLM (Reasoning zaehlt mit).
+MODEL_QWEN36_27B_T0 = {
+    "model_name": "hosted_vllm/qwen3.6-27b-fp8",
+    "api_base": "http://localhost:4002/v1",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.0,
+        "api_key": "anything",
+        "stream": False,
+        "max_completion_tokens": 8192,
+    },
+}
+
 # ⚠️ OBSOLET (16.08.): GLM-5.2-Plan-A wurde aufgehoben (753B passt nie auf
 # 2xH100, Pivot §10); Eintrag bleibt nur als Historie, nicht verwenden.
 MODEL_GLM_5_2 = {
@@ -317,6 +339,7 @@ ALL_MODEL_CONFIGS = {
     "kimi-k2.5": MODEL_KIMI_K25,
     "kimi-k2.7-code": MODEL_KIMI_K27_CODE,
     "glm-4.5-air-t0": MODEL_GLM_45_AIR_T0,
+    "qwen3.6-27b-t0": MODEL_QWEN36_27B_T0,
     "glm-5.2": MODEL_GLM_5_2,  # obsolet, s. Kommentar oben
     "opus-4-5": MODEL_OPUS,
     "sonnet-4-5": MODEL_SONNET,
