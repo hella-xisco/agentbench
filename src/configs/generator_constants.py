@@ -105,6 +105,12 @@ GEMINI_CLI_GENERATOR_CONFIG = {
 # bewusst AUSSERHALB von /testbed, sonst landen Session-Dateien im finalen git diff.
 # -p = print mode, -a = Trust fuer projektlokale Dateien (AGENTS.md/Skills-Delivery!).
 # Version gepinnt (0.84.2 = Stand Skill-Gate 16.08.); Node via nvm wie qwen/codex.
+# maxTokens in Pis models.json = das Output-Cap, das Pi bei JEDEM Request mitschickt
+# (ueberschreibt die Registry-Angabe max_completion_tokens!). Default 8192 = Stand des
+# GLM-Hauptruns (21.08.). Fuer Qwen3.6 per Env PI_MAX_TOKENS=32768 (Cap-Regel,
+# Decisions-Log 23.08.: Reasoning riss 8192 mitten im Gedanken -> leerer Turn).
+PI_MAX_TOKENS = os.getenv("PI_MAX_TOKENS", "8192")
+
 PI_GENERATOR_CONFIG = {
     "launch_command": (
         "mkdir -p ~/.pi/agent /tmp/pi-sessions && "
@@ -129,6 +135,8 @@ PI_GENERATOR_CONFIG = {
     "post_exec_commands": [],
     "cli_name": "pi",
 }
+PI_GENERATOR_CONFIG["launch_command"] = PI_GENERATOR_CONFIG["launch_command"].replace(
+    '"maxTokens":8192', f'"maxTokens":{PI_MAX_TOKENS}')
 
 
 MINI_SWE_AGENTS_CONFIG = {\
