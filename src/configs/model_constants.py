@@ -314,6 +314,28 @@ MODEL_QWEN36_27B_T0 = {
     },
 }
 
+# LAUFMODELL-EINTRAG Modell 2 (Beschluss Francisco 23.08., ~02:00): Hersteller-
+# Dekodierung statt temp 0. Befund: bei temp 0 (greedy) geraet Qwen3.6 in
+# deterministische Reasoning-Schleifen (K2 x openai-agents-1798: ein Absatz 113x
+# wiederholt, 32k Tokens, kein Tool-Call) — die Model-Card warnt explizit vor Greedy
+# Decoding. Loesung analog ETH ("as shipped"): temperature 0.6, top_p 0.95, top_k 20
+# laut Model-Card. Konsequenz: kein Determinismus mehr => Varianz fuer DIESE
+# Konfiguration per VP (10 Tasks x k=20) vor der Matrix gemessen; r=2 in der Matrix.
+# Der t0-Eintrag oben bleibt als Beleg des Befunds (Smoke run_90-93).
+MODEL_QWEN36_27B_T06 = {
+    "model_name": "hosted_vllm/qwen3.6-27b-fp8",
+    "api_base": "http://localhost:4002/v1",
+    "model_kwargs": {
+        "drop_params": True,
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "extra_body": {"top_k": 20},
+        "api_key": "anything",
+        "stream": False,
+        "max_completion_tokens": 32768,
+    },
+}
+
 # ⚠️ OBSOLET (16.08.): GLM-5.2-Plan-A wurde aufgehoben (753B passt nie auf
 # 2xH100, Pivot §10); Eintrag bleibt nur als Historie, nicht verwenden.
 MODEL_GLM_5_2 = {
@@ -344,6 +366,7 @@ ALL_MODEL_CONFIGS = {
     "kimi-k2.7-code": MODEL_KIMI_K27_CODE,
     "glm-4.5-air-t0": MODEL_GLM_45_AIR_T0,
     "qwen3.6-27b-t0": MODEL_QWEN36_27B_T0,
+    "qwen3.6-27b-t06": MODEL_QWEN36_27B_T06,
     "glm-5.2": MODEL_GLM_5_2,  # obsolet, s. Kommentar oben
     "opus-4-5": MODEL_OPUS,
     "sonnet-4-5": MODEL_SONNET,
