@@ -1,0 +1,35 @@
+# Zuordnung Quellzeile -> Bucket  (statisches Artefakt, eingefroren nach Review 21.08.)
+# Quelle: openai__openai-agents-python__b9c583a0.md · Buckets: P D N M X PARTS · Auto-Zeilen (blank/heading/fence) fehlen bewusst.
+1	M	OAI-01	Welcome to the OpenAI Agents SDK repository. This file contains the main points for new contributors.
+5	D	OAI-02	- **Source code**: `src/agents/` contains the implementation.
+6	D	OAI-03	- **Tests**: `tests/` with a short guide in `tests/README.md`.
+7	D	OAI-04	- **Examples**: under `examples/`.
+8	D	OAI-05	- **Documentation**: markdown pages live in `docs/` with `mkdocs.yml` controlling the site.
+9	D	OAI-06	- **Utilities**: developer commands are defined in the `Makefile`.
+10	D	OAI-07	- **PR template**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md` describes the information every PR must include.
+14	P	OAI-08 (Lead-in der Kommandogruppe)	1. Format, lint and type‑check your changes:
+17	P	OAI-08	   make format
+18	P	OAI-08	   make lint
+19	P	OAI-08	   make mypy
+22	P	OAI-08	2. Run the tests:
+25	P	OAI-08	   make tests
+28	P	OAI-10	   To run a single test, use `uv run pytest -s -k <test_name>`.
+30	P	OAI-11	3. Build the documentation (optional but recommended for docs changes):
+33	P	OAI-11	   make build-docs
+36	P	OAI-12	   Coverage can be generated with `make coverage`.
+38	P	OAI-13	All python commands should be run via `uv run python ...`
+42	D	OAI-14	Some tests rely on inline snapshots. See `tests/README.md` for details on updating them:
+45	P	OAI-15	make snapshots-fix      # update existing snapshots
+46	P	OAI-16	make snapshots-create   # create new snapshots
+49	P	OAI-17	Run `make tests` again after updating snapshots to ensure they pass.
+53	N	OAI-18	- Write comments as full sentences and end them with a period.
+57	N	OAI-19	PRs should use the template located at `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`. Provide a summary, test plan and issue number if applicable, then check that:
+59	N	OAI-20 (Checkliste)	- New tests are added when needed.
+60	N	OAI-20 (Checkliste)	- Documentation is updated.
+61	N	OAI-20	- `make lint` and `make format` have been run.
+62	N	OAI-20	- The full test suite passes.
+64	N	OAI-21,OAI-22	Commit messages should be concise and written in the imperative mood. Small, focused commits are preferred.
+68	N	OAI-23	- Tests covering new behaviour.
+69	N	OAI-23	- Consistent style: code formatted with `uv run ruff format`, imports sorted, and type hints passing `uv run mypy .`.
+70	N	OAI-23	- Clear documentation for any public API changes.
+71	N	OAI-23	- Clean history and a helpful PR description.

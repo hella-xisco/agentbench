@@ -1,0 +1,76 @@
+# Zuordnung Quellzeile -> Bucket  (statisches Artefakt, eingefroren nach Review 21.08.)
+# Quelle: getzep__graphiti__9e8aabe6.md · Buckets: P D N M X PARTS · Auto-Zeilen (blank/heading/fence) fehlen bewusst.
+3	M	GRA-01	This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+7	D	GRA-02,GRA-03	Graphiti is a Python framework for building temporally-aware knowledge graphs designed for AI agents. It enables real-time incremental updates to knowledge graphs without batch recomputation, making it suitable for dynamic environments.
+9	D	GRA-04	Key features:
+11	D	GRA-04	- Bi-temporal data model with explicit tracking of event occurrence times
+12	D	GRA-04	- Hybrid retrieval combining semantic embeddings, keyword search (BM25), and graph traversal
+13	D	GRA-04	- Support for custom entity definitions via Pydantic models
+14	D	GRA-04	- Integration with Neo4j and FalkorDB as graph storage backends
+21	P	GRA-05	# Install dependencies
+22	P	GRA-05	uv sync --extra dev
+24	P	GRA-06	# Format code (ruff import sorting + formatting)
+25	P	GRA-06	make format
+27	P	GRA-07	# Lint code (ruff + pyright type checking)
+28	P	GRA-07	make lint
+30	P	GRA-08	# Run tests
+31	P	GRA-08	make test
+33	P	GRA-09	# Run all checks (format, lint, test)
+34	P	GRA-09	make check
+40	P	GRA-10	cd server/
+41	P	GRA-10	# Install server dependencies
+42	P	GRA-10	uv sync --extra dev
+44	P	GRA-11	# Run server in development mode
+45	P	GRA-11	uvicorn graph_service.main:app --reload
+47	P	GRA-12	# Format, lint, test server code
+48	P	GRA-12	make format
+49	P	GRA-12	make lint
+50	P	GRA-12	make test
+56	P	GRA-12	cd mcp_server/
+57	P	GRA-12	# Install MCP server dependencies
+58	P	GRA-12	uv sync
+60	P	GRA-14	# Run with Docker Compose
+61	P	GRA-14	docker-compose up
+68	D	GRA-15	- **Main Entry Point**: `graphiti.py` - Contains the main `Graphiti` class that orchestrates all functionality
+69	D	GRA-15	- **Graph Storage**: `driver/` - Database drivers for Neo4j and FalkorDB
+70	D	GRA-15	- **LLM Integration**: `llm_client/` - Clients for OpenAI, Anthropic, Gemini, Groq
+71	D	GRA-15	- **Embeddings**: `embedder/` - Embedding clients for various providers
+72	D	GRA-15	- **Graph Elements**: `nodes.py`, `edges.py` - Core graph data structures
+73	D	GRA-15	- **Search**: `search/` - Hybrid search implementation with configurable strategies
+74	D	GRA-15	- **Prompts**: `prompts/` - LLM prompts for entity extraction, deduplication, summarization
+75	D	GRA-15	- **Utilities**: `utils/` - Maintenance operations, bulk processing, datetime handling
+79	D	GRA-15	- **FastAPI Service**: `graph_service/main.py` - REST API server
+80	D	GRA-15	- **Routers**: `routers/` - API endpoints for ingestion and retrieval
+81	D	GRA-15	- **DTOs**: `dto/` - Data transfer objects for API contracts
+85	D	GRA-15	- **MCP Implementation**: `graphiti_mcp_server.py` - Model Context Protocol server for AI assistants
+86	D	GRA-15	- **Docker Support**: Containerized deployment with Neo4j
+90	D	GRA-18	- **Unit Tests**: `tests/` - Comprehensive test suite using pytest
+91	D	GRA-19	- **Integration Tests**: Tests marked with `_int` suffix require database connections
+92	D	GRA-20	- **Evaluation**: `tests/evals/` - End-to-end evaluation scripts
+98	D	GRA-21	- `OPENAI_API_KEY` - Required for LLM inference and embeddings
+99	D	GRA-22	- `USE_PARALLEL_RUNTIME` - Optional boolean for Neo4j parallel runtime (enterprise only)
+100	D	GRA-23	- Provider-specific keys: `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `GROQ_API_KEY`, `VOYAGE_API_KEY`
+104	D	GRA-24	- **Neo4j**: Version 5.26+ required, available via Neo4j Desktop
+105	D	GRA-25	  - Database name defaults to `neo4j` (hardcoded in Neo4jDriver)
+106	P	GRA-26	  - Override by passing `database` parameter to driver constructor
+107	D	GRA-27	- **FalkorDB**: Version 1.1.2+ as alternative backend
+108	D	GRA-28	  - Database name defaults to `default_db` (hardcoded in FalkorDriver)
+109	P	GRA-29	  - Override by passing `database` parameter to driver constructor
+115	N	GRA-30	- Use Ruff for formatting and linting (configured in pyproject.toml)
+116	N	GRA-31	- Line length: 100 characters
+117	N	GRA-32	- Quote style: single quotes
+118	N	GRA-33	- Type checking with Pyright is enforced
+119	D	GRA-34	- Main project uses `typeCheckingMode = "basic"`, server uses `typeCheckingMode = "standard"`
+123	P	GRA-35	- Run tests with `make test` or `pytest`
+124	D	GRA-36	- Integration tests require database connections and are marked with `_int` suffix
+125	P	GRA-37	- Use `pytest-xdist` for parallel test execution
+126	P	GRA-38	- Run specific test files: `pytest tests/test_specific_file.py`
+127	P	GRA-39	- Run specific test methods: `pytest tests/test_file.py::test_method_name`
+128	P	GRA-40	- Run only integration tests: `pytest tests/ -k "_int"`
+129	P	GRA-41	- Run only unit tests: `pytest tests/ -k "not _int"`
+133	D	GRA-42	The codebase supports multiple LLM providers but works best with services supporting structured output (OpenAI, Gemini). Other providers may cause schema validation issues, especially with smaller models.
+137	N	GRA-43	When working with the MCP server, follow the patterns established in `mcp_server/cursor_rules.md`:
+139	N	GRA-43	- Always search for existing knowledge before adding new information
+140	N	GRA-43	- Use specific entity type filters (`Preference`, `Procedure`, `Requirement`)
+141	N	GRA-43	- Store new information immediately using `add_memory`
+142	N	GRA-43	- Follow discovered procedures and respect established preferences

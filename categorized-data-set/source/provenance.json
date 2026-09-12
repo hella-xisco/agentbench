@@ -1,0 +1,992 @@
+{
+  "OpShin__opshin__62dba6b1.md": {
+    "repo": "OpShin/opshin",
+    "file": "AGENTS.md",
+    "sha256": "62dba6b19981c143adffc317694d1e4d4a4e2d3e8d5d216449458f4ecd73f2fc",
+    "chars": 1579,
+    "instances": [
+      {
+        "instance": "opshin_opshin-28",
+        "base_sha": "a2dbaba8759ddc5984922b4d1624782ee7ce6709",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-97",
+        "base_sha": "7b6c09fe10e3f009f9df84d8357cda0908868d52",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-118",
+        "base_sha": "78a1f87b47eff66962cc90fb50cf67f2a2d8c18b",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-171",
+        "base_sha": "44a6f40d5a041a83e92babd9c663cb5498781774",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-176",
+        "base_sha": "19a00c92552310d93da049022550c00dc1e5423e",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-178",
+        "base_sha": "19a00c92552310d93da049022550c00dc1e5423e",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-238",
+        "base_sha": "ff3314a5691ae99ca3fb8b263825f1ed392b7a09",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-340",
+        "base_sha": "7f0e840d60fbcde216c409f15dcca74a7447809b",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-387",
+        "base_sha": "8c9b34b1cd4ee29763e619396c89c2b0d803d4b3",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-389",
+        "base_sha": "5648a1d54288b3b63e157c720b4f72b19887ec3a",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-436",
+        "base_sha": "56926395a799810bc3106d5fc3cba0f4c2a68790",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-439",
+        "base_sha": "e18bd4385b3a7822ded83b94c3d6589806d22ed9",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-454",
+        "base_sha": "3709012ef8c2bb33c18ce245bc9da400318630bd",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      },
+      {
+        "instance": "opshin_opshin-545",
+        "base_sha": "6b97cdd0dbb30103cbeb12ea8830c36ed3abbf54",
+        "source_commit": "9bf5d28f4accdfc0cc2b84bbcf38838085dfdf2f",
+        "source": "future_commit"
+      }
+    ],
+    "coded": true
+  },
+  "ansible__ansible__fd125db8.md": {
+    "repo": "ansible/ansible",
+    "file": "AGENTS.md",
+    "sha256": "fd125db855653a4f4bf1ca1b6fb1522c5bf45b079964928194f2f10707ba166b",
+    "chars": 14387,
+    "instances": [
+      {
+        "instance": "ansible_ansible-83217",
+        "base_sha": "fb7fd51b9334a9bb8e58b4af7d86bfa2e6249b1a",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-84999",
+        "base_sha": "500a4aba082c0976b5246bc0140bc27640a6505c",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-85187",
+        "base_sha": "1e647075921e05dce158c12a36be57f08d06cc3f",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-85487",
+        "base_sha": "ee96f8e912f6ee5c3c3ce49f88836554500acecb",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-85488",
+        "base_sha": "ee96f8e912f6ee5c3c3ce49f88836554500acecb",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-85516",
+        "base_sha": "737c68ace3d0f6c748f465ef561856e343293d7e",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-85695",
+        "base_sha": "558676fcdc6d3f083f4a5582427675842dbf4c44",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-85709",
+        "base_sha": "9a4a76e3da8e0e581ced5d19b5da80497df6ea11",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-85728",
+        "base_sha": "76fb182b63a321aa513ee1c259eb39dd390e94c5",
+        "source_commit": "76fb182b63a321aa513ee1c259eb39dd390e94c5",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "ansible_ansible-85930",
+        "base_sha": "73c439cb75e3c3fa8517ef0806a03164096b4ca7",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      },
+      {
+        "instance": "ansible_ansible-86047",
+        "base_sha": "41ac662dec810c9cb7e4ec1eb4f4d3478a84c7e2",
+        "source_commit": "707a5ec617169ae870e1e44f443c34bd288c64fa",
+        "source": "future_commit"
+      }
+    ],
+    "coded": true
+  },
+  "getzep__graphiti__9e8aabe6.md": {
+    "repo": "getzep/graphiti",
+    "file": "CLAUDE.md",
+    "sha256": "9e8aabe627c818252d836cd17b348e4b787f4a084fb34d63de42de3b435e51e9",
+    "chars": 4925,
+    "instances": [
+      {
+        "instance": "getzep_graphiti-761",
+        "base_sha": "17747ff58d3795046d5b49b89d1d572c1670337e",
+        "source_commit": "17747ff58d3795046d5b49b89d1d572c1670337e",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "getzep_graphiti-829",
+        "base_sha": "708d30cd6ad1be1986b2e3f67bfb4713ffab11e7",
+        "source_commit": "708d30cd6ad1be1986b2e3f67bfb4713ffab11e7",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "getzep_graphiti-843",
+        "base_sha": "1abb4b0fa31689b027b18c96bf1a4e6197e6230b",
+        "source_commit": "1abb4b0fa31689b027b18c96bf1a4e6197e6230b",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": true
+  },
+  "huggingface__smolagents__69e08bed.md": {
+    "repo": "huggingface/smolagents",
+    "file": "AGENTS.md",
+    "sha256": "69e08bedb27a4feae9f3ecf99ade010260a36b9ae05963b414ed2df614c3b6bf",
+    "chars": 157,
+    "instances": [
+      {
+        "instance": "huggingface_smolagents-1648",
+        "base_sha": "983bb71c3d579410902e96825f8e6136ecea37be",
+        "source_commit": "983bb71c3d579410902e96825f8e6136ecea37be",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1707",
+        "base_sha": "d3cc18628c9e3582d7b7a8e2276a837eedc9fff0",
+        "source_commit": "d3cc18628c9e3582d7b7a8e2276a837eedc9fff0",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1763",
+        "base_sha": "83ff2f7ed09788e130965349929f8bd5152e507e",
+        "source_commit": "83ff2f7ed09788e130965349929f8bd5152e507e",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1766",
+        "base_sha": "83ff2f7ed09788e130965349929f8bd5152e507e",
+        "source_commit": "83ff2f7ed09788e130965349929f8bd5152e507e",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1797",
+        "base_sha": "f76dee172666d7dad178aed06b257c629967733b",
+        "source_commit": "f76dee172666d7dad178aed06b257c629967733b",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1800",
+        "base_sha": "f76dee172666d7dad178aed06b257c629967733b",
+        "source_commit": "f76dee172666d7dad178aed06b257c629967733b",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1801",
+        "base_sha": "67b15aee2ba1ea70ba9536d94f0be4f1a598578c",
+        "source_commit": "67b15aee2ba1ea70ba9536d94f0be4f1a598578c",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1805",
+        "base_sha": "2de6550dea9b0dcc0c15b7c0d5c56614fca24b06",
+        "source_commit": "2de6550dea9b0dcc0c15b7c0d5c56614fca24b06",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1826",
+        "base_sha": "a4850b9ce4d54fa7325838b222afd1f6058d3386",
+        "source_commit": "a4850b9ce4d54fa7325838b222afd1f6058d3386",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1833",
+        "base_sha": "d8c921d526514ab15ef88c7defa1df7f71209251",
+        "source_commit": "d8c921d526514ab15ef88c7defa1df7f71209251",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1859",
+        "base_sha": "4dbab6d68e5e8c27e7838a37e2cfd0d01897d61f",
+        "source_commit": "4dbab6d68e5e8c27e7838a37e2cfd0d01897d61f",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1864",
+        "base_sha": "4dbab6d68e5e8c27e7838a37e2cfd0d01897d61f",
+        "source_commit": "4dbab6d68e5e8c27e7838a37e2cfd0d01897d61f",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1881",
+        "base_sha": "2ae00fb092d1b0e7d74de06e738dd48d04a8b2c2",
+        "source_commit": "2ae00fb092d1b0e7d74de06e738dd48d04a8b2c2",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1900",
+        "base_sha": "b4b8329218a7d9242195b670107fda91e6a325a8",
+        "source_commit": "b4b8329218a7d9242195b670107fda91e6a325a8",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1902",
+        "base_sha": "b4b8329218a7d9242195b670107fda91e6a325a8",
+        "source_commit": "b4b8329218a7d9242195b670107fda91e6a325a8",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_smolagents-1914",
+        "base_sha": "bae54fd37431c67c6704870cf6e8e5865b72930e",
+        "source_commit": "bae54fd37431c67c6704870cf6e8e5865b72930e",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": false
+  },
+  "huggingface__transformers__fbb51585.md": {
+    "repo": "huggingface/transformers",
+    "file": "AGENTS.md",
+    "sha256": "fbb515857beef2248bce412a767b165ec9bd8dd14126de1270e0e53b23963f76",
+    "chars": 3439,
+    "instances": [
+      {
+        "instance": "huggingface_transformers-41359",
+        "base_sha": "55b172b8eb839300e697e91911eac66db7441316",
+        "source_commit": "55b172b8eb839300e697e91911eac66db7441316",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_transformers-41412",
+        "base_sha": "589fc29c9da0b98b8a9cdf3b0d4cbe949886c274",
+        "source_commit": "589fc29c9da0b98b8a9cdf3b0d4cbe949886c274",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_transformers-41612",
+        "base_sha": "26b7f668500281fe96c0ae4a9adcb603a60f0427",
+        "source_commit": "26b7f668500281fe96c0ae4a9adcb603a60f0427",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_transformers-41661",
+        "base_sha": "8725ce10edb29771fb9a1aa108e6a04859efe973",
+        "source_commit": "8725ce10edb29771fb9a1aa108e6a04859efe973",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_transformers-41750",
+        "base_sha": "1d651c749e0a89743025211b9211e87908018c70",
+        "source_commit": "1d651c749e0a89743025211b9211e87908018c70",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "huggingface_transformers-41757",
+        "base_sha": "9aab965b1e61d92d402809bd467c317ec464e560",
+        "source_commit": "9aab965b1e61d92d402809bd467c317ec464e560",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": true
+  },
+  "jlowin__fastmcp__842e552a.md": {
+    "repo": "jlowin/fastmcp",
+    "file": "AGENTS.md",
+    "sha256": "842e552a0ab2a623cf8dce051592c2be810d01ecd47b23239dc09912ddaa0c44",
+    "chars": 12418,
+    "instances": [
+      {
+        "instance": "jlowin_fastmcp-2674",
+        "base_sha": "748d25eede4f53368fe6bfe6e91f7a80175e8394",
+        "source_commit": "748d25eede4f53368fe6bfe6e91f7a80175e8394",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2676",
+        "base_sha": "bca310cddedb744ffce2b7ba74714a508fe05e7b",
+        "source_commit": "bca310cddedb744ffce2b7ba74714a508fe05e7b",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2720",
+        "base_sha": "125f79ff39477c3f535fead61b7be16c1f48dac0",
+        "source_commit": "125f79ff39477c3f535fead61b7be16c1f48dac0",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": true
+  },
+  "jlowin__fastmcp__4a1e9b79.md": {
+    "repo": "jlowin/fastmcp",
+    "file": "AGENTS.md",
+    "sha256": "4a1e9b794465165d22983340e5b8c79d5a40e18fd786463c4537a3a42744687c",
+    "chars": 12044,
+    "instances": [
+      {
+        "instance": "jlowin_fastmcp-2727",
+        "base_sha": "7f56291204b59a9b0616e3b2e10adc19bbca125e",
+        "source_commit": "7f56291204b59a9b0616e3b2e10adc19bbca125e",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2763",
+        "base_sha": "6bade1cbd973cbbbca26a84ed7c4cc58ecfda5b3",
+        "source_commit": "6bade1cbd973cbbbca26a84ed7c4cc58ecfda5b3",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2785",
+        "base_sha": "1b637522d166d40ad41346997d2fda74bc886934",
+        "source_commit": "1b637522d166d40ad41346997d2fda74bc886934",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": false
+  },
+  "jlowin__fastmcp__e7202ff0.md": {
+    "repo": "jlowin/fastmcp",
+    "file": "AGENTS.md",
+    "sha256": "e7202ff0d33c85e58161f0fad9ee7c346fbb8b34f17637724be1d14cbc7f2d50",
+    "chars": 12633,
+    "instances": [
+      {
+        "instance": "jlowin_fastmcp-2749",
+        "base_sha": "5f1aa274cc5558a6dc1050349284a50c384ad5a8",
+        "source_commit": "5f1aa274cc5558a6dc1050349284a50c384ad5a8",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2764",
+        "base_sha": "2e8adafdf52d0c18d63c9923afb7926a2ee4ba13",
+        "source_commit": "2e8adafdf52d0c18d63c9923afb7926a2ee4ba13",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2768",
+        "base_sha": "c5a61a7e190b9c3aa1da723215ae99473edf3c6a",
+        "source_commit": "c5a61a7e190b9c3aa1da723215ae99473edf3c6a",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2771",
+        "base_sha": "ef84f84d1ec965657df1b63d40b25e324f841b06",
+        "source_commit": "ef84f84d1ec965657df1b63d40b25e324f841b06",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2776",
+        "base_sha": "9c83482f4c426e1304ad35269ccb550599e063ed",
+        "source_commit": "9c83482f4c426e1304ad35269ccb550599e063ed",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "jlowin_fastmcp-2800",
+        "base_sha": "945dac57e44c8ebccf351cbddcecbe1ee7d7b756",
+        "source_commit": "945dac57e44c8ebccf351cbddcecbe1ee7d7b756",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": true
+  },
+  "openai__openai-agents-python__b9c583a0.md": {
+    "repo": "openai/openai-agents-python",
+    "file": "AGENTS.md",
+    "sha256": "b9c583a04386501e359a48abb3ca09e33b9c7ccd617f063533a64a3ab5911e3f",
+    "chars": 2137,
+    "instances": [
+      {
+        "instance": "openai_openai-agents-python-1745",
+        "base_sha": "c583dfc104b0792f00eeabd80f4809c011553a34",
+        "source_commit": "c583dfc104b0792f00eeabd80f4809c011553a34",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1752",
+        "base_sha": "a4c125ef2409a7e129b090a9b3584e056ec553cd",
+        "source_commit": "a4c125ef2409a7e129b090a9b3584e056ec553cd",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1753",
+        "base_sha": "bc949c37a082db52c25dcf58555a183a7a950560",
+        "source_commit": "bc949c37a082db52c25dcf58555a183a7a950560",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1757",
+        "base_sha": "aeaf83f70fa5c998945220877408405147afa727",
+        "source_commit": "aeaf83f70fa5c998945220877408405147afa727",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1759",
+        "base_sha": "aeaf83f70fa5c998945220877408405147afa727",
+        "source_commit": "aeaf83f70fa5c998945220877408405147afa727",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1765",
+        "base_sha": "827af41d04f91ece5466104047780db0e0ca6cd2",
+        "source_commit": "827af41d04f91ece5466104047780db0e0ca6cd2",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1779",
+        "base_sha": "7a4a22f0a9b36cb6135e9730fb3a07d25cd97cad",
+        "source_commit": "7a4a22f0a9b36cb6135e9730fb3a07d25cd97cad",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1798",
+        "base_sha": "4f5487806e0b5f85371412da4bbe541ac15992f1",
+        "source_commit": "4f5487806e0b5f85371412da4bbe541ac15992f1",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1833",
+        "base_sha": "14d7d591e2b960f58cbd601e2b26f3993301618b",
+        "source_commit": "14d7d591e2b960f58cbd601e2b26f3993301618b",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1843",
+        "base_sha": "f3cac173055e180752167d0327a241240a2248a2",
+        "source_commit": "f3cac173055e180752167d0327a241240a2248a2",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1852",
+        "base_sha": "c6569cbd89526758c1ba14ce9fb55d3596c85065",
+        "source_commit": "c6569cbd89526758c1ba14ce9fb55d3596c85065",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1869",
+        "base_sha": "095496e6ba982e4aebc6f224fa62e6bbd592743e",
+        "source_commit": "095496e6ba982e4aebc6f224fa62e6bbd592743e",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1884",
+        "base_sha": "94077432b1b7fd3c2bc0c1bb403517f2a79d15c1",
+        "source_commit": "94077432b1b7fd3c2bc0c1bb403517f2a79d15c1",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-1934",
+        "base_sha": "8dfac2aeec56f9f833b316e66f075bd888930646",
+        "source_commit": "8dfac2aeec56f9f833b316e66f075bd888930646",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-2014",
+        "base_sha": "2c0f7c25aa15d308cdea542e3a1a1ad40427eca7",
+        "source_commit": "2c0f7c25aa15d308cdea542e3a1a1ad40427eca7",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-2082",
+        "base_sha": "2c0f7c25aa15d308cdea542e3a1a1ad40427eca7",
+        "source_commit": "2c0f7c25aa15d308cdea542e3a1a1ad40427eca7",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "openai_openai-agents-python-2105",
+        "base_sha": "b3074500c512ca01f45191f63bb95e926cfc769b",
+        "source_commit": "b3074500c512ca01f45191f63bb95e926cfc769b",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": true
+  },
+  "pdm-project__pdm__16273ac7.md": {
+    "repo": "pdm-project/pdm",
+    "file": "AGENTS.md",
+    "sha256": "16273ac7a0898d82b71630716879748f23e4a81db4ad4e95ae311a42eb6d0e29",
+    "chars": 3953,
+    "instances": [
+      {
+        "instance": "pdm-project_pdm-1313",
+        "base_sha": "347300ee976866563ccd9a9da759d8ed9683e661",
+        "source_commit": "481fcc58d56306cd926a89aa42d3f097e597b4a9",
+        "source": "future_commit"
+      },
+      {
+        "instance": "pdm-project_pdm-2019",
+        "base_sha": "4a74baca9f42fb1e63d6b555841cf8129dbf8106",
+        "source_commit": "481fcc58d56306cd926a89aa42d3f097e597b4a9",
+        "source": "future_commit"
+      },
+      {
+        "instance": "pdm-project_pdm-3111",
+        "base_sha": "761a4f2f799972c526fa15b5e33ab7fd27aba91a",
+        "source_commit": "481fcc58d56306cd926a89aa42d3f097e597b4a9",
+        "source": "future_commit"
+      },
+      {
+        "instance": "pdm-project_pdm-3281",
+        "base_sha": "7c879cfaf410b557bacb13ada28c0fb5851ca600",
+        "source_commit": "481fcc58d56306cd926a89aa42d3f097e597b4a9",
+        "source": "future_commit"
+      },
+      {
+        "instance": "pdm-project_pdm-3338",
+        "base_sha": "5d59fd3f47ab75c29650c29a113304d45d605d80",
+        "source_commit": "481fcc58d56306cd926a89aa42d3f097e597b4a9",
+        "source": "future_commit"
+      },
+      {
+        "instance": "pdm-project_pdm-3374",
+        "base_sha": "f37fb16c2459807e0b392dc3306c373e5f68cc4f",
+        "source_commit": "481fcc58d56306cd926a89aa42d3f097e597b4a9",
+        "source": "future_commit"
+      },
+      {
+        "instance": "pdm-project_pdm-3470",
+        "base_sha": "6bca8e80ea1e0d4599cd4b71722f8a543937d4af",
+        "source_commit": "481fcc58d56306cd926a89aa42d3f097e597b4a9",
+        "source": "future_commit"
+      }
+    ],
+    "coded": true
+  },
+  "pdm-project__pdm__95ddfe41.md": {
+    "repo": "pdm-project/pdm",
+    "file": "AGENTS.md",
+    "sha256": "95ddfe41fd7e5d9605b0f47da79fb50a2717a2eec5b713dc8088abfd54d37d8f",
+    "chars": 3581,
+    "instances": [
+      {
+        "instance": "pdm-project_pdm-3644",
+        "base_sha": "da748c576bd8da0dfe102f8854996efec48b62df",
+        "source_commit": "da748c576bd8da0dfe102f8854996efec48b62df",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": false
+  },
+  "pdm-project__pdm__3c334845.md": {
+    "repo": "pdm-project/pdm",
+    "file": "AGENTS.md",
+    "sha256": "3c334845a8e4da5d18198de86b031de5af0c85cf9ac7e75fe162569af2eb8a6f",
+    "chars": 3603,
+    "instances": [
+      {
+        "instance": "pdm-project_pdm-3695",
+        "base_sha": "133a5140ddd979041910341eb486fdd98e82ce19",
+        "source_commit": "133a5140ddd979041910341eb486fdd98e82ce19",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "pdm-project_pdm-3699",
+        "base_sha": "312f2fbd5b89c6f7e4c95c374c44f8096cc1ce53",
+        "source_commit": "312f2fbd5b89c6f7e4c95c374c44f8096cc1ce53",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": false
+  },
+  "qodo-ai__pr-agent__81e7a689.md": {
+    "repo": "qodo-ai/pr-agent",
+    "file": "AGENTS.md",
+    "sha256": "81e7a6890c7aa2db59cd1c5a4aac6a53733657f8cba7d52089d3c61f4d2d02d9",
+    "chars": 6760,
+    "instances": [
+      {
+        "instance": "qodo-ai_pr-agent-1359",
+        "base_sha": "b07f96d26a368749c97318d9ca9d515ec9d488fe",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-1406",
+        "base_sha": "c9f02e63e10acb6833d7ec4359ca9e1a8fd5451e",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-1407",
+        "base_sha": "c9f02e63e10acb6833d7ec4359ca9e1a8fd5451e",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-1412",
+        "base_sha": "93e64367d20f175ee6843d6bd72f588b5f01dde6",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-1439",
+        "base_sha": "bde594c9e854a6d6a2b4bde9abfa1002510f6f20",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-1594",
+        "base_sha": "9809e2dbd8dd6ba3ca61ec0de8e28ac55ceb5789",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-1839",
+        "base_sha": "a17100e51259464a4d729d03fe9b7449b87b9d89",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-1851",
+        "base_sha": "1bbc673588256ceab7221d50d875776bcd352d92",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-1954",
+        "base_sha": "7b4c50c717df393a392aec3b7f4146f5fb701503",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      },
+      {
+        "instance": "qodo-ai_pr-agent-2018",
+        "base_sha": "03832818e6f9c1dc6b1c613e02027dbf0612fa04",
+        "source_commit": "3a1ba22d9689684eb9578c0b064706ae2d044ece",
+        "source": "future_commit"
+      }
+    ],
+    "coded": true
+  },
+  "tinygrad__tinygrad__b73aa6d4.md": {
+    "repo": "tinygrad/tinygrad",
+    "file": "AGENTS.md",
+    "sha256": "b73aa6d458fe3e5c95dd2706d5b965e65400ccfa09487c9c43ec6d453cdce2a8",
+    "chars": 650,
+    "instances": [
+      {
+        "instance": "tinygrad_tinygrad-3096",
+        "base_sha": "13e872b53f467c97a8f505901a7b553c52fa5547",
+        "source_commit": "9389edf7ac935b7bfe886c115db9ec185a7f65b6",
+        "source": "future_commit"
+      },
+      {
+        "instance": "tinygrad_tinygrad-5040",
+        "base_sha": "a3ed4176c89529c33536055d26507ed3d80ed01d",
+        "source_commit": "9389edf7ac935b7bfe886c115db9ec185a7f65b6",
+        "source": "future_commit"
+      }
+    ],
+    "coded": true
+  },
+  "tinygrad__tinygrad__54541e66.md": {
+    "repo": "tinygrad/tinygrad",
+    "file": "AGENTS.md",
+    "sha256": "54541e6645e74e9ff302883364674b5ff99487d519cc57c02055d1da0b4192f1",
+    "chars": 679,
+    "instances": [
+      {
+        "instance": "tinygrad_tinygrad-11351",
+        "base_sha": "76a2ddbd788b1eeed6f8d6199300a27f35821bf5",
+        "source_commit": "76a2ddbd788b1eeed6f8d6199300a27f35821bf5",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-11840",
+        "base_sha": "215818379b602dbadebfd7a2eb54dabb165cab00",
+        "source_commit": "215818379b602dbadebfd7a2eb54dabb165cab00",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-11916",
+        "base_sha": "08380217538576ea61bef21d89a318096b8741cc",
+        "source_commit": "08380217538576ea61bef21d89a318096b8741cc",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-13541",
+        "base_sha": "4eae4b0ce68035a9e021b51e4a27ff272a2c6791",
+        "source_commit": "4eae4b0ce68035a9e021b51e4a27ff272a2c6791",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-13558",
+        "base_sha": "96d16675fe0861e87565d15572e2b0077f9e36e3",
+        "source_commit": "96d16675fe0861e87565d15572e2b0077f9e36e3",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-13565",
+        "base_sha": "bd6a068ef75002ee8b58134e0972bc15dc6b6f6b",
+        "source_commit": "bd6a068ef75002ee8b58134e0972bc15dc6b6f6b",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-13598",
+        "base_sha": "93f1baca77ec8ff7840b98f43e52d9218b837c8c",
+        "source_commit": "93f1baca77ec8ff7840b98f43e52d9218b837c8c",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-13610",
+        "base_sha": "dcd50baca410be1389836ea781eeedb68baca551",
+        "source_commit": "dcd50baca410be1389836ea781eeedb68baca551",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-13760",
+        "base_sha": "57fe4d0a59ca216238aa88ac047c74df860d183c",
+        "source_commit": "57fe4d0a59ca216238aa88ac047c74df860d183c",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-13855",
+        "base_sha": "9b4de8abc7341f8f58857639cbb716a0687e9421",
+        "source_commit": "9b4de8abc7341f8f58857639cbb716a0687e9421",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "tinygrad_tinygrad-14075",
+        "base_sha": "b34c6377676cf632bb0e221aa16d50152a97fb20",
+        "source_commit": "b34c6377676cf632bb0e221aa16d50152a97fb20",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": true
+  },
+  "vibrantlabsai__ragas__1a2514eb.md": {
+    "repo": "vibrantlabsai/ragas",
+    "file": "CLAUDE.md",
+    "sha256": "1a2514eb398687ea58a255ecc1c91b43ef691f9047151cd46d891f357093eb2f",
+    "chars": 6640,
+    "instances": [
+      {
+        "instance": "vibrantlabsai_ragas-2362",
+        "base_sha": "48fe70e6ffa694499a084bbedb24a9532e5b3173",
+        "source_commit": "48fe70e6ffa694499a084bbedb24a9532e5b3173",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2414",
+        "base_sha": "8501a496c1f085d7a36ff11c91b381b00aac1c0b",
+        "source_commit": "8501a496c1f085d7a36ff11c91b381b00aac1c0b",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2424",
+        "base_sha": "41cc83b9ecbdf76f3b54780bfdac5bf9de5a3c80",
+        "source_commit": "41cc83b9ecbdf76f3b54780bfdac5bf9de5a3c80",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": false
+  },
+  "vibrantlabsai__ragas__336c2607.md": {
+    "repo": "vibrantlabsai/ragas",
+    "file": "CLAUDE.md",
+    "sha256": "336c2607b1095c178bf851e60ac7f3ae7dd7ac2e0a8aaa5a998f043e5b533cbe",
+    "chars": 6549,
+    "instances": [
+      {
+        "instance": "vibrantlabsai_ragas-2451",
+        "base_sha": "583cb7e7c7839db13ff662e480ea7104dab8b670",
+        "source_commit": "583cb7e7c7839db13ff662e480ea7104dab8b670",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2452",
+        "base_sha": "50b4a45c1c35a60278bb108d19f055b228e6440b",
+        "source_commit": "50b4a45c1c35a60278bb108d19f055b228e6440b",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2453",
+        "base_sha": "bd46e30102dcb5d1f0d41be1b973f2ce6e59be5a",
+        "source_commit": "bd46e30102dcb5d1f0d41be1b973f2ce6e59be5a",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2454",
+        "base_sha": "32b4afc8c5947ca92fead0fcae787ea38639d6ca",
+        "source_commit": "32b4afc8c5947ca92fead0fcae787ea38639d6ca",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2458",
+        "base_sha": "9e831f7f6e2329a48ce772843c57346cbcb1706f",
+        "source_commit": "9e831f7f6e2329a48ce772843c57346cbcb1706f",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2466",
+        "base_sha": "1bd6bdde1402a3ed4ab086d12444418e453d439e",
+        "source_commit": "1bd6bdde1402a3ed4ab086d12444418e453d439e",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2503",
+        "base_sha": "51b989dff3b2421713b3c0f5e0c16140353f32d6",
+        "source_commit": "51b989dff3b2421713b3c0f5e0c16140353f32d6",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2505",
+        "base_sha": "a87c51f7fd2f04de86e698f1754f0023e29c4cdb",
+        "source_commit": "a87c51f7fd2f04de86e698f1754f0023e29c4cdb",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2513",
+        "base_sha": "f06e0284810d344901f2fa3abdf4cc1974e3b59f",
+        "source_commit": "f06e0284810d344901f2fa3abdf4cc1974e3b59f",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2514",
+        "base_sha": "85bf071952509df82b4aaaf3d86ba8772a5540db",
+        "source_commit": "85bf071952509df82b4aaaf3d86ba8772a5540db",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "vibrantlabsai_ragas-2543",
+        "base_sha": "8334eb2086d7cdd440d91bd13ba7bc94642b38f0",
+        "source_commit": "8334eb2086d7cdd440d91bd13ba7bc94642b38f0",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": false
+  },
+  "wagtail__wagtail__12834776.md": {
+    "repo": "wagtail/wagtail",
+    "file": "AGENTS.md",
+    "sha256": "12834776e4ba16be84d503ca6d0483352e42dab33fadcb41982d928fb6eb810a",
+    "chars": 1045,
+    "instances": [
+      {
+        "instance": "wagtail_wagtail-10412",
+        "base_sha": "280d5fd75dc451b10c29fe11be006090f0c1dcd5",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-12965",
+        "base_sha": "205dd6288570715451d8805f509eaf5f92c4766c",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-13173",
+        "base_sha": "e4071cb9aa7ca5dbc9a46dc4baa8a2d4dbe3b0e0",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-13196",
+        "base_sha": "377b8625884e884b89c8260c67d1e5408a8eb934",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-13237",
+        "base_sha": "715b33ae3aef2abc284d4e2fe247ed1f39eda66d",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-13280",
+        "base_sha": "12d8e4833546b522251bb43f14f124fde8b0cb6d",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-13326",
+        "base_sha": "eaf082966627c17730e88551b8befbe510c384fd",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-13377",
+        "base_sha": "3eed7a85dcb3643bcd8a22f4d13fe88b949019f9",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-13451",
+        "base_sha": "f716d070951ed5cd959238d475fe73b05a8d76e2",
+        "source_commit": "fc74e014319185e9379399a370ba78eed44f4447",
+        "source": "future_commit"
+      },
+      {
+        "instance": "wagtail_wagtail-13529",
+        "base_sha": "4c15c1f33f6d18f0374c73fbe1d59ee109347756",
+        "source_commit": "4c15c1f33f6d18f0374c73fbe1d59ee109347756",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "wagtail_wagtail-13560",
+        "base_sha": "f9fdb5ea5b8c4a92293e0c68b93865ee9d9002f4",
+        "source_commit": "f9fdb5ea5b8c4a92293e0c68b93865ee9d9002f4",
+        "source": "at_base_sha"
+      },
+      {
+        "instance": "wagtail_wagtail-13635",
+        "base_sha": "5eec855994c1aeb2826a97369f58568e8dd68c1d",
+        "source_commit": "5eec855994c1aeb2826a97369f58568e8dd68c1d",
+        "source": "at_base_sha"
+      }
+    ],
+    "coded": true
+  }
+}

@@ -1,0 +1,24 @@
+# Zuordnung Quellzeile -> Bucket  (statisches Artefakt, eingefroren nach Review 21.08.)
+# Quelle: huggingface__transformers__fbb51585.md · Buckets: P D N M X PARTS · Auto-Zeilen (blank/heading/fence) fehlen bewusst.
+3	M	TRA-01	This AGENTS.md file provides guidance for code agents working with this codebase.
+7	D	TRA-02	- `/src/transformers`: This contains the core source code for the library
+8	D	TRA-02,TRA-03	  - `/models`: Code for individual models. Models inherit from base classes in the root `/src/transformers` directory.
+9	D	TRA-04	- `/tests`: This contains the core test classes for the library. These are usually inherited rather than directly run.
+10	D	TRA-05	  - `/models`: Tests for individual models. Model tests inherit from common tests in the root `/tests` directory.
+11	D	TRA-06	- `/docs`: This contains the documentation for the library, including guides, tutorials, and API references.
+15	P	TRA-07	- PRs should be as brief as possible. Bugfix PRs in particular can often be only one or two lines long, and do not need large comments, docstrings or new functions in this case. Aim to minimize the size of the diff.
+16	P	TRA-08	- When writing tests, they should be added to an existing file. The only exception is for PRs to add a new model, when a new test directory should be created for that model.
+17	PARTS	D:TRA-09 P:TRA-10 P:TRA-11	- Code style is enforced in the CI. You can install the style tools with `pip install -e .[quality]`. You can then run `make fixup` to apply style and consistency fixes to your code.
+21	D	TRA-12	Many models in the codebase have similar code, but it is not shared by inheritance because we want each model file to be self-contained.
+22	D	TRA-13	We use two mechanisms to keep this code in sync:
+24	D	TRA-14	- "Copied from" syntax. Functions or entire classes can have a comment at the top like this: `# Copied from transformers.models.llama.modeling_llama.rotate_half` or `# Copied from transformers.models.t5.modeling_t5.T5LayerNorm with T5->MT5`
+25	D	TRA-14	  These comments are actively checked by the style tools, and copies will automatically be updated when the base code is updated. If you need to update a copied function, you should
+26	P	TRA-17	  either update the base function and use `make fixup` to propagate the change to all copies, or simply remove the `# Copied from` comment if that is inappropriate.
+27	D	TRA-16	- "Modular" files. These files briefly define models by composing them using inheritance from other models. They are not meant to be used directly. Instead, the style tools
+28	D	TRA-16	  automatically generate a complete modeling file, like `modeling_bert.py`, from the modular file like `modular_bert.py`. If a model has a modular file, the modeling file
+29	P	TRA-11	  should never be edited directly! Instead, changes should be made in the modular file, and then you should run `make fixup` to update the modeling file automatically.
+31	P	TRA-18	When adding new models, you should prefer `modular` style.
+35	P	TRA-19	After making changes, you should usually run `make fixup` to ensure any copies and modular files are updated, and then test all affected models. This includes both
+36	P	TRA-19,TRA-20,TRA-21	the model you made the changes in and any other models that were updated by `make fixup`. Tests can be run with `pytest tests/models/[name]/test_modeling_[name].py`
+37	P	TRA-22	If your changes affect code in other classes like tokenizers or processors, you should run those tests instead, like `test_processing_[name].py` or `test_tokenization_[name].py`.
+39	P	TRA-23	In order to run tests, you may need to install dependencies. You can do this with `pip install -e .[testing]`. You will probably also need to `pip install torch accelerate` if your environment does not already have them.

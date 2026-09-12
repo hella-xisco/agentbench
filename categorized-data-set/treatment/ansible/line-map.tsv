@@ -1,0 +1,190 @@
+# Zuordnung Quellzeile -> Bucket  (statisches Artefakt, eingefroren nach Review 21.08.)
+# Quelle: ansible__ansible__fd125db8.md · Buckets: P D N M X PARTS · Auto-Zeilen (blank/heading/fence) fehlen bewusst.
+3	M	ANS-01	This file provides guidance to Claude Code (claude.ai/code) and other compatible agentic tools when working with code in this repository.
+5	M	ANS-02	**Note:** This file is for AI assistant use only. For human developers, see the [Ansible Developer Guide](https://docs.ansible.com/ansible-core/devel/dev_guide/index.html).
+9	X	Strukturzeile (Lead-in), unkodiert	**BEFORE starting any PR review or development task:**
+11	M	ANS-03	1. **Read this file first** - Don't work from memory or assumptions
+12	N	ANS-04	2. **Use TodoWrite** to create a task list and track progress systematically
+13	M	ANS-05	3. **Follow the numbered steps** in the relevant process sections
+14	M	ANS-06	4. **Reference Quick Reference** for correct commands and patterns
+18	X	Strukturzeile (Lead-in), unkodiert	**NEVER suggest, recommend, or approve code that violates these requirements:**
+20	N	ANS-07	- **ansible-core**: All code must be **GPLv3 compatible**
+21	D	ANS-08	- **lib/ansible/module_utils/**: Defaults to **BSD-2-Clause** (more permissive)
+22	N	ANS-09	- **External dependencies**: Only recommend libraries compatible with these licenses
+23	N	ANS-10	- **PR reviews**: Always verify any new dependencies or suggested libraries are license-compatible
+24	N	ANS-11	- **When in doubt**: Ask about licensing compatibility rather than assuming
+26	N	ANS-12	**This is non-negotiable** - licensing violations can create serious legal issues for the project.
+30	X	Strukturzeile (Lead-in), unkodiert	Most commonly used commands and patterns:
+33	P	wie-ANS-13	# Testing
+34	P	ANS-13	ansible-test sanity -v --docker default                    # Run all sanity tests
+35	P	ANS-13,ANS-14	ansible-test sanity -v --docker default --test <test>     # Run specific sanity test
+36	P	ANS-15	ansible-test units -v --docker default                    # Run unit tests
+37	P	ANS-16	ansible-test integration -v --docker fedora42             # Run integration tests
+39	P	wie-ANS-17	# PR Review and CI
+40	P	ANS-17	gh pr view <number>                                        # Get PR details
+41	P	ANS-17,ANS-18	gh pr view <number> --comments                           # Check for ansibot CI failures
+42	P	ANS-19	gh pr checks <number>                                     # Get Azure Pipelines URLs
+43	P	ANS-20	gh pr checkout <number>                                   # Switch to PR branch
+44	P	ANS-21	gh pr diff <number>                                       # See all changes
+47	X	Strukturzeile (Lead-in), unkodiert	**Container Selection:**
+49	P	ANS-22	- Sanity/Unit tests: `--docker default`
+50	P	ANS-23	- Integration tests: `--docker fedora42`, `--docker ubuntu2204`, etc. (NOT default/base)
+52	X	Strukturzeile (Lead-in), unkodiert	**Critical Reminders:**
+54	N	ANS-24	- **Licensing**: See [Licensing Requirements](#️-critical-licensing-requirements) - GPLv3/BSD-2-Clause only
+58	P	ANS-25	Ansible development typically uses an editable install after forking and cloning:
+61	P	wie-ANS-25	# After forking and cloning the repository
+62	P	ANS-25	pip install -e .
+65	D	ANS-26	**Note:** ansible-core and all CLIs (including ansible-test) require a POSIX OS. On Windows, use WSL (Windows Subsystem for Linux).
+72	D	ANS-27	# Run sanity tests - these are linting/static analysis (pylint, mypy, pep8, etc.)
+73	P	ANS-13 (Wiederholung)	ansible-test sanity -v --docker default
+75	P	ANS-28	# List available sanity tests
+76	P	ANS-28	ansible-test sanity --list-tests
+78	P	ANS-29	# Run specific sanity tests
+79	P	ANS-29	ansible-test sanity -v --docker default --test pep8 --test pylint
+81	P	ANS-30	# Run sanity on specific files (paths relative to repo root)
+82	P	ANS-30	ansible-test sanity -v --docker default lib/ansible/modules/command.py
+84	P	wie-ANS-31	# Run unit tests (recommended with Docker)
+85	P	ANS-31	ansible-test units -v --docker default
+87	P	ANS-31 (Kommentarzeile)	# Run specific unit test (paths relative to repo root, targets in test/units/)
+88	P	ANS-31	ansible-test units -v --docker default test/units/modules/test_command.py
+90	P	wie-ANS-32	# Run integration tests (choose appropriate container - NOT base/default)
+91	P	ANS-16 (Wiederholung)	ansible-test integration -v --docker fedora42
+93	P	ANS-32	# Run specific integration target (directory name in test/integration/targets/)
+94	P	ANS-32	ansible-test integration -v --docker ubuntu2204 setup_remote_tmp_dir
+96	P	ANS-33	# Run with coverage
+97	P	ANS-33	ansible-test units -v --docker default --coverage
+99	P	ANS-34	# Alternative: use --venv if Docker/Podman unavailable (less reliable for units/integration)
+100	P	ANS-34	ansible-test sanity -v --venv
+103	D	ANS-35	Available Docker containers for testing can be found in `./test/lib/ansible_test/_data/completion/docker.txt`.
+104	P	ANS-36	The `base` and `default` containers are for sanity/unit tests only. For integration tests, use distro-specific
+105	P	ANS-36	containers like `fedora42`, `ubuntu2204`, `ubuntu2404`, `alpine322` depending on the modules being tested.
+107	X	Strukturzeile (Lead-in), unkodiert	**Test isolation options:**
+109	P	ANS-37	- `--docker` (supports Docker or Podman) - preferred for reliable, isolated testing
+110	P	ANS-38	- `--venv` - fallback when containers unavailable, but unit tests may be unreliable due to host environment differences
+114	X	Strukturzeile (Lead-in), unkodiert	When developers submit PRs and encounter CI failures, use these approaches to help diagnose and resolve issues:
+116	X	Pseudo-Heading zu ANS-39, unkodiert	**1. Check for ansibot comments:**
+119	P	ANS-39	# Get all PR comments to find ansibot CI failure reports
+120	P	ANS-39	gh pr view <number> --comments
+123	P	ANS-40	Look for comments from `ansibot` that contain:
+124	P	ANS-40	- Test failure details with specific error messages
+125	P	ANS-40	- File paths and line numbers for failures
+126	P	ANS-40	- Links to sanity test documentation (e.g., `[explain](https://docs.ansible.com/...`)
+128	P	ANS-40	**2. Get CI check status and URLs:**
+131	P	ANS-41	# See all CI check results with Azure Pipelines URLs
+132	P	ANS-41	gh pr checks <number>
+135	D	ANS-42	This shows:
+136	D	ANS-42	- Overall CI status (pass/fail) with timing
+137	D	ANS-42	- Direct links to Azure DevOps build results
+138	D	ANS-42	- Individual job results (Sanity Test 1/2, Docker tests, Units, etc.)
+140	D	ANS-42	**3. Common CI failure patterns:**
+142	D	ANS-43	- **Sanity failures**: Usually have specific fixes (trailing whitespace, import errors, etc.)
+143	D	ANS-44	- **Integration test failures**: May require platform-specific containers or test adjustments
+144	D	ANS-45	- **Unit test failures**: Often indicate actual code issues that need debugging
+146	P	ANS-46	**4. CI failure analysis workflow:**
+148	P	ANS-46 (Workflow Schritt 1)	1. Check ansibot comments first for immediate error details
+149	P	ANS-19	2. Use `gh pr checks <number>` to get Azure Pipelines URLs for detailed logs
+150	P	ANS-46 (Workflow Schritt 3)	3. Focus on failed jobs (marked as `fail`) and examine their specific error output
+151	P	ANS-46 (Workflow Schritt 4)	4. For sanity test failures, the error messages usually indicate exactly what needs to be fixed
+152	P	ANS-46	5. For test failures, run the same tests locally using `ansible-test` to reproduce and debug
+158	P	ANS-46	Use this checklist for EVERY PR review:
+161	P	ANS-46	□ Created TodoWrite list for review steps
+162	P	ANS-46	□ Step 1: Get PR details with gh pr view <number>
+163	P	ANS-46	□ Step 2: Get PR diff with gh pr diff <number>
+164	P	ANS-46	□ Step 3: Check required components (changelog, tests)
+165	P	ANS-46	□ Step 4: Checkout PR branch with gh pr checkout <number>
+166	P	ANS-46	□ Step 5: Review existing feedback with gh pr view <number> --comments
+167	P	ANS-46	□ Step 6: Verify all issues addressed
+168	P	ANS-46	□ Step 7: Call out any unresolved feedback
+169	P	ANS-46	□ Mark each TodoWrite item as completed when done
+172	P	ANS-46	When assisting with PR reviews, verify:
+176	N	ANS-48	- Changelog fragment exists in `changelogs/fragments/`
+177	N	ANS-49	- Appropriate tests are included and cover the changed code
+178	N	ANS-50	  - Unit tests should be pytest style, and functional rather than tightly coupled to mocking
+179	N	ANS-51	  - Integration tests required for almost all plugin changes (tests the public API)
+180	N	ANS-52	  - Tests should exercise the actual changed code, not just add random coverage
+184	N	ANS-53	Follow these steps in order for thorough PR reviews:
+186	N	ANS-53	1. **Get PR details**: Use `gh pr view <number>` to understand the PR scope and description
+187	N	ANS-53	2. **Get PR diff**: Use `gh pr diff <number>` to see all changes
+188	N	ANS-53	3. **Check required components FIRST**:
+189	N	ANS-54	   - Verify changelog fragment exists and uses correct section (check `changelogs/config.yaml` for valid sections)
+190	N	ANS-55	   - Verify tests exist and specifically cover the changed code paths
+191	N	ANS-55	4. **Checkout PR branch**: Use `gh pr checkout <number>` to examine code holistically with changes applied
+192	N	ANS-55	5. **Review existing feedback**: Use `gh pr view <number> --comments` to see all comments and previous review feedback
+193	N	ANS-55	6. **Verify all issues addressed**: Ensure all bot failures, reviewer requests, and discussion points are resolved
+194	N	ANS-55	7. **Call out any unresolved review feedback**: Explicitly mention any discussions or requests that remain unaddressed
+198	N	ANS-55	- **Changelog section errors**: Verify changelog uses valid section from `changelogs/config.yaml`. Fragment structure follows sections defined there.
+199	N	ANS-55	- **Test scope**: Ensure tests exercise the actual changed code, not just add random coverage.
+200	N	ANS-55	  Integration tests required for almost all plugin changes (tests the public API).
+201	N	ANS-55	  Tests should be functional rather than tightly coupled to mocking.
+205	N	ANS-55	- Use TodoWrite tool to track review steps for complex PRs
+206	N	ANS-55	- Mark tasks as in_progress when actively working on them
+207	N	ANS-55	- Complete tasks immediately after finishing each step
+208	N	ANS-55	- This provides visibility to users about review progress
+212	N	ANS-55	- `gh pr view <number>` - Get PR details and description
+213	N	ANS-55	- `gh pr view <number> --comments` - See all comments and review feedback
+214	N	ANS-55	- `gh pr diff <number>` - Get complete diff of changes
+215	N	ANS-55	- `gh pr checkout <number>` - Switch to PR branch for holistic examination
+216	P	ANS-57	- `Read` tool - Examine specific changed files in detail
+217	P	ANS-58	- `Grep` tool - Search for related code patterns or test coverage (uses ripgrep/rg)
+223	N	ANS-59	- Line limit is 160 characters (not 80)
+224	N	ANS-60	- E402 (module level import not at top) is ignored
+225	P	ANS-61	- In `lib/ansible/modules/`, imports must come after DOCUMENTATION, EXAMPLES, and RETURN definitions
+226	N	ANS-62	- Don't add obvious comments about code
+227	P	ANS-63	- Use native type hints with `from __future__ import annotations` (converts to strings at runtime)
+228	N	ANS-64	- Don't document module parameters in docstrings - migrate to type hints instead
+229	N	ANS-65	- **No trailing whitespace**: Always clean up trailing spaces on lines, especially when editing existing files
+233	D	ANS-66	- Controller code: support range defined in `pyproject.toml`
+234	D	ANS-66,ANS-67	- Modules/module_utils: minimum version in `lib/ansible/module_utils/basic.py` (`_PY_MIN`) up to max from `pyproject.toml`
+235	D	ANS-68	- Modules support a wider Python version range than controller code
+239	P	ANS-69	- Prefer Python stdlib over external dependencies
+240	N	ANS-70	- Use existing code from within the Ansible project
+241	P	ANS-71	- `lib/ansible/modules/` can only import from `lib/ansible/module_utils/` (modules are packaged for remote execution)
+242	P	ANS-71,ANS-72	- `lib/ansible/module_utils/` cannot import from outside itself
+248	P	ANS-73	- Modules and plugins require DOCUMENTATION, EXAMPLES, and RETURN blocks as static YAML string variables
+249	D	ANS-74	- These blocks cannot be dynamically generated - they are parsed via AST/token parsing
+250	D	ANS-75	- Alternative: "sidecar" documentation as `.yml` files with same stem name adjacent to plugin files
+251	P	ANS-76	- All modules should have a `main()` function and `if __name__ == '__main__':` block
+252	N	ANS-77	- Use `version_added` fields in documentation following existing version format patterns
+256	N	ANS-78	- Changes require entries in `changelogs/fragments/` as YAML files
+257	N	ANS-79	- Create a new fragment file per PR (never reuse existing fragments to avoid merge conflicts)
+258	N	ANS-80	- Fragment structure follows sections defined in `changelogs/config.yaml` under the `sections` key
+259	N	ANS-81	- Naming: `{issue_number}-{short-description}.yml` or `{component}-{description}.yml` if no issue
+260	N	ANS-82	- Format: `- {component} - {description} ({optional URL to GH issue})`
+261	N	ANS-83	- Content supports Sphinx markup (use double backticks for code references)
+267	N	ANS-84	- New plugins should go into collections, not ansible-core
+268	N	ANS-85	- ansible-core rarely accepts new plugins; core team makes these decisions
+272	N	ANS-86	- All PRs target the `devel` branch
+273	N	ANS-87	- Use GitHub templates when creating issues/PRs (`.github/ISSUE_TEMPLATE/` and `.github/PULL_REQUEST_TEMPLATE/`)
+274	N	ANS-88	- For issues: fill out the `component` field with project root relative file path
+275	N	ANS-89	- For PRs: adjust the issue type in the template as listed in `.github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md`
+276	N	ANS-90	- Validate issues are fixed in `devel` before reporting against stable releases
+277	N	ANS-91	- Bug fixes: backported to latest stable only
+278	N	ANS-92	- Critical bug fixes: backported to latest and previous stable
+279	N	ANS-93	- Security issues: contact security@ansible.com privately, not via GitHub
+283	N	ANS-94	- Backwards compatibility is prioritized over most other concerns
+284	N	ANS-95	- Deprecation cycle: 4 releases (deprecation + 2 releases + removal)
+285	P	ANS-96	- Use `Display.deprecated` or `AnsibleModule.deprecate` with version from `lib/ansible/release.py` plus 3
+286	N	ANS-97	- Example: deprecating in 2.19 means removal in 2.22
+292	D	ANS-98	- `lib/ansible/` - Main Ansible library code
+293	D	ANS-98	  - `cli/` - Command-line interface implementations (ansible, ansible-playbook, etc.)
+294	D	ANS-98	  - `executor/` - Task execution engine and strategies (includes PowerShell support in `powershell/`)
+295	D	ANS-98	  - `inventory/` - Inventory management and parsing
+296	D	ANS-98	  - `modules/` - Core modules (built-in automation modules)
+297	D	ANS-98	  - `module_utils/` - Shared utilities for modules (includes C# in `csharp/` and PowerShell in `powershell/`)
+298	D	ANS-98	  - `plugins/` - Plugin framework (filters, tests, lookups, etc.)
+299	D	ANS-98	  - `vars/` - Variable management
+300	D	ANS-98	  - `config/` - Configuration handling
+301	D	ANS-98	  - `collections/` - Ansible Collections framework
+305	D	ANS-99	- **CLI Layer**: Entry points in `lib/ansible/cli/` handle command parsing and dispatch
+306	D	ANS-99	- **Executor**: `lib/ansible/executor/` contains the core execution engine that runs tasks and plays
+307	D	ANS-99	- **Module System**: Modules in `lib/ansible/modules/` are the units of work; they're executed remotely
+308	D	ANS-99	- **Plugin Architecture**: `lib/ansible/plugins/` provides extensibility through filters, tests, lookups, etc.
+309	D	ANS-99	- **Inventory**: `lib/ansible/inventory/` manages host and group definitions
+310	D	ANS-99	- **Collections**: Modern packaging format for distributing Ansible content
+314	D	ANS-100	- `test/units/` - Unit tests mirroring the lib structure
+315	D	ANS-101	- `test/integration/` - Integration tests organized by target (named after plugin/functionality being tested)
+316	D	ANS-102	  - Some targets have `context/controller` or `context/target` in their `aliases` file when not easily inferable
+317	D	ANS-103	  - Only modules run on target hosts; all other plugins execute locally in the ansible process
+318	D	ANS-104	- `test/lib/` - Test utilities and frameworks
+319	D	ANS-105	- `ansible-test` - Unified testing tool for all test types
+321	M	ANS-106	For CI failure debugging, see [Helping Developers with CI Failures](#helping-developers-with-ci-failures).

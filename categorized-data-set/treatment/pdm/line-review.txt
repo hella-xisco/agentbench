@@ -1,0 +1,128 @@
+   1 [H  ] # CLAUDE.md
+   2 [   ] 
+   3 [M  ] This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+   4 [   ] 
+   5 [H  ] ## Project Overview
+   6 [   ] 
+   7 [D  ] PDM (Python Dependency Manager) is a modern Python package and dependency manager that supports the latest PEP standards (PEP 517, PEP 621). It provides fast dependency resolution, flexible plugin system, and centralized cache management similar to pnpm.
+   8 [   ] 
+   9 [H  ] ## Core Architecture
+  10 [   ] 
+  11 [H  ] ### Key Components
+  12 [   ] 
+  13 [D  ] 1. **Project Management** (`src/pdm/project/`): Handles pyproject.toml parsing, project configuration, and metadata management
+  14 [D  ] 2. **Dependency Resolution** (`src/pdm/resolver/`): Fast dependency resolver using resolvelib with custom optimizations for binary distributions
+  15 [D  ] 3. **Environment Management** (`src/pdm/environments/`): Manages Python environments (virtualenv, PEP 582, system)
+  16 [D  ] 4. **Installer System** (`src/pdm/installers/`): Installs packages using pbs-installer with centralized cache support
+  17 [D  ] 5. **CLI System** (`src/pdm/cli/commands/`): Command-line interface using argparse with plugin support
+  18 [D  ] 6. **Repository Models** (`src/pdm/models/repositories/`): PyPI repository interaction and package finder
+  19 [D  ] 7. **Build System** (`src/pdm/builders/`): PEP 517 build backend for creating wheels and sdists
+  20 [   ] 
+  21 [H  ] ### Command Entry Points
+  22 [   ] 
+  23 [D  ] All CLI commands are in `src/pdm/cli/commands/` with command registration in `src/pdm/core.py`. Commands inherit from `BaseCommand` and use decorator patterns for common options.
+  24 [   ] 
+  25 [H  ] ## Development Commands
+  26 [   ] 
+  27 [H  ] ### Setup Development Environment
+  28 [~  ] ```bash
+  29 [P  ] # Install development dependencies
+  30 [P  ] pdm install
+  31 [~  ] ```
+  32 [   ] 
+  33 [H  ] ### Run Tests
+  34 [~  ] ```bash
+  35 [P  ] # Run all tests
+  36 [P  ] pdm run test
+  37 [   ] 
+  38 [P  ] # Run tests in parallel
+  39 [P  ] pdm run test -n auto
+  40 [~  ] ```
+  41 [   ] 
+  42 [P  ] Most of the time, you can exclude tests with "integration" mark to save runtime:
+  43 [   ] 
+  44 [~  ] ```bash
+  45 [P  ] pdm run test -n auto -m "not integration"
+  46 [P  ] ```
+  47 [   ] 
+  48 [H  ] ### Code Quality
+  49 [P  ] ```bash
+  50 [P  ] # Run linting (ruff-format + codespell + mypy)
+  51 [P  ] pdm run lint
+  52 [~  ] ```
+  53 [   ] 
+  54 [H  ] ### Documentation
+  55 [~  ] ```bash
+  56 [P  ] # Serve documentation locally
+  57 [P  ] pdm run doc
+  58 [~  ] ```
+  59 [   ] 
+  60 [H  ] ### Release Process
+  61 [~  ] ```bash
+  62 [P  ] # Preview changelog
+  63 [P  ] pdm run release --dry-run
+  64 [   ] 
+  65 [P  ] # Create release
+  66 [P  ] pdm run release
+  67 [~  ] ```
+  68 [   ] 
+  69 [H  ] ## Testing Guidelines
+  70 [   ] 
+  71 [D  ] Tests are in the `tests/` directory organized by module. Key test fixtures:
+  72 [?? ] - `project` fixture: Creates temporary PDM projects
+  73 [D  ] - `working_set` fixture: Mock Python environment
+  74 [D  ] - `repository` fixture: Mock PyPI repository
+  75 [   ] 
+  76 [D  ] Tests use pytest with pytest-mock for mocking and pytest-httpserver for HTTP testing.
+  77 [   ] 
+  78 [H  ] ## Important Files
+  79 [   ] 
+  80 [D  ] - `pyproject.toml`: Project configuration and dependencies
+  81 [D  ] - `src/pdm/core.py`: Main application entry point and command registration
+  82 [D  ] - `src/pdm/project/__init__.py`: Project class managing project state
+  83 [D  ] - `src/pdm/cli/commands/base.py`: Base command class for all CLI commands
+  84 [D  ] - `.pre-commit-config.yaml`: Code quality hooks (ruff, mypy, codespell)
+  85 [   ] 
+  86 [H  ] ## Common Development Tasks
+  87 [   ] 
+  88 [H  ] ### Adding a New Command
+  89 [D  ] 1. Create new file in `src/pdm/cli/commands/`
+  90 [D  ] 2. Inherit from `BaseCommand`
+  91 [D  ] 3. Register in `src/pdm/core.py`
+  92 [   ] 
+  93 [H  ] ### Debugging Resolution Issues
+  94 [P  ] - Set `PDM_DEBUG=1` environment variable for verbose output
+  95 [P  ] - Check `pdm.lock` for resolved versions
+  96 [P  ] - Use `pdm lock --check` to verify lock file
+  97 [   ] 
+  98 [H  ] ### Working with Lock Files
+  99 [   ] 
+ 100 [D  ] PDM uses its own lock file format (`pdm.lock`) that includes:
+ 101 [D  ] - Exact versions with hashes
+ 102 [D  ] - Environment markers
+ 103 [D  ] - Cross-platform support
+ 104 [D  ] - Group dependencies
+ 105 [   ] 
+ 106 [H  ] ### Update dependencies
+ 107 [   ] 
+ 108 [D  ] ```bash
+ 109 [P  ] # Add a new dependency to default group
+ 110 [P  ] pdm add <package_name>
+ 111 [   ] 
+ 112 [P  ] # Update all dependencies
+ 113 [P  ] pdm update
+ 114 [   ] 
+ 115 [P  ] # Remove a dependency
+ 116 [P  ] pdm remove <package_name>
+ 117 [   ] 
+ 118 [P  ] # Add a new dependency to given group
+ 119 [P  ] pdm add <package_name> --group <group_name>
+ 120 [D  ] ```
+ 121 [   ] 
+ 122 [H  ] ## Architecture Patterns
+ 123 [   ] 
+ 124 [D  ] - **Dependency Injection**: Core class passed to commands
+ 125 [D  ] - **Signal System**: Event-driven architecture for plugins
+ 126 [D  ] - **Repository Pattern**: Abstract repository interface for package sources
+ 127 [D  ] - **Strategy Pattern**: Different environment backends (venv, conda, etc.)
+ 128 [D  ] - **Chain of Responsibility**: Middleware system for HTTP client

@@ -1,0 +1,62 @@
+# Zuordnung Quellzeile -> Bucket  (statisches Artefakt, eingefroren nach Review 21.08.)
+# Quelle: pdm-project__pdm__16273ac7.md · Buckets: P D N M X PARTS · Auto-Zeilen (blank/heading/fence) fehlen bewusst.
+3	M	PDM-01	This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+7	D	PDM-02,PDM-03	PDM (Python Dependency Manager) is a modern Python package and dependency manager that supports the latest PEP standards (PEP 517, PEP 621). It provides fast dependency resolution, flexible plugin system, and centralized cache management similar to pnpm.
+13	D	PDM-04	1. **Project Management** (`src/pdm/project/`): Handles pyproject.toml parsing, project configuration, and metadata management
+14	D	PDM-04	2. **Dependency Resolution** (`src/pdm/resolver/`): Fast dependency resolver using resolvelib with custom optimizations for binary distributions
+15	D	PDM-04	3. **Environment Management** (`src/pdm/environments/`): Manages Python environments (virtualenv, PEP 582, system)
+16	D	PDM-04	4. **Installer System** (`src/pdm/installers/`): Installs packages using pbs-installer with centralized cache support
+17	D	PDM-05	5. **CLI System** (`src/pdm/cli/commands/`): Command-line interface using argparse with plugin support
+18	D	PDM-04	6. **Repository Models** (`src/pdm/models/repositories/`): PyPI repository interaction and package finder
+19	D	PDM-04	7. **Build System** (`src/pdm/builders/`): PEP 517 build backend for creating wheels and sdists
+23	D	PDM-06	All CLI commands are in `src/pdm/cli/commands/` with command registration in `src/pdm/core.py`. Commands inherit from `BaseCommand` and use decorator patterns for common options.
+29	P	PDM-07	# Install development dependencies
+30	P	PDM-07	pdm install
+35	P	PDM-08	# Run all tests
+36	P	PDM-08,PDM-09	pdm run test
+38	P	PDM-09	# Run tests in parallel
+39	P	PDM-08	pdm run test -n auto
+42	P	PDM-10	Most of the time, you can exclude tests with "integration" mark to save runtime:
+45	P	PDM-10	pdm run test -n auto -m "not integration"
+50	P	PDM-11	# Run linting (ruff-format + codespell + mypy)
+51	P	PDM-11	pdm run lint
+56	P	PDM-12	# Serve documentation locally
+57	P	PDM-12	pdm run doc
+62	P	PDM-13	# Preview changelog
+63	P	PDM-13,PDM-14	pdm run release --dry-run
+65	P	PDM-14	# Create release
+66	P	PDM-13	pdm run release
+71	D	PDM-15	Tests are in the `tests/` directory organized by module. Key test fixtures:
+72	D	PDM-16 (Fixture-Liste)	- `project` fixture: Creates temporary PDM projects
+73	D	PDM-16	- `working_set` fixture: Mock Python environment
+74	D	PDM-16	- `repository` fixture: Mock PyPI repository
+76	D	PDM-17	Tests use pytest with pytest-mock for mocking and pytest-httpserver for HTTP testing.
+80	D	PDM-18	- `pyproject.toml`: Project configuration and dependencies
+81	D	PDM-18	- `src/pdm/core.py`: Main application entry point and command registration
+82	D	PDM-18	- `src/pdm/project/__init__.py`: Project class managing project state
+83	D	PDM-18	- `src/pdm/cli/commands/base.py`: Base command class for all CLI commands
+84	D	PDM-18	- `.pre-commit-config.yaml`: Code quality hooks (ruff, mypy, codespell)
+89	P	PDM-19	1. Create new file in `src/pdm/cli/commands/`
+90	P	PDM-19	2. Inherit from `BaseCommand`
+91	P	PDM-19	3. Register in `src/pdm/core.py`
+94	P	PDM-20	- Set `PDM_DEBUG=1` environment variable for verbose output
+95	P	PDM-21	- Check `pdm.lock` for resolved versions
+96	P	PDM-22	- Use `pdm lock --check` to verify lock file
+100	D	PDM-23	PDM uses its own lock file format (`pdm.lock`) that includes:
+101	D	PDM-23	- Exact versions with hashes
+102	D	PDM-23	- Environment markers
+103	D	PDM-23	- Cross-platform support
+104	D	PDM-23	- Group dependencies
+109	P	PDM-24	# Add a new dependency to default group
+110	P	PDM-24	pdm add <package_name>
+112	P	PDM-25	# Update all dependencies
+113	P	PDM-25	pdm update
+115	P	PDM-26	# Remove a dependency
+116	P	PDM-26	pdm remove <package_name>
+118	P	PDM-27	# Add a new dependency to given group
+119	P	PDM-27	pdm add <package_name> --group <group_name>
+124	D	PDM-28	- **Dependency Injection**: Core class passed to commands
+125	D	PDM-28	- **Signal System**: Event-driven architecture for plugins
+126	D	PDM-28	- **Repository Pattern**: Abstract repository interface for package sources
+127	D	PDM-28	- **Strategy Pattern**: Different environment backends (venv, conda, etc.)
+128	D	PDM-28	- **Chain of Responsibility**: Middleware system for HTTP client

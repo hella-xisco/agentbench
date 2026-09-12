@@ -1,0 +1,277 @@
+   1 [H  ] # FastMCP Development Guidelines
+   2 [   ] 
+   3 [M  ] > **Audience**: LLM-driven engineering agents and human developers
+   4 [   ] 
+   5 [D  ] FastMCP is a comprehensive Python framework (Python ≥3.10) for building Model Context Protocol (MCP) servers and clients. This is the actively maintained v2.0 providing a complete toolkit for the MCP ecosystem.
+   6 [   ] 
+   7 [H  ] ## Required Development Workflow
+   8 [   ] 
+   9 [P  ] **CRITICAL**: Always run these commands in sequence before committing:
+  10 [   ] 
+  11 [~  ] ```bash
+  12 [?? ] uv sync                              # Install dependencies
+  13 [P  ] uv run prek run --all-files          # Ruff + Prettier + ty
+  14 [P  ] uv run pytest -n auto                # Run full test suite
+  15 [P  ] ```
+  16 [   ] 
+  17 [DP ] **All three must pass** - this is enforced by CI. Alternative: `just build && just typecheck && just test`
+  18 [   ] 
+  19 [N  ] **Tests must pass and lint/typing must be clean before committing.**
+  20 [   ] 
+  21 [N  ] **Before creating a PR**, evaluate whether documentation needs updating:
+  22 [N  ] - New features or APIs require corresponding docs
+  23 [N  ] - Changed behavior should be reflected in existing docs
+  24 [N  ] - Check `docs/` for affected pages
+  25 [   ] 
+  26 [H  ] ## Repository Structure
+  27 [   ] 
+  28 [N  ] | Path               | Purpose                                                                             |
+  29 [N  ] | ------------------ | ----------------------------------------------------------------------------------- |
+  30 [N  ] | `src/fastmcp/`     | Library source code (Python ≥ 3.10)                                                 |
+  31 [N  ] | `├─server/`        | Server implementation, `FastMCP`, auth, networking                                  |
+  32 [N  ] | `│  ├─auth/`       | Authentication providers (Google, GitHub, Azure, AWS, WorkOS, Auth0, JWT, and more) |
+  33 [N  ] | `│  └─middleware/` | Error handling, logging, rate limiting                                              |
+  34 [N  ] | `├─client/`        | High-level client SDK + transports                                                  |
+  35 [N  ] | `│  └─auth/`       | Client authentication (Bearer, OAuth)                                               |
+  36 [N  ] | `├─tools/`         | Tool implementations + `ToolManager`                                                |
+  37 [N  ] | `├─resources/`     | Resources, templates + `ResourceManager`                                            |
+  38 [N  ] | `├─prompts/`       | Prompt templates + `PromptManager`                                                  |
+  39 [N  ] | `├─cli/`           | FastMCP CLI commands (`run`, `dev`, `install`)                                      |
+  40 [N  ] | `├─contrib/`       | Community contributions (bulk caller, mixins)                                       |
+  41 [N  ] | `├─experimental/`  | Experimental features (sampling handlers)                                           |
+  42 [N  ] | `└─utilities/`     | Shared utilities (logging, JSON schema, HTTP)                                       |
+  43 [N  ] | `tests/`           | Comprehensive pytest suite with markers                                             |
+  44 [N  ] | `docs/`            | Mintlify documentation (published to gofastmcp.com)                                 |
+  45 [N  ] | `examples/`        | Runnable demo servers (echo, smart_home, atproto)                                   |
+  46 [   ] 
+  47 [H  ] ## Core MCP Objects
+  48 [   ] 
+  49 [N  ] When modifying MCP functionality, changes typically need to be applied across all object types:
+  50 [   ] 
+  51 [N  ] - **Tools** (`src/tools/` + `ToolManager`)
+  52 [N  ] - **Resources** (`src/resources/` + `ResourceManager`)
+  53 [N  ] - **Resource Templates** (`src/resources/` + `ResourceManager`)
+  54 [N  ] - **Prompts** (`src/prompts/` + `PromptManager`)
+  55 [   ] 
+  56 [H  ] ## Writing Style
+  57 [   ] 
+  58 [N  ] - Be brief and to the point. Do not regurgitate information that can easily be gleaned from the code, except to guide the reader to where the code is located.
+  59 [N  ] - **NEVER** use "This isn't..." or "not just..." constructions. State what something IS directly. Avoid defensive writing patterns like:
+  60 [N  ]   - "This isn't X, it's Y" or "Not just X, but Y" → Just say "This is Y"
+  61 [N  ]   - "Not just about X" → State the actual purpose
+  62 [N  ]   - "We're not doing X, we're doing Y" → Just explain what you're doing
+  63 [N  ]   - Any variation of explaining what something isn't before what it is
+  64 [   ] 
+  65 [H  ] ## Testing Best Practices
+  66 [   ] 
+  67 [H  ] ### Testing Standards
+  68 [   ] 
+  69 [N  ] - Every test: atomic, self-contained, single functionality
+  70 [N  ] - Use parameterization for multiple examples of same functionality
+  71 [N  ] - Use separate tests for different functionality pieces
+  72 [N  ] - **ALWAYS** Put imports at the top of the file, not in the test body
+  73 [P  ] - **NEVER** add `@pytest.mark.asyncio` to tests - `asyncio_mode = "auto"` is set globally
+  74 [P  ] - **ALWAYS** run pytest after significant changes
+  75 [   ] 
+  76 [H  ] ### Inline Snapshots
+  77 [   ] 
+  78 [DP ] FastMCP uses `inline-snapshot` for testing complex data structures. On first run with empty `snapshot()`, pytest will auto-populate the expected value when running `pytest --inline-snapshot=create`. To update snapshots after intentional changes, run `pytest --inline-snapshot=fix`. This is particularly useful for testing JSON schemas and API responses.
+  79 [   ] 
+  80 [H  ] ### Always Use In-Memory Transport
+  81 [   ] 
+  82 [P  ] Pass FastMCP servers directly to clients for testing:
+  83 [   ] 
+  84 [P  ] ```python
+  85 [P  ] mcp = FastMCP("TestServer")
+  86 [   ] 
+  87 [P  ] @mcp.tool
+  88 [P  ] def greet(name: str) -> str:
+  89 [P  ]     return f"Hello, {name}!"
+  90 [   ] 
+  91 [P  ] # Direct connection - no network complexity
+  92 [P  ] async with Client(mcp) as client:
+  93 [P  ]     result = await client.call_tool("greet", {"name": "World"})
+  94 [P  ] ```
+  95 [   ] 
+  96 [P  ] Only use HTTP transport when explicitly testing network features:
+  97 [   ] 
+  98 [P  ] ```python
+  99 [P  ] # Network testing only
+ 100 [P  ] async with Client(transport=StreamableHttpTransport(server_url)) as client:
+ 101 [P  ]     result = await client.ping()
+ 102 [P  ] ```
+ 103 [   ] 
+ 104 [H  ] ## Development Rules
+ 105 [   ] 
+ 106 [H  ] ### Git & CI
+ 107 [   ] 
+ 108 [D  ] - Prek hooks are required (run automatically on commits)
+ 109 [N  ] - Never amend commits to fix prek failures
+ 110 [N  ] - Apply PR labels: bugs/breaking/enhancements/features
+ 111 [N  ] - Improvements = enhancements (not features) unless specified
+ 112 [N  ] - **NEVER** force-push on collaborative repos
+ 113 [N  ] - **ALWAYS** run prek before PRs
+ 114 [N  ] - **NEVER** create a release, comment on an issue, or open a PR unless specifically instructed to do so.
+ 115 [   ] 
+ 116 [H  ] ### Commit Messages and Agent Attribution
+ 117 [   ] 
+ 118 [N  ] - **Agents NOT acting on behalf of @jlowin MUST identify themselves** (e.g., "🤖 Generated with Claude Code" in commits/PRs)
+ 119 [N  ] - Keep commit messages brief - ideally just headlines, not detailed messages
+ 120 [N  ] - Focus on what changed, not how or why
+ 121 [N  ] - Always read issue comments for follow-up information (treat maintainers as authoritative)
+ 122 [   ] 
+ 123 [H  ] ### PR Messages - Required Structure
+ 124 [   ] 
+ 125 [N  ] - 1-2 paragraphs: problem/tension + solution (PRs are documentation!)
+ 126 [N  ] - Focused code example showing key capability
+ 127 [N  ] - **Avoid:** bullet summaries, exhaustive change lists, verbose closes/fixes, marketing language
+ 128 [N  ] - **Do:** Be opinionated about why change matters, show before/after scenarios
+ 129 [N  ] - Minor fixes: keep body short and concise
+ 130 [N  ] - No "test plan" sections or testing summaries
+ 131 [   ] 
+ 132 [H  ] ### Code Standards
+ 133 [   ] 
+ 134 [D  ] - Python ≥ 3.10 with full type annotations
+ 135 [?? ] - Follow existing patterns and maintain consistency
+ 136 [?? ] - **Prioritize readable, understandable code** - clarity over cleverness
+ 137 [?? ] - Avoid obfuscated or confusing patterns even if they're shorter
+ 138 [N  ] - Each feature needs corresponding tests
+ 139 [   ] 
+ 140 [H  ] ### Module Exports
+ 141 [   ] 
+ 142 [?? ] - **Be intentional about re-exports** - don't blindly re-export everything to parent namespaces
+ 143 [N  ] - Core types that define a module's purpose should be exported (e.g., `Middleware` from `fastmcp.server.middleware`)
+ 144 [N  ] - Specialized features can live in submodules (e.g., `fastmcp.server.middleware.dynamic`)
+ 145 [N  ] - Only re-export to `fastmcp.*` for the most fundamental types (e.g., `FastMCP`, `Client`)
+ 146 [N  ] - When in doubt, prefer users importing from the specific submodule over re-exporting
+ 147 [   ] 
+ 148 [H  ] ### Documentation
+ 149 [   ] 
+ 150 [N  ] - Uses Mintlify framework
+ 151 [N  ] - Files must be in docs.json to be included
+ 152 [P  ] - Never modify `docs/python-sdk/**` (auto-generated)
+ 153 [N  ] - **Core Principle:** A feature doesn't exist unless it is documented!
+ 154 [   ] 
+ 155 [H  ] ### Documentation Guidelines
+ 156 [   ] 
+ 157 [N  ] - **Code Examples:** Explain before showing code, make blocks fully runnable (include imports)
+ 158 [N  ] - **Structure:** Headers form navigation guide, logical H2/H3 hierarchy
+ 159 [N  ] - **Content:** User-focused sections, motivate features (why) before mechanics (how)
+ 160 [N  ] - **Style:** Prose over code comments for important information
+ 161 [   ] 
+ 162 [H  ] ## Code Review Guidelines
+ 163 [   ] 
+ 164 [H  ] ### Philosophy
+ 165 [   ] 
+ 166 [N  ] Code review is about maintaining a healthy codebase while helping contributors succeed. The burden of proof is on the PR to demonstrate it adds value in the intended way. Your job is to help it get there through actionable feedback.
+ 167 [   ] 
+ 168 [N  ] **Critical**: A perfectly written PR that adds unwanted functionality must still be rejected. The code must advance the codebase in the intended direction, not just be well-written. When rejecting, provide clear guidance on how to align with project goals.
+ 169 [   ] 
+ 170 [N  ] Be friendly and welcoming while maintaining high standards. Call out what works well - this reinforces good patterns. When code needs improvement, be specific about why and how to fix it. Remember that PRs serve as documentation for future developers.
+ 171 [   ] 
+ 172 [H  ] ### Focus On
+ 173 [   ] 
+ 174 [N  ] - **Does this advance the codebase in the intended direction?** (Even perfect code for unwanted features should be rejected)
+ 175 [N  ] - **API design and naming clarity** - Identify confusing patterns (e.g., parameter values that contradict defaults) or non-idiomatic code (mutable defaults, etc.). Contributed code will need to be maintained indefinitely, and by someone other than the author (unless the author is a maintainer).
+ 176 [N  ] - **Suggest specific improvements**, not generic "add more tests" comments
+ 177 [N  ] - **Think about API ergonomics and learning curve** from a user perspective
+ 178 [   ] 
+ 179 [H  ] ### For Agent Reviewers
+ 180 [   ] 
+ 181 [N  ] - **Read the full context**: Always examine related files, tests, and documentation before reviewing
+ 182 [N  ] - **Check against established patterns**: Look for consistency with existing codebase conventions
+ 183 [N  ] - **Verify functionality claims**: Don't just read code - understand what it actually does
+ 184 [N  ] - **Consider edge cases**: Think through error conditions and boundary scenarios
+ 185 [   ] 
+ 186 [H  ] ### Avoid
+ 187 [   ] 
+ 188 [N  ] - Generic feedback without specifics
+ 189 [N  ] - Hypothetical problems unlikely to occur
+ 190 [N  ] - Nitpicking organizational choices without strong reason
+ 191 [N  ] - Summarizing what the PR already describes
+ 192 [N  ] - Star ratings or excessive emojis
+ 193 [N  ] - Bikeshedding style preferences when functionality is correct
+ 194 [N  ] - Requesting changes without suggesting solutions
+ 195 [N  ] - Focusing on personal coding style over project conventions
+ 196 [   ] 
+ 197 [H  ] ### Tone
+ 198 [   ] 
+ 199 [N  ] - Acknowledge good decisions ("This API design is clean")
+ 200 [N  ] - Be direct but respectful
+ 201 [N  ] - Explain impact ("This will confuse users because...")
+ 202 [N  ] - Remember: Someone else maintains this code forever
+ 203 [   ] 
+ 204 [H  ] ### Decision Framework
+ 205 [   ] 
+ 206 [N  ] Before approving, ask yourself:
+ 207 [   ] 
+ 208 [N  ] 1. Does this PR achieve its stated purpose?
+ 209 [N  ] 2. Is that purpose aligned with where the codebase should go?
+ 210 [N  ] 3. Would I be comfortable maintaining this code?
+ 211 [N  ] 4. Have I actually understood what it does, not just what it claims?
+ 212 [N  ] 5. Does this change introduce technical debt?
+ 213 [   ] 
+ 214 [N  ] If something needs work, your review should help it get there through specific, actionable feedback. If it's solving the wrong problem, say so clearly.
+ 215 [   ] 
+ 216 [H  ] ### Review Comment Examples
+ 217 [   ] 
+ 218 [N  ] **Good Review Comments:**
+ 219 [   ] 
+ 220 [N  ] ❌ "Add more tests"  
+ 221 [N  ] ✅ "The `handle_timeout` method needs tests for the edge case where timeout=0"
+ 222 [   ] 
+ 223 [N  ] ❌ "This API is confusing"  
+ 224 [N  ] ✅ "The parameter name `data` is ambiguous - consider `message_content` to match the MCP specification"
+ 225 [   ] 
+ 226 [N  ] ❌ "This could be better"  
+ 227 [N  ] ✅ "This approach works but creates a circular dependency. Consider moving the validation to `utils/validators.py`"
+ 228 [   ] 
+ 229 [H  ] ### Review Checklist
+ 230 [   ] 
+ 231 [N  ] Before approving, verify:
+ 232 [   ] 
+ 233 [N  ] - [ ] All required development workflow steps completed (uv sync, prek, pytest)
+ 234 [N  ] - [ ] Changes align with repository patterns and conventions
+ 235 [N  ] - [ ] API changes are documented and backwards-compatible where possible
+ 236 [N  ] - [ ] Error handling follows project patterns (specific exception types)
+ 237 [N  ] - [ ] Tests cover new functionality and edge cases
+ 238 [   ] 
+ 239 [H  ] ## Key Tools & Commands
+ 240 [   ] 
+ 241 [H  ] ### Environment Setup
+ 242 [   ] 
+ 243 [N  ] ```bash
+ 244 [N  ] git clone <repo>
+ 245 [N  ] cd fastmcp
+ 246 [N  ] uv sync                    # Installs all deps including dev tools
+ 247 [N  ] ```
+ 248 [   ] 
+ 249 [H  ] ### Validation Commands (Run Frequently)
+ 250 [   ] 
+ 251 [P  ] - **Linting**: `uv run ruff check` (or with `--fix`)
+ 252 [P  ] - **Type Checking**: `uv run ty check`
+ 253 [P  ] - **All Checks**: `uv run prek run --all-files`
+ 254 [   ] 
+ 255 [H  ] ### Testing
+ 256 [   ] 
+ 257 [P  ] - **Standard**: `uv run pytest -n auto`
+ 258 [P  ] - **Integration**: `uv run pytest -n auto -m "integration"`
+ 259 [P  ] - **Excluding markers**: `uv run pytest -n auto -m "not integration and not client_process"`
+ 260 [   ] 
+ 261 [H  ] ### CLI Usage
+ 262 [   ] 
+ 263 [P  ] - **Run server**: `uv run fastmcp run server.py`
+ 264 [P  ] - **Inspect server**: `uv run fastmcp inspect server.py`
+ 265 [   ] 
+ 266 [H  ] ## Critical Patterns
+ 267 [   ] 
+ 268 [H  ] ### Error Handling
+ 269 [   ] 
+ 270 [P  ] - Never use bare `except` - be specific with exception types
+ 271 [   ] 
+ 272 [H  ] ### Build Issues (Common Solutions)
+ 273 [   ] 
+ 274 [P  ] 1. **Dependencies**: Always `uv sync` first
+ 275 [P  ] 2. **Prek fails**: Run `uv run prek run --all-files` to see failures
+ 276 [P  ] 3. **Type errors**: Use `uv run ty check` directly, check `pyproject.toml` config
+ 277 [P  ] 4. **Test timeouts**: Default 5s - optimize or mark as integration tests

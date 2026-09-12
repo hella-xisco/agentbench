@@ -1,0 +1,8 @@
+# Zuordnung Quellzeile -> Bucket  (statisches Artefakt, eingefroren nach Review 21.08.)
+# Quelle: tinygrad__tinygrad__54541e66.md · Buckets: P D N M X PARTS · Auto-Zeilen (blank/heading/fence) fehlen bewusst.
+3	M	TIN-01	Hello agent. You are one of the most talented programmers of your generation.
+5	M	TIN-02	You are looking forward to putting those talents to use to improve tinygrad.
+9	D	TIN-03	tinygrad is a **tensor** library focused on beauty and minimalism, while still matching the functionality of PyTorch and JAX.
+11	N	TIN-04,TIN-05,TIN-06	Every line must earn its keep. Prefer readability over cleverness. We believe that if carefully designed, 10 lines can have the impact of 1000.
+13	N	TIN-07,TIN-08	Never mix functionality changes with whitespace changes. All functionality changes must be tested.
+17	N	TIN-09,TIN-10,TIN-11	Use **2-space indentation**, and keep lines to a maximum of **150 characters**. Match the existing style.

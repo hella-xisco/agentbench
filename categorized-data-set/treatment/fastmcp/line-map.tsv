@@ -1,0 +1,156 @@
+# Zuordnung Quellzeile -> Bucket  (statisches Artefakt, eingefroren nach Review 21.08.)
+# Quelle: jlowin__fastmcp__e7202ff0.md · Buckets: P D N M X PARTS · Auto-Zeilen (blank/heading/fence) fehlen bewusst.
+3	M	FMC-01	> **Audience**: LLM-driven engineering agents and human developers
+5	D	FMC-02	FastMCP is a comprehensive Python framework (Python ≥3.10) for building Model Context Protocol (MCP) servers and clients. This is the actively maintained v2.0 providing a complete toolkit for the MCP ecosystem.
+9	P	FMC-03	**CRITICAL**: Always run these commands in sequence before committing:
+12	P	FMC-03 (uv sync im Kern-Workflow)	uv sync                              # Install dependencies
+13	P	FMC-03	uv run prek run --all-files          # Ruff + Prettier + ty
+14	P	FMC-03	uv run pytest -n auto                # Run full test suite
+17	PARTS	D:FMC-04 P:FMC-05	**All three must pass** - this is enforced by CI. Alternative: `just build && just typecheck && just test`
+19	N	FMC-06	**Tests must pass and lint/typing must be clean before committing.**
+21	N	FMC-07	**Before creating a PR**, evaluate whether documentation needs updating:
+22	N	FMC-07	- New features or APIs require corresponding docs
+23	N	FMC-07	- Changed behavior should be reflected in existing docs
+24	N	FMC-07	- Check `docs/` for affected pages
+28	D	FMC-08	| Path               | Purpose                                                                             |
+29	D	FMC-08	| ------------------ | ----------------------------------------------------------------------------------- |
+30	D	FMC-08	| `src/fastmcp/`     | Library source code (Python ≥ 3.10)                                                 |
+31	D	FMC-08	| `├─server/`        | Server implementation, `FastMCP`, auth, networking                                  |
+32	D	FMC-08	| `│  ├─auth/`       | Authentication providers (Google, GitHub, Azure, AWS, WorkOS, Auth0, JWT, and more) |
+33	D	FMC-08	| `│  └─middleware/` | Error handling, logging, rate limiting                                              |
+34	D	FMC-08	| `├─client/`        | High-level client SDK + transports                                                  |
+35	D	FMC-08	| `│  └─auth/`       | Client authentication (Bearer, OAuth)                                               |
+36	D	FMC-08	| `├─tools/`         | Tool implementations + `ToolManager`                                                |
+37	D	FMC-08	| `├─resources/`     | Resources, templates + `ResourceManager`                                            |
+38	D	FMC-08	| `├─prompts/`       | Prompt templates + `PromptManager`                                                  |
+39	D	FMC-08	| `├─cli/`           | FastMCP CLI commands (`run`, `dev`, `install`)                                      |
+40	D	FMC-08	| `├─contrib/`       | Community contributions (bulk caller, mixins)                                       |
+41	D	FMC-08	| `├─experimental/`  | Experimental features (sampling handlers)                                           |
+42	D	FMC-08	| `└─utilities/`     | Shared utilities (logging, JSON schema, HTTP)                                       |
+43	D	FMC-08	| `tests/`           | Comprehensive pytest suite with markers                                             |
+44	D	FMC-08	| `docs/`            | Mintlify documentation (published to gofastmcp.com)                                 |
+45	D	FMC-08	| `examples/`        | Runnable demo servers (echo, smart_home, atproto)                                   |
+49	P	FMC-09	When modifying MCP functionality, changes typically need to be applied across all object types:
+51	P	FMC-09	- **Tools** (`src/tools/` + `ToolManager`)
+52	P	FMC-09	- **Resources** (`src/resources/` + `ResourceManager`)
+53	P	FMC-09	- **Resource Templates** (`src/resources/` + `ResourceManager`)
+54	P	FMC-09	- **Prompts** (`src/prompts/` + `PromptManager`)
+58	N	FMC-10	- Be brief and to the point. Do not regurgitate information that can easily be gleaned from the code, except to guide the reader to where the code is located.
+59	N	FMC-11	- **NEVER** use "This isn't..." or "not just..." constructions. State what something IS directly. Avoid defensive writing patterns like:
+60	N	FMC-11	  - "This isn't X, it's Y" or "Not just X, but Y" → Just say "This is Y"
+61	N	FMC-11	  - "Not just about X" → State the actual purpose
+62	N	FMC-11	  - "We're not doing X, we're doing Y" → Just explain what you're doing
+63	N	FMC-11	  - Any variation of explaining what something isn't before what it is
+69	N	FMC-12	- Every test: atomic, self-contained, single functionality
+70	N	FMC-13	- Use parameterization for multiple examples of same functionality
+71	N	FMC-14	- Use separate tests for different functionality pieces
+72	N	FMC-15	- **ALWAYS** Put imports at the top of the file, not in the test body
+73	P	FMC-16	- **NEVER** add `@pytest.mark.asyncio` to tests - `asyncio_mode = "auto"` is set globally
+74	P	FMC-17	- **ALWAYS** run pytest after significant changes
+78	PARTS	D:FMC-18 P:FMC-19	FastMCP uses `inline-snapshot` for testing complex data structures. On first run with empty `snapshot()`, pytest will auto-populate the expected value when running `pytest --inline-snapshot=create`. To update snapshots after intentional changes, run `pytest --inline-snapshot=fix`. This is particularly useful for testing JSON schemas and API responses.
+82	P	FMC-20	Pass FastMCP servers directly to clients for testing:
+85	P	FMC-20	mcp = FastMCP("TestServer")
+87	P	FMC-20	@mcp.tool
+88	P	FMC-20	def greet(name: str) -> str:
+89	P	FMC-20	    return f"Hello, {name}!"
+91	P	FMC-20	# Direct connection - no network complexity
+92	P	FMC-20	async with Client(mcp) as client:
+93	P	FMC-20	    result = await client.call_tool("greet", {"name": "World"})
+96	P	FMC-20	Only use HTTP transport when explicitly testing network features:
+99	P	FMC-20	# Network testing only
+100	P	FMC-20	async with Client(transport=StreamableHttpTransport(server_url)) as client:
+101	P	FMC-20	    result = await client.ping()
+108	D	FMC-22	- Prek hooks are required (run automatically on commits)
+109	N	FMC-23	- Never amend commits to fix prek failures
+110	N	FMC-24	- Apply PR labels: bugs/breaking/enhancements/features
+111	N	FMC-24	- Improvements = enhancements (not features) unless specified
+112	N	FMC-25	- **NEVER** force-push on collaborative repos
+113	N	FMC-26	- **ALWAYS** run prek before PRs
+114	N	FMC-27	- **NEVER** create a release, comment on an issue, or open a PR unless specifically instructed to do so.
+118	N	FMC-28	- **Agents NOT acting on behalf of @jlowin MUST identify themselves** (e.g., "🤖 Generated with Claude Code" in commits/PRs)
+119	N	FMC-28	- Keep commit messages brief - ideally just headlines, not detailed messages
+120	N	FMC-28	- Focus on what changed, not how or why
+121	N	FMC-28	- Always read issue comments for follow-up information (treat maintainers as authoritative)
+125	N	FMC-28	- 1-2 paragraphs: problem/tension + solution (PRs are documentation!)
+126	N	FMC-28	- Focused code example showing key capability
+127	N	FMC-28	- **Avoid:** bullet summaries, exhaustive change lists, verbose closes/fixes, marketing language
+128	N	FMC-28	- **Do:** Be opinionated about why change matters, show before/after scenarios
+129	N	FMC-28	- Minor fixes: keep body short and concise
+130	N	FMC-28	- No "test plan" sections or testing summaries
+134	PARTS	D:FMC-30b N:FMC-30	- Python ≥ 3.10 with full type annotations
+135	N	FMC-30 (Code Standards)	- Follow existing patterns and maintain consistency
+136	N	FMC-30 (Code Standards)	- **Prioritize readable, understandable code** - clarity over cleverness
+137	N	FMC-30 (Code Standards)	- Avoid obfuscated or confusing patterns even if they're shorter
+138	N	FMC-30	- Each feature needs corresponding tests
+142	N	FMC-31 (Module Exports)	- **Be intentional about re-exports** - don't blindly re-export everything to parent namespaces
+143	N	FMC-31	- Core types that define a module's purpose should be exported (e.g., `Middleware` from `fastmcp.server.middleware`)
+144	N	FMC-31	- Specialized features can live in submodules (e.g., `fastmcp.server.middleware.dynamic`)
+145	N	FMC-31	- Only re-export to `fastmcp.*` for the most fundamental types (e.g., `FastMCP`, `Client`)
+146	N	FMC-31	- When in doubt, prefer users importing from the specific submodule over re-exporting
+150	D	FMC-32	- Uses Mintlify framework
+151	D	FMC-32	- Files must be in docs.json to be included
+152	P	FMC-33	- Never modify `docs/python-sdk/**` (auto-generated)
+153	N	FMC-34	- **Core Principle:** A feature doesn't exist unless it is documented!
+157	N	FMC-35	- **Code Examples:** Explain before showing code, make blocks fully runnable (include imports)
+158	N	FMC-35	- **Structure:** Headers form navigation guide, logical H2/H3 hierarchy
+159	N	FMC-35	- **Content:** User-focused sections, motivate features (why) before mechanics (how)
+160	N	FMC-35	- **Style:** Prose over code comments for important information
+166	N	FMC-35	Code review is about maintaining a healthy codebase while helping contributors succeed. The burden of proof is on the PR to demonstrate it adds value in the intended way. Your job is to help it get there through actionable feedback.
+168	N	FMC-35	**Critical**: A perfectly written PR that adds unwanted functionality must still be rejected. The code must advance the codebase in the intended direction, not just be well-written. When rejecting, provide clear guidance on how to align with project goals.
+170	N	FMC-35	Be friendly and welcoming while maintaining high standards. Call out what works well - this reinforces good patterns. When code needs improvement, be specific about why and how to fix it. Remember that PRs serve as documentation for future developers.
+174	N	FMC-35	- **Does this advance the codebase in the intended direction?** (Even perfect code for unwanted features should be rejected)
+175	N	FMC-35	- **API design and naming clarity** - Identify confusing patterns (e.g., parameter values that contradict defaults) or non-idiomatic code (mutable defaults, etc.). Contributed code will need to be maintained indefinitely, and by someone other than the author (unless the author is a maintainer).
+176	N	FMC-35	- **Suggest specific improvements**, not generic "add more tests" comments
+177	N	FMC-35	- **Think about API ergonomics and learning curve** from a user perspective
+181	N	FMC-35	- **Read the full context**: Always examine related files, tests, and documentation before reviewing
+182	N	FMC-35	- **Check against established patterns**: Look for consistency with existing codebase conventions
+183	N	FMC-35	- **Verify functionality claims**: Don't just read code - understand what it actually does
+184	N	FMC-35	- **Consider edge cases**: Think through error conditions and boundary scenarios
+188	N	FMC-35	- Generic feedback without specifics
+189	N	FMC-35	- Hypothetical problems unlikely to occur
+190	N	FMC-35	- Nitpicking organizational choices without strong reason
+191	N	FMC-35	- Summarizing what the PR already describes
+192	N	FMC-35	- Star ratings or excessive emojis
+193	N	FMC-35	- Bikeshedding style preferences when functionality is correct
+194	N	FMC-35	- Requesting changes without suggesting solutions
+195	N	FMC-35	- Focusing on personal coding style over project conventions
+199	N	FMC-35	- Acknowledge good decisions ("This API design is clean")
+200	N	FMC-35	- Be direct but respectful
+201	N	FMC-35	- Explain impact ("This will confuse users because...")
+202	N	FMC-35	- Remember: Someone else maintains this code forever
+206	N	FMC-35	Before approving, ask yourself:
+208	N	FMC-35	1. Does this PR achieve its stated purpose?
+209	N	FMC-35	2. Is that purpose aligned with where the codebase should go?
+210	N	FMC-35	3. Would I be comfortable maintaining this code?
+211	N	FMC-35	4. Have I actually understood what it does, not just what it claims?
+212	N	FMC-35	5. Does this change introduce technical debt?
+214	N	FMC-35	If something needs work, your review should help it get there through specific, actionable feedback. If it's solving the wrong problem, say so clearly.
+218	N	FMC-35	**Good Review Comments:**
+220	N	FMC-35	❌ "Add more tests"  
+221	N	FMC-35	✅ "The `handle_timeout` method needs tests for the edge case where timeout=0"
+223	N	FMC-35	❌ "This API is confusing"  
+224	N	FMC-35	✅ "The parameter name `data` is ambiguous - consider `message_content` to match the MCP specification"
+226	N	FMC-35	❌ "This could be better"  
+227	N	FMC-35	✅ "This approach works but creates a circular dependency. Consider moving the validation to `utils/validators.py`"
+231	N	FMC-35	Before approving, verify:
+233	N	FMC-35	- [ ] All required development workflow steps completed (uv sync, prek, pytest)
+234	N	FMC-35	- [ ] Changes align with repository patterns and conventions
+235	N	FMC-35	- [ ] API changes are documented and backwards-compatible where possible
+236	N	FMC-35	- [ ] Error handling follows project patterns (specific exception types)
+237	N	FMC-35	- [ ] Tests cover new functionality and edge cases
+244	P	FMC-37	git clone <repo>
+245	P	FMC-37	cd fastmcp
+246	P	FMC-37	uv sync                    # Installs all deps including dev tools
+251	P	FMC-38	- **Linting**: `uv run ruff check` (or with `--fix`)
+252	P	FMC-39	- **Type Checking**: `uv run ty check`
+253	P	FMC-40	- **All Checks**: `uv run prek run --all-files`
+257	P	FMC-41	- **Standard**: `uv run pytest -n auto`
+258	P	FMC-41	- **Integration**: `uv run pytest -n auto -m "integration"`
+259	P	FMC-41,FMC-43	- **Excluding markers**: `uv run pytest -n auto -m "not integration and not client_process"`
+263	P	FMC-44	- **Run server**: `uv run fastmcp run server.py`
+264	P	FMC-45	- **Inspect server**: `uv run fastmcp inspect server.py`
+270	P	FMC-46	- Never use bare `except` - be specific with exception types
+274	P	FMC-47	1. **Dependencies**: Always `uv sync` first
+275	P	FMC-47	2. **Prek fails**: Run `uv run prek run --all-files` to see failures
+276	P	FMC-47	3. **Type errors**: Use `uv run ty check` directly, check `pyproject.toml` config
+277	P	FMC-47	4. **Test timeouts**: Default 5s - optimize or mark as integration tests

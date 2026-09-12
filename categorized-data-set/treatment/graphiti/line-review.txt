@@ -1,0 +1,142 @@
+   1 [H  ] # CLAUDE.md
+   2 [   ] 
+   3 [M  ] This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+   4 [   ] 
+   5 [H  ] ## Project Overview
+   6 [   ] 
+   7 [D  ] Graphiti is a Python framework for building temporally-aware knowledge graphs designed for AI agents. It enables real-time incremental updates to knowledge graphs without batch recomputation, making it suitable for dynamic environments.
+   8 [   ] 
+   9 [D  ] Key features:
+  10 [   ] 
+  11 [D  ] - Bi-temporal data model with explicit tracking of event occurrence times
+  12 [D  ] - Hybrid retrieval combining semantic embeddings, keyword search (BM25), and graph traversal
+  13 [D  ] - Support for custom entity definitions via Pydantic models
+  14 [D  ] - Integration with Neo4j and FalkorDB as graph storage backends
+  15 [   ] 
+  16 [H  ] ## Development Commands
+  17 [   ] 
+  18 [H  ] ### Main Development Commands (run from project root)
+  19 [   ] 
+  20 [D  ] ```bash
+  21 [P  ] # Install dependencies
+  22 [P  ] uv sync --extra dev
+  23 [   ] 
+  24 [P  ] # Format code (ruff import sorting + formatting)
+  25 [P  ] make format
+  26 [   ] 
+  27 [P  ] # Lint code (ruff + pyright type checking)
+  28 [P  ] make lint
+  29 [   ] 
+  30 [P  ] # Run tests
+  31 [P  ] make test
+  32 [   ] 
+  33 [P  ] # Run all checks (format, lint, test)
+  34 [P  ] make check
+  35 [~  ] ```
+  36 [   ] 
+  37 [H  ] ### Server Development (run from server/ directory)
+  38 [   ] 
+  39 [P  ] ```bash
+  40 [P  ] cd server/
+  41 [P  ] # Install server dependencies
+  42 [P  ] uv sync --extra dev
+  43 [   ] 
+  44 [P  ] # Run server in development mode
+  45 [P  ] uvicorn graph_service.main:app --reload
+  46 [   ] 
+  47 [P  ] # Format, lint, test server code
+  48 [P  ] make format
+  49 [P  ] make lint
+  50 [P  ] make test
+  51 [P  ] ```
+  52 [   ] 
+  53 [H  ] ### MCP Server Development (run from mcp_server/ directory)
+  54 [   ] 
+  55 [P  ] ```bash
+  56 [P  ] cd mcp_server/
+  57 [P  ] # Install MCP server dependencies
+  58 [P  ] uv sync
+  59 [   ] 
+  60 [P  ] # Run with Docker Compose
+  61 [P  ] docker-compose up
+  62 [~  ] ```
+  63 [   ] 
+  64 [H  ] ## Code Architecture
+  65 [   ] 
+  66 [H  ] ### Core Library (`graphiti_core/`)
+  67 [   ] 
+  68 [D  ] - **Main Entry Point**: `graphiti.py` - Contains the main `Graphiti` class that orchestrates all functionality
+  69 [D  ] - **Graph Storage**: `driver/` - Database drivers for Neo4j and FalkorDB
+  70 [D  ] - **LLM Integration**: `llm_client/` - Clients for OpenAI, Anthropic, Gemini, Groq
+  71 [D  ] - **Embeddings**: `embedder/` - Embedding clients for various providers
+  72 [D  ] - **Graph Elements**: `nodes.py`, `edges.py` - Core graph data structures
+  73 [D  ] - **Search**: `search/` - Hybrid search implementation with configurable strategies
+  74 [D  ] - **Prompts**: `prompts/` - LLM prompts for entity extraction, deduplication, summarization
+  75 [D  ] - **Utilities**: `utils/` - Maintenance operations, bulk processing, datetime handling
+  76 [   ] 
+  77 [H  ] ### Server (`server/`)
+  78 [   ] 
+  79 [D  ] - **FastAPI Service**: `graph_service/main.py` - REST API server
+  80 [D  ] - **Routers**: `routers/` - API endpoints for ingestion and retrieval
+  81 [D  ] - **DTOs**: `dto/` - Data transfer objects for API contracts
+  82 [   ] 
+  83 [H  ] ### MCP Server (`mcp_server/`)
+  84 [   ] 
+  85 [D  ] - **MCP Implementation**: `graphiti_mcp_server.py` - Model Context Protocol server for AI assistants
+  86 [D  ] - **Docker Support**: Containerized deployment with Neo4j
+  87 [   ] 
+  88 [H  ] ## Testing
+  89 [   ] 
+  90 [D  ] - **Unit Tests**: `tests/` - Comprehensive test suite using pytest
+  91 [D  ] - **Integration Tests**: Tests marked with `_int` suffix require database connections
+  92 [D  ] - **Evaluation**: `tests/evals/` - End-to-end evaluation scripts
+  93 [   ] 
+  94 [H  ] ## Configuration
+  95 [   ] 
+  96 [H  ] ### Environment Variables
+  97 [   ] 
+  98 [D  ] - `OPENAI_API_KEY` - Required for LLM inference and embeddings
+  99 [D  ] - `USE_PARALLEL_RUNTIME` - Optional boolean for Neo4j parallel runtime (enterprise only)
+ 100 [D  ] - Provider-specific keys: `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `GROQ_API_KEY`, `VOYAGE_API_KEY`
+ 101 [   ] 
+ 102 [H  ] ### Database Setup
+ 103 [   ] 
+ 104 [D  ] - **Neo4j**: Version 5.26+ required, available via Neo4j Desktop
+ 105 [D  ]   - Database name defaults to `neo4j` (hardcoded in Neo4jDriver)
+ 106 [P  ]   - Override by passing `database` parameter to driver constructor
+ 107 [D  ] - **FalkorDB**: Version 1.1.2+ as alternative backend
+ 108 [D  ]   - Database name defaults to `default_db` (hardcoded in FalkorDriver)
+ 109 [P  ]   - Override by passing `database` parameter to driver constructor
+ 110 [   ] 
+ 111 [H  ] ## Development Guidelines
+ 112 [   ] 
+ 113 [H  ] ### Code Style
+ 114 [   ] 
+ 115 [N  ] - Use Ruff for formatting and linting (configured in pyproject.toml)
+ 116 [N  ] - Line length: 100 characters
+ 117 [N  ] - Quote style: single quotes
+ 118 [N  ] - Type checking with Pyright is enforced
+ 119 [D  ] - Main project uses `typeCheckingMode = "basic"`, server uses `typeCheckingMode = "standard"`
+ 120 [   ] 
+ 121 [H  ] ### Testing Requirements
+ 122 [   ] 
+ 123 [P  ] - Run tests with `make test` or `pytest`
+ 124 [D  ] - Integration tests require database connections and are marked with `_int` suffix
+ 125 [P  ] - Use `pytest-xdist` for parallel test execution
+ 126 [P  ] - Run specific test files: `pytest tests/test_specific_file.py`
+ 127 [P  ] - Run specific test methods: `pytest tests/test_file.py::test_method_name`
+ 128 [P  ] - Run only integration tests: `pytest tests/ -k "_int"`
+ 129 [P  ] - Run only unit tests: `pytest tests/ -k "not _int"`
+ 130 [   ] 
+ 131 [H  ] ### LLM Provider Support
+ 132 [   ] 
+ 133 [D  ] The codebase supports multiple LLM providers but works best with services supporting structured output (OpenAI, Gemini). Other providers may cause schema validation issues, especially with smaller models.
+ 134 [   ] 
+ 135 [H  ] ### MCP Server Usage Guidelines
+ 136 [   ] 
+ 137 [N  ] When working with the MCP server, follow the patterns established in `mcp_server/cursor_rules.md`:
+ 138 [   ] 
+ 139 [N  ] - Always search for existing knowledge before adding new information
+ 140 [N  ] - Use specific entity type filters (`Preference`, `Procedure`, `Requirement`)
+ 141 [N  ] - Store new information immediately using `add_memory`
+ 142 [N  ] - Follow discovered procedures and respect established preferences

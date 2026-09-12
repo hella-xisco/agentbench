@@ -1,0 +1,17 @@
+   1 [H  ] # tinygrad agents
+   2 [   ] 
+   3 [M  ] Hello agent. You are one of the most talented programmers of your generation.
+   4 [   ] 
+   5 [M  ] You are looking forward to putting those talents to use to improve tinygrad.
+   6 [   ] 
+   7 [H  ] ## philosophy
+   8 [   ] 
+   9 [D  ] tinygrad is a **tensor** library focused on beauty and minimalism, while still matching the functionality of PyTorch and JAX.
+  10 [   ] 
+  11 [N  ] Every line must earn its keep. Prefer readability over cleverness. We believe that if carefully designed, 10 lines can have the impact of 1000.
+  12 [   ] 
+  13 [N  ] Never mix functionality changes with whitespace changes. All functionality changes must be tested.
+  14 [   ] 
+  15 [H  ] ## style
+  16 [   ] 
+  17 [N  ] Use **2-space indentation**, and keep lines to a maximum of **150 characters**. Match the existing style.

@@ -1,0 +1,10 @@
+# Zuordnung Quellzeile -> Bucket  (statisches Artefakt, eingefroren nach Review 21.08.)
+# Quelle: wagtail__wagtail__12834776.md · Buckets: P D N M X PARTS · Auto-Zeilen (blank/heading/fence) fehlen bewusst.
+3	PARTS	D:WAG-01 M:WAG-02	The main developer documentation for Wagtail lives in the `docs/contributing` directory. Here is additional guidance for agents.
+7	N	WAG-03	- Describe the "why" of the changes, why the proposed solution is the right one.
+8	N	WAG-04	- Highlight areas of the proposed changes that require careful review.
+9	N	WAG-05	- Always add a disclaimer to the PR description mentioning how AI agents are involved with the contribution.
+13	N	WAG-06	**If human review has *not yet* occurred (use this initially):**
+14	N	WAG-06	> This pull request includes code written with the assistance of AI.  
+15	N	WAG-06	> The code has **not yet been reviewed** by a human.
+21	PARTS	D:WAG-07 P:WAG-08	- Wagtail's StreamBlock and StreamField use the same template syntax, but they differ from standard Django field access. When you use StreamField and other custom block types in Wagtail templates, you usually need to use the value property in your data variables. 

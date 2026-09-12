@@ -1,0 +1,21 @@
+   1 [H  ] # AGENTS Instruction
+   2 [   ] 
+   3 [DM ] The main developer documentation for Wagtail lives in the `docs/contributing` directory. Here is additional guidance for agents.
+   4 [   ] 
+   5 [H  ] ## Pull request guidelines
+   6 [   ] 
+   7 [N  ] - Describe the "why" of the changes, why the proposed solution is the right one.
+   8 [N  ] - Highlight areas of the proposed changes that require careful review.
+   9 [N  ] - Always add a disclaimer to the PR description mentioning how AI agents are involved with the contribution.
+  10 [   ] 
+  11 [H  ] ### AI/Agent disclosure template (copy/paste & edit):
+  12 [   ] 
+  13 [N  ] **If human review has *not yet* occurred (use this initially):**
+  14 [N  ] > This pull request includes code written with the assistance of AI.  
+  15 [N  ] > The code has **not yet been reviewed** by a human.
+  16 [   ] 
+  17 [H  ] ## Wagtail-specific pitfalls for AI agents
+  18 [   ] 
+  19 [H  ] ### StreamField and StreamBlock template access
+  20 [   ] 
+  21 [DP ] - Wagtail's StreamBlock and StreamField use the same template syntax, but they differ from standard Django field access. When you use StreamField and other custom block types in Wagtail templates, you usually need to use the value property in your data variables. 

@@ -1,0 +1,71 @@
+   1 [M  ] Welcome to the OpenAI Agents SDK repository. This file contains the main points for new contributors.
+   2 [   ] 
+   3 [H  ] ## Repository overview
+   4 [   ] 
+   5 [D  ] - **Source code**: `src/agents/` contains the implementation.
+   6 [D  ] - **Tests**: `tests/` with a short guide in `tests/README.md`.
+   7 [D  ] - **Examples**: under `examples/`.
+   8 [D  ] - **Documentation**: markdown pages live in `docs/` with `mkdocs.yml` controlling the site.
+   9 [D  ] - **Utilities**: developer commands are defined in the `Makefile`.
+  10 [D  ] - **PR template**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md` describes the information every PR must include.
+  11 [   ] 
+  12 [H  ] ## Local workflow
+  13 [   ] 
+  14 [?? ] 1. Format, lint and type‑check your changes:
+  15 [   ] 
+  16 [~  ]    ```bash
+  17 [P  ]    make format
+  18 [P  ]    make lint
+  19 [P  ]    make mypy
+  20 [P  ]    ```
+  21 [   ] 
+  22 [P  ] 2. Run the tests:
+  23 [   ] 
+  24 [P  ]    ```bash
+  25 [P  ]    make tests
+  26 [P  ]    ```
+  27 [   ] 
+  28 [P  ]    To run a single test, use `uv run pytest -s -k <test_name>`.
+  29 [   ] 
+  30 [P  ] 3. Build the documentation (optional but recommended for docs changes):
+  31 [   ] 
+  32 [P  ]    ```bash
+  33 [P  ]    make build-docs
+  34 [P  ]    ```
+  35 [   ] 
+  36 [P  ]    Coverage can be generated with `make coverage`.
+  37 [   ] 
+  38 [P  ] All python commands should be run via `uv run python ...`
+  39 [   ] 
+  40 [H  ] ## Snapshot tests
+  41 [   ] 
+  42 [D  ] Some tests rely on inline snapshots. See `tests/README.md` for details on updating them:
+  43 [   ] 
+  44 [~  ] ```bash
+  45 [P  ] make snapshots-fix      # update existing snapshots
+  46 [P  ] make snapshots-create   # create new snapshots
+  47 [~  ] ```
+  48 [   ] 
+  49 [P  ] Run `make tests` again after updating snapshots to ensure they pass.
+  50 [   ] 
+  51 [H  ] ## Style notes
+  52 [   ] 
+  53 [N  ] - Write comments as full sentences and end them with a period.
+  54 [   ] 
+  55 [H  ] ## Pull request expectations
+  56 [   ] 
+  57 [N  ] PRs should use the template located at `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`. Provide a summary, test plan and issue number if applicable, then check that:
+  58 [   ] 
+  59 [?? ] - New tests are added when needed.
+  60 [?? ] - Documentation is updated.
+  61 [N  ] - `make lint` and `make format` have been run.
+  62 [N  ] - The full test suite passes.
+  63 [   ] 
+  64 [N  ] Commit messages should be concise and written in the imperative mood. Small, focused commits are preferred.
+  65 [   ] 
+  66 [H  ] ## What reviewers look for
+  67 [   ] 
+  68 [N  ] - Tests covering new behaviour.
+  69 [N  ] - Consistent style: code formatted with `uv run ruff format`, imports sorted, and type hints passing `uv run mypy .`.
+  70 [N  ] - Clear documentation for any public API changes.
+  71 [N  ] - Clean history and a helpful PR description.
