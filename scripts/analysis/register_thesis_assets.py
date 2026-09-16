@@ -74,7 +74,7 @@ def register(root: Path) -> dict:
                 inputs.extend(re.findall(r"(?m)^% Source: (.+)$", file.read_text()))
             for graphic in re.findall(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", block):
                 stem = root / "figures" / graphic
-                for suffix in (".svg", ".pdf", ".drawio"):
+                for suffix in (".svg", ".pdf", ".drawio", ".png"):
                     file = stem.with_suffix(suffix)
                     if file.exists():
                         files.append(file)

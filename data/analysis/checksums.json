@@ -6,7 +6,7 @@
   },
   "archive_sha256": "48ee45aadcfcd3bb3ce9a969544a9bf9d2be222a25ed4a93d20bef66fc8220a3",
   "asset_files": {
-    "data/analysis/thesis-assets.json": "9724a3d7a0bbe0f075ccc7175d40ae096b470903d0a672071f45cbf8c4221ece",
+    "data/analysis/thesis-assets.json": "1a495e9f8c552308d0e6130d789501ba1b51c82c4b6aac4749071bb2d2822d06",
     "data/analysis/thesis-assets/chapters/tables/tab-activation-v2.tex": "60185b03f187fe18ef17aae3457165aa0ec6196a0968b31283ac324c4d3b9e01",
     "data/analysis/thesis-assets/chapters/tables/tab-behaviour-v2.tex": "b801bd19e9b55fbb5f4640e796baca4ea1c55761a4e8d3b34714690747d762dc",
     "data/analysis/thesis-assets/chapters/tables/tab-context-categorization.tex": "6f401694f97409648f7e5f52248ede85c519d0d6186cd1246d1fbbd69774086d",
@@ -24,6 +24,7 @@
     "data/analysis/thesis-assets/chapters/tables/tab-pilot-design-v2.tex": "de874d0b552b5c40c03b12de6c8c7179413adf86e504f8b14042f6c52f2034e2",
     "data/analysis/thesis-assets/chapters/tables/tab-pilot-summary-v2.tex": "6b16a72ccf17fe5c2c166e75ffd2ea9b4c7e4d7a51863e9b1e37359cd086ba71",
     "data/analysis/thesis-assets/figures/agent-system.tex": "9b65fd69671350b64d146c2c69a055ac4a15905f861609d0890133c78112f837",
+    "data/analysis/thesis-assets/figures/ai-modified-label.png": "4cc19916cac9970e560b492744beacfbe636ff04e85fa83adf20b342763cecb0",
     "data/analysis/thesis-assets/figures/calibration-screens.drawio": "e830df95609161d3b877a647767b52ea0ffeb22cf31f30d33eaaa559acb62d55",
     "data/analysis/thesis-assets/figures/calibration-screens.pdf": "7c8a5729aca3510f5ee3483941144580e2d17b08d14e8d57d0a35a7eae15262b",
     "data/analysis/thesis-assets/figures/calibration-screens.svg": "a5edcac1997e69a3d878e460b39c662247d0c1199476fcf5eabf2477d7f5d68d",
@@ -4309,7 +4310,7 @@
   "source_files": {
     "scripts/analysis/README.md": "4a853f05987cde59f06cede54ff64628d455e73813f702fd90c79588bd3d0121",
     "scripts/analysis/pyproject.toml": "32c715046f80369afec2f3a77d1ce3c0c9617aa4a9d8f44c7c8d88d0b365a77d",
-    "scripts/analysis/register_thesis_assets.py": "b0ee8e76962848d06ec4a1b3b59374d4c623cb56ae4c8f8ddb8f564523ee7bbb",
+    "scripts/analysis/register_thesis_assets.py": "a65609f7a14c63d8c87369cffa88eaaba11b48b6f2f13fde7570ef654ec2bc70",
     "scripts/analysis/reproduce.py": "5f07a5774515849744326ff5144b8acc32de689413d78347b27a02217f71711c",
     "scripts/analysis/src/thesis_analysis/__init__.py": "b46b77e467de8c121fa0ceb2a535d5200654309b12ab1e263e6593b7c4176fe2",
     "scripts/analysis/src/thesis_analysis/behaviour.py": "9d8151a20dd67aec0f7008b6350d9d362f6b8f2327155518808ca0c066ff158d",
