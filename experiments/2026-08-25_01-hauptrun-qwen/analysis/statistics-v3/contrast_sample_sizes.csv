@@ -1,0 +1,8 @@
+contrast,family,cell_a,cell_b,planned_tasks,included_tasks,excluded_tasks,nonmeasurable_required_runs
+K1-K0,RQ1,K1,K0,71,68,3,3
+K2-K0,RQ1,K2,K0,71,69,2,2
+K1s-K1,RQ2,K1s,K1,71,69,2,2
+K2s-K2,RQ2,K2s,K2,71,68,3,4
+K0d-K0,RQ3,K0d,K0,71,69,2,2
+K1-K0d,RQ3,K1,K0d,71,68,3,3
+K2-K0d,RQ3,K2,K0d,71,69,2,2

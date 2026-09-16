@@ -1,0 +1,103 @@
+<mxfile host="65bd71144e">
+    <diagram name="calibration-screens" id="calibration-screens">
+        <mxGraphModel dx="1169" dy="831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="genSkipped" value="Generation phase — not run: no agent, no model, no cost. The screens enter at the patch interface below." style="rounded=1;arcSize=6;html=1;fillColor=#f0efec;strokeColor=#c3c2b7;strokeWidth=1.2;dashed=1;dashPattern=5 4;fontFamily=Helvetica;fontSize=12;fontColor=#898781;fontStyle=2;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="40" width="980" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="hostLeft" value="Orchestrator — host filesystem" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=#c3c2b7;strokeWidth=1;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontFamily=Helvetica;fontSize=12;fontColor=#898781;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="108" width="280" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="focusSub" value="Known patch replaces the agent patch" style="rounded=1;arcSize=10;html=1;fillColor=#ffffff;strokeColor=#2f5ba8;strokeWidth=3;verticalAlign=top;align=center;spacingTop=8;fontFamily=Helvetica;fontSize=13;fontStyle=1;fontColor=#2f5ba8;" parent="1" vertex="1">
+                    <mxGeometry x="96" y="146" width="250" height="246" as="geometry"/>
+                </mxCell>
+                <mxCell id="rowLabel1" value="Oracle screen" style="text;html=1;align=left;verticalAlign=bottom;fontStyle=1;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" vertex="1">
+                    <mxGeometry x="118" y="172" width="200" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="gold" value="Gold patch&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;the developer's merged fix, from the dataset row&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f7d15c;strokeColor=#b8912c;fontColor=#0b0b0b;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="118" y="192" width="204" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="rowLabel2" value="Base-fail screen" style="text;html=1;align=left;verticalAlign=bottom;fontStyle=1;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" vertex="1">
+                    <mxGeometry x="118" y="282" width="200" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="empty" value="Empty patch&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;no change to the base commit at all&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f7d15c;strokeColor=#b8912c;fontColor=#0b0b0b;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="118" y="302" width="204" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="evalContainer" value="Evaluate container — fresh checkout at base commit" style="rounded=1;arcSize=4;html=1;fillColor=#e6e5e1;strokeColor=#b0763f;strokeWidth=1.6;dashed=1;dashPattern=7 5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=6;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="108" width="430" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="apply1" value="Apply patch" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="408" y="192" width="92" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="gateB1" value="Gate B — repo tests&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;vs. the gold reference recorded at dataset build&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="524" y="192" width="140" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="gateA1" value="Gate A — instance tests&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;held out from the agent&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="688" y="192" width="116" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="apply2" value="Apply patch" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="408" y="302" width="92" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="gateB2" value="Gate B — repo tests&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;nothing to regress — passes trivially&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="524" y="302" width="140" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="gateA2" value="Gate A — instance tests&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;held out from the agent&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="688" y="302" width="116" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="annotSame" value="the identical evaluation phase of an agent run — only the patch differs" style="text;html=1;align=left;verticalAlign=middle;fontStyle=2;fontFamily=Helvetica;fontSize=12;fontColor=#2f5ba8;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="412" width="430" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="hostRight" value="Orchestrator — host filesystem" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=#c3c2b7;strokeWidth=1;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontFamily=Helvetica;fontSize=12;fontColor=#898781;" parent="1" vertex="1">
+                    <mxGeometry x="850" y="108" width="210" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="verdict1" value="Must pass both gates&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;otherwise the task cannot measure any agent — excluded&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontStyle=1;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="866" y="184" width="178" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="verdict2" value="Must fail Gate A&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;otherwise doing nothing already solves the task — excluded&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontStyle=1;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="866" y="294" width="178" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="pool" value="Calibrated task pool&lt;br&gt;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;only tasks that hold both anchors&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f7d15c;strokeColor=#b8912c;fontColor=#0b0b0b;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="866" y="452" width="178" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="gold" target="apply1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="apply1" target="gateB1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="gateB1" target="gateA1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="gateA1" target="verdict1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="empty" target="apply2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="apply2" target="gateB2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="gateB2" target="gateA2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="gateA2" target="verdict2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" value="keep" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=1;entryY=0.5;verticalAlign=middle;align=left;spacingLeft=6;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" source="verdict1" target="pool" edge="1">
+                    <mxGeometry x="0.35" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1052" y="223"/>
+                            <mxPoint x="1052" y="480"/>
+                        </Array>
+                        <mxPoint x="-30" y="0" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e10" value="keep" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;verticalAlign=middle;align=left;spacingLeft=8;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" source="verdict2" target="pool" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

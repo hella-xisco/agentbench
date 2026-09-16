@@ -1,0 +1,9 @@
+category,origin,measurement_status,outcome,definition
+solved,agent,measurable,1,Evaluation completed and resolved=true.
+failed_patch,agent,measurable,0,A non-empty patch was submitted but did not solve the task.
+empty_patch,agent,measurable,0,The agent used tools but submitted no patch.
+no_action,agent,measurable,0,The run completed without an agent tool call.
+timeout,agent,measurable,0,ExecutionFailed after at least one model response; a time-budget failure.
+evaluation_error,measurement_pipeline,not_measurable,,The evaluation pipeline reported an evaluation error.
+serving_error,measurement_pipeline,not_measurable,,The model-serving/API layer failed before a measurable agent run.
+missing_artifact,measurement_pipeline,not_measurable,,A planned trajectory or required evaluation artefact is missing.

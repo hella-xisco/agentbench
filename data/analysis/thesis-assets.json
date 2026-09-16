@@ -1,0 +1,720 @@
+{
+  "pdf_sha256": "99ea6e2de3e4a3203a271ee2f4c169d4dfcfaf57f14ede92cee80b44d6a6acda",
+  "numbering": "separate chapterwise figure and table counters in appearance order",
+  "assets": [
+    {
+      "kind": "figure",
+      "number": "2.1",
+      "label": "fig:agent-system",
+      "printed_page": "7",
+      "pdf_page": 16,
+      "caption_position": 487,
+      "short_caption_tex": "Model, harness and environment",
+      "caption_tex": "The agent consists of model and harness. The harness mediates actions on the environment and returns observations as part of the model's context. Own illustration.",
+      "source_tex": "chapters/02_foundations.tex",
+      "source_excerpt_tex": "\\begin{figure}[htbp]\n  \\centering\n  \\input{figures/agent-system.tex}\n  \\caption[Model, harness and environment]{The agent consists of model and harness. The harness mediates actions on the environment and returns observations as part of the model's context. Own illustration.}\n  \\label{fig:agent-system}\n\\end{figure}",
+      "files": {
+        "figures/agent-system.tex": "9b65fd69671350b64d146c2c69a055ac4a15905f861609d0890133c78112f837"
+      },
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "2.1",
+      "label": "tab:context-operations",
+      "printed_page": "11",
+      "pdf_page": 20,
+      "caption_position": 639,
+      "short_caption_tex": "Harness operations on context",
+      "caption_tex": "The four harness operations on the context window, and the components they map to.",
+      "source_tex": "chapters/02_foundations.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\begin{tabular}{@{}llp{7.2cm}@{}}\n    \\toprule\n    Operation & Component & What it does \\\\\n    \\midrule\n    Ingestion  & C & Loads context files into the window at run start (e.g.\\ \\agentsfile{}). \\\\\n    \\rowcolor{black!6} Selection  & C & Pulls content on demand (Read calls, \\skillfile{} activation). \\\\\n    Compression & C & Distils the conversation history into a summary that replaces it (compaction). \\\\\n    \\rowcolor{black!6} Persistence & S & Stores state outside the window for later reload (memory). \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Harness operations on context]{The four harness operations on the context window, and the components they map to.}\n  \\label{tab:context-operations}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "2.2",
+      "label": "tab:delivery-format",
+      "printed_page": "12",
+      "pdf_page": 21,
+      "caption_position": 1621,
+      "short_caption_tex": "\\agentsfile{} and \\skillfile{}",
+      "caption_tex": "Conceptual differences between \\agentsfile{} and \\skillfile{}. Loading details depend on the harness.",
+      "source_tex": "chapters/02_foundations.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\begin{tabular}{@{}p{2.5cm}p{5cm}p{5cm}@{}}\n    \\toprule\n    Dimension & \\agentsfile{} & \\skillfile{} \\\\\n    \\midrule\n    Initial context & Full file content & \\skillfile{} metadata \\\\\n    \\rowcolor{black!6} Full content & Loaded at start & Read on demand \\\\\n    Context cost & Body included when loaded & Metadata upfront; body upon activation \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[\\agentsfile{} and \\skillfile{}]{Conceptual differences between \\agentsfile{} and \\skillfile{}. Loading details depend on the harness.}\n  \\label{tab:delivery-format}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "2.3",
+      "label": "tab:notation",
+      "printed_page": "15",
+      "pdf_page": 24,
+      "caption_position": 1278,
+      "short_caption_tex": "Notation for repeated runs",
+      "caption_tex": "Symbols for the unit of observation used throughout the thesis.",
+      "source_tex": "chapters/02_foundations.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\begin{tabular}{@{}p{2.6cm}p{9.9cm}@{}}\n    \\toprule\n    Symbol & Meaning \\\\\n    \\midrule\n    $g$ & Complete coding-agent configuration: a model--harness pair together with the serving, decoding and runtime settings required to reproduce its observed behaviour. \\\\\n    \\rowcolor{black!6} $c$ & Ablation cell, that is, one repository-context condition within configuration $g$. \\\\\n    $t$, $T$, $|T|$ & Task, task set and number of tasks in the set. \\\\\n    \\rowcolor{black!6} $j$, $n$ & Repetition index and number of repetitions of a task in a cell. \\\\\n    $k$ & Number of attempts admitted by the pass@$k$ evaluation target. \\\\\n    \\rowcolor{black!6} $X_{g,c,t,j}$ & Outcome of one measurable run, $1$ if solved and $0$ otherwise. \\\\\n    $p_{g,c,t}$, $\\hat p_{g,c,t}$ & Solve probability of a task in a cell and its estimate from $n$ repetitions. \\\\\n    \\rowcolor{black!6} $u$ & Effort unit: tokens ($\\mathrm{tok}$), model API calls ($\\mathrm{api}$) or run-time ($\\mathrm{time}$). \\\\\n    $a^{(u)}_{g,c,t,j}$ & Effort of one run in effort unit $u$. \\\\\n    \\rowcolor{black!6} $M_{g,c}$, $S_{g,c}$ & Number of measurable and solved runs in cell $c$ under configuration $g$. \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Notation for repeated runs]{Symbols for the unit of observation used throughout the thesis.}\n  \\label{tab:notation}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "2.4",
+      "label": "tab:pass-aggregates",
+      "printed_page": "16",
+      "pdf_page": 25,
+      "caption_position": 1918,
+      "short_caption_tex": "Aggregates over repeated runs",
+      "caption_tex": "Four quantities used to describe success over repeated attempts.",
+      "source_tex": "chapters/02_foundations.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\begin{tabular}{@{}p{2.3cm}p{10.2cm}@{}}\n    \\toprule\n    Quantity & Interpretation \\\\\n    \\midrule\n    pass@1 & Probability that one attempt solves the task. \\\\\n    \\rowcolor{black!6} pass@k & Probability that at least one of $k$ attempts solves the task. \\\\\n    pass\\textsuperscript{k} & Probability that all $k$ attempts solve the task. \\\\\n    \\rowcolor{black!6} $\\hat p_{c,t}$ & Per-task estimate of the single-attempt solve probability from $n$ repetitions. \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Aggregates over repeated runs]{Four quantities used to describe success over repeated attempts.}\n  \\label{tab:pass-aggregates}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "figure",
+      "number": "3.1",
+      "label": "fig:run-pipeline",
+      "printed_page": "26",
+      "pdf_page": 35,
+      "caption_position": 1913,
+      "short_caption_tex": "Measurement pipeline",
+      "caption_tex": "One run of the measurement pipeline. The orchestrator generates a patch inside a per-task container and evaluates it against two test gates; across ablation cells only the context file in the repository differs. Own illustration.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{figure}[htbp]\n  \\centering\n  \\includegraphics[width=\\textwidth]{run-pipeline}\n  \\caption[Measurement pipeline]{One run of the measurement pipeline. The orchestrator generates a patch inside a per-task container and evaluates it against two test gates; across ablation cells only the context file in the repository differs. Own illustration.}\n  \\label{fig:run-pipeline}\n\\end{figure}",
+      "files": {
+        "figures/run-pipeline.svg": "f15df3bbddac5496ba58803cc9ef9ae3750268e6ec08193fb2fe3ff426abcc64",
+        "figures/run-pipeline.pdf": "4f3db4f33b32155b71304ed7f03a7c57f191e2c9367a8ba929cb5eb47a2f5a6e",
+        "figures/run-pipeline.drawio": "da4c7e66cd57916f482d2baf0de3b4f91ba8fa9ba6ad86ddbd9ba268f892f2c5"
+      },
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "3.1",
+      "label": "tab:cells",
+      "printed_page": "27",
+      "pdf_page": 36,
+      "caption_position": 1907,
+      "short_caption_tex": "Ablation cells",
+      "caption_tex": "The six ablation cells. Every cell builds on the stripped baseline state; the two \\skillfile{} cells have identical content to their markdown-file counterparts.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\begin{tabular}{@{}llll@{}}\n    \\toprule\n    Cell & Condition & Content & Delivery format \\\\\n    \\midrule\n    K0  & baseline, no context file         & ---                  & --- \\\\\n    \\rowcolor{black!6} K0d & original developer file, unsorted & mix       & \\agentsfile{} \\\\\n    K1  & procedural extract      & procedural           & \\agentsfile{} \\\\\n    \\rowcolor{black!6} K1s & byte-identical K1 content         & procedural           & \\skillfile{} \\\\\n    K2  & descriptive extract     & descriptive          & \\agentsfile{} \\\\\n    \\rowcolor{black!6} K2s & byte-identical K2 content         & descriptive          & \\skillfile{} \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Ablation cells]{The six ablation cells. Every cell builds on the stripped baseline state; the two \\skillfile{} cells have identical content to their markdown-file counterparts.}\n  \\label{tab:cells}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "3.2",
+      "label": "tab:contrast-map",
+      "printed_page": "28",
+      "pdf_page": 37,
+      "caption_position": 2705,
+      "short_caption_tex": "Planned contrasts",
+      "caption_tex": "The seven planned contrasts and\n    the research question each identifies. All contrasts are paired per task;\n    every other comparison computable from the grid is labelled exploratory.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\small\n  \\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{0.8cm}>{\\raggedright\\arraybackslash}p{2.6cm}>{\\raggedright\\arraybackslash}p{4.4cm}>{\\raggedright\\arraybackslash}p{5.6cm}@{}}\n    \\toprule\n    RQ & Comparison & Contrasts & Mandatory side quantities \\\\\n    \\midrule\n    RQ1 & extracts vs. no file   & K1$-$K0, K2$-$K0   & no-action share \\\\\n    \\rowcolor{black!6} RQ2 & delivery format & K1s$-$K1, K2s$-$K2 & activation rate (never omitted) \\\\\n    RQ3 & extracts vs. original  & K0d$-$K0; K1$-$K0d, K2$-$K0d & solve rate \\emph{and} cost \\\\\n    \\rowcolor{black!6} RQ4 & model configurations   & the seven contrasts, computed per model, compared across models  \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Planned contrasts]{The seven planned contrasts and\n    the research question each identifies. All contrasts are paired per task;\n    every other comparison computable from the grid is labelled exploratory.}\n  \\label{tab:contrast-map}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "3.3",
+      "label": "tab:model-harness-config",
+      "printed_page": "29",
+      "pdf_page": 38,
+      "caption_position": 3191,
+      "short_caption_tex": "Complete coding-agent configurations",
+      "caption_tex": "The model, harness, serving and runtime parameters of the two complete coding-agent configurations, held fixed across cells within each main run.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\footnotesize\n  \\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{3.2cm}>{\\raggedright\\arraybackslash}p{5.3cm}>{\\raggedright\\arraybackslash}p{5.3cm}@{}}\n    \\toprule\n    Parameter & Main run 1 & Main run 2 \\\\\n    \\midrule\n    Harness + version  & Pi 0.84.2, configured & Pi 0.84.2, configured \\\\\n    \\rowcolor{black!6} CLI mode           & print, trust project files & print, trust project files \\\\\n    Model + quantisation & GLM-4.5-Air, vendor FP8 \\cite{zai2025glm45air} & Qwen3.6-27B, vendor FP8 \\cite{qwen2026qwen36} \\\\\n    \\rowcolor{black!6} Serving            & vLLM 0.27.1 behind LiteLLM; 1 engine $\\times$ 4 workers & vLLM 0.27.1 behind LiteLLM; 2 engines $\\times$ 4 workers \\\\\n    Hardware           & 2$\\times$H100 & 2$\\times$H100 \\\\\n    \\rowcolor{black!6} System prompt      & minimal agent prompt, replaces Pi default & minimal agent prompt \\\\\n    Context files at start & K0 stripping; cell artefact & K0 stripping; cell artefact \\\\\n    \\rowcolor{black!6} \\skillfile{} discovery paths & \\texttt{.claude/skills}, \\texttt{.agents/skills}, \\texttt{.pi/skills} & same \\\\\n    Context window + output cap [tokens] & 8\\,192 / 8\\,192 & 8\\,192 / 32\\,768 \\\\\n    \\rowcolor{black!6} Compaction         & Pi default & Pi default \\\\\n    Sampling           & temp 0, top-p 0.95, top-k 20 & temp 0.6, top-p 0.95, top-k 20 \\\\\n    \\rowcolor{black!6} Reasoning          & thinking on, serving default & thinking on, serving default \\\\\n    Container limits   & 8 CPU / 16\\,GB & 8 CPU / 16\\,GB \\\\\n    \\rowcolor{black!6} Generate workers   & 4 (held constant) & 4 (held constant) \\\\\n    Eval workers       & 8 & 8 \\\\\n    \\rowcolor{black!6} Per-run timeout [s] & 660 & 1\\,320 \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Complete coding-agent configurations]{The model, harness, serving and runtime parameters of the two complete coding-agent configurations, held fixed across cells within each main run.}\n  \\label{tab:model-harness-config}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "figure",
+      "number": "3.2",
+      "label": "fig:calibration-screens",
+      "printed_page": "32",
+      "pdf_page": 41,
+      "caption_position": 4004,
+      "short_caption_tex": "Calibration screens",
+      "caption_tex": "The two calibration screens reuse the evaluation\n    phase of Figure~\\ref{fig:run-pipeline} with a known patch instead of\n    the agent patch. The positive anchor requires the gold patch to pass both gates;\n    the negative anchor requires the empty patch to fail Gate~A. Only calibrated\n    tasks enter the pool. Own illustration.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{figure}[htbp]\n  \\centering\n  \\includegraphics[width=\\textwidth]{calibration-screens}\n  \\caption[Calibration screens]{The two calibration screens reuse the evaluation\n    phase of Figure~\\ref{fig:run-pipeline} with a known patch instead of\n    the agent patch. The positive anchor requires the gold patch to pass both gates;\n    the negative anchor requires the empty patch to fail Gate~A. Only calibrated\n    tasks enter the pool. Own illustration.}\n  \\label{fig:calibration-screens}\n\\end{figure}",
+      "files": {
+        "figures/calibration-screens.svg": "a5edcac1997e69a3d878e460b39c662247d0c1199476fcf5eabf2477d7f5d68d",
+        "figures/calibration-screens.pdf": "7c8a5729aca3510f5ee3483941144580e2d17b08d14e8d57d0a35a7eae15262b",
+        "figures/calibration-screens.drawio": "e830df95609161d3b877a647767b52ea0ffeb22cf31f30d33eaaa559acb62d55"
+      },
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "3.4",
+      "label": "tab:buckets",
+      "printed_page": "36",
+      "pdf_page": 45,
+      "caption_position": 3231,
+      "short_caption_tex": "Knowledge categories",
+      "caption_tex": "The three knowledge types and residual meta category used to construct the treatment cells.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\begin{tabular}{@{}llp{7.0cm}@{}}\n    \\toprule\n    Category & Cells & Content \\\\\n    \\midrule\n    P procedural      & K1, K1s & commands, workflows, tool choices --- how work is done here. \\\\\n    \\rowcolor{black!6} D descriptive    & K2, K2s & architecture, structure, domain facts --- what the repository is. \\\\\n    N normative      & excluded & style rules, prohibitions, ``should'' statements. \\\\\n    \\rowcolor{black!6} M meta           & excluded & process and admin boilerplate, PR etiquette, provenance notes. \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Knowledge categories]{The three knowledge types and residual meta category used to construct the treatment cells.}\n  \\label{tab:buckets}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "3.5",
+      "label": "tab:skill-headers",
+      "printed_page": "38",
+      "pdf_page": 47,
+      "caption_position": 596,
+      "short_caption_tex": "\\skillfile{} metadata header templates",
+      "caption_tex": "YAML header templates for the procedural and descriptive \\skillfile{} files, reproduced from \\texttt{build\\_k\\_material.py}. Braced placeholders are replaced by repository identifiers before delivery; line wrapping is for display only.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\small\n  \\begin{tabular}{@{}p{1.7cm}p{11.3cm}@{}}\n    \\toprule\n    \\skillfile{} cell & YAML header template \\\\\n    \\midrule\n    K1s\\newline procedural & {\\raggedright\\ttfamily -{}-{}-\\newline\n      name: \\{slug\\}-procedural\\newline\n      description: \"Maintainer-documented procedural knowledge for the \\{owner\\} repository: commands, workflows, and tool choices.\"\\newline\n      -{}-{}-\\par} \\\\\n    \\rowcolor{black!6} K2s\\newline descriptive & {\\raggedright\\ttfamily -{}-{}-\\newline\n      name: \\{slug\\}-descriptive\\newline\n      description: \"Maintainer-documented descriptive knowledge for the \\{owner\\} repository: project structure, architecture, and facts.\"\\newline\n      -{}-{}-\\par} \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[\\skillfile{} metadata header templates]{YAML header templates for the procedural and descriptive \\skillfile{} files, reproduced from \\texttt{build\\_k\\_material.py}. Braced placeholders are replaced by repository identifiers before delivery; line wrapping is for display only.}\n  \\label{tab:skill-headers}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "3.6",
+      "label": "tab:outcome-taxonomy-method",
+      "printed_page": "39",
+      "pdf_page": 48,
+      "caption_position": 3158,
+      "short_caption_tex": "Outcome taxonomy and measurement status",
+      "caption_tex": "Operational mapping used before cell-level or contrast statistics are calculated.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\small\n  \\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{2.7cm}>{\\raggedright\\arraybackslash}p{2.5cm}>{\\raggedright\\arraybackslash}p{2.4cm}>{\\raggedright\\arraybackslash}p{5.2cm}@{}}\n    \\toprule\n    Category & Origin & Status & Operational meaning \\\\\n    \\midrule\n    solved & agent & measurable & $X=1$; submitted patch passes both gates \\\\\n    \\rowcolor{black!6} failed patch & agent & measurable & $X=0$; non-empty patch fails at least one gate \\\\\n    empty patch & agent & measurable & $X=0$; tool use occurred, but submission is empty \\\\\n    \\rowcolor{black!6} no-action & agent & measurable & $X=0$; no tool call and no patch \\\\\n    timeout & agent & measurable & $X=0$; process limit reached after at least one model response \\\\\n    \\rowcolor{black!6} evaluation error & measurement pipeline & not measurable & evaluation cannot grade the patch \\\\\n    serving error & model serving & not measurable & no valid model execution outcome \\\\\n    \\rowcolor{black!6} missing artefact & artefact pipeline & not measurable & planned result evidence is absent \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Outcome taxonomy and measurement status]{Operational mapping used before cell-level or contrast statistics are calculated.}\n  \\label{tab:outcome-taxonomy-method}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "3.7",
+      "label": "tab:hypothesis-families",
+      "printed_page": "42",
+      "pdf_page": 51,
+      "caption_position": 1416,
+      "short_caption_tex": "Planned solve-rate hypotheses and Holm families",
+      "caption_tex": "The seven planned pass@1 contrasts arranged into the six Holm families. Every row applies the two-sided hypotheses in Equation~\\ref{eq:contrast-hypotheses}. RQ4 adds no eighth test; it evaluates recurrence of these results across configurations.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\small\n  \\begin{tabular}{@{}lllp{5.4cm}@{}}\n    \\toprule\n    Family & Configuration $g$ & Planned contrasts $a-b$ & Tested mean differences \\\\\n    \\midrule\n    RQ1--GLM & $g_{\\mathrm{GLM}}$ & K1$-$K0; K2$-$K0 & procedural and descriptive file extracts versus no context \\\\\n    \\rowcolor{black!6} RQ1--Qwen & $g_{\\mathrm{Qwen}}$ & K1$-$K0; K2$-$K0 & same contrasts under the second configuration \\\\\n    RQ2--GLM & $g_{\\mathrm{GLM}}$ & K1s$-$K1; K2s$-$K2 & \\skillfile{} versus upfront-file delivery for matched content \\\\\n    \\rowcolor{black!6} RQ2--Qwen & $g_{\\mathrm{Qwen}}$ & K1s$-$K1; K2s$-$K2 & same contrasts under the second configuration \\\\\n    RQ3--GLM & $g_{\\mathrm{GLM}}$ & K0d$-$K0; K1$-$K0d; K2$-$K0d & original file versus no context and extracts versus original \\\\\n    \\rowcolor{black!6} RQ3--Qwen & $g_{\\mathrm{Qwen}}$ & K0d$-$K0; K1$-$K0d; K2$-$K0d & same contrasts under the second configuration \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Planned solve-rate hypotheses and Holm families]{The seven planned pass@1 contrasts arranged into the six Holm families. Every row applies the two-sided hypotheses in Equation~\\ref{eq:contrast-hypotheses}. RQ4 adds no eighth test; it evaluates recurrence of these results across configurations.}\n  \\label{tab:hypothesis-families}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "3.8",
+      "label": "tab:phase-rule",
+      "printed_page": "43",
+      "pdf_page": 52,
+      "caption_position": 3015,
+      "short_caption_tex": "Tool-call classification into phases",
+      "caption_tex": "Fixed assignment of tool calls to trajectory phases.",
+      "source_tex": "chapters/03_methodology.tex",
+      "source_excerpt_tex": "\\begin{table}[!htb]\n  \\centering\n  \\small\n  \\begin{tabular}{@{}llp{8.6cm}@{}}\n    \\toprule\n    Phase & Tool & Rule \\\\\n    \\midrule\n    explore & read, bash & file reads; shell commands that begin with a listing or search command (\\texttt{ls}, \\texttt{cat}, \\texttt{grep}, \\texttt{rg}, \\texttt{find}, \\texttt{head}, \\texttt{tail}, \\texttt{git log}, \\texttt{git diff}, \\texttt{git status}) \\\\\n    \\rowcolor{black!6} edit & edit, write & targeted edits and whole-file writes \\\\\n    validate & bash & test runners and linters (\\texttt{pytest}, \\texttt{unittest}, \\texttt{tox}, \\texttt{make test}, \\texttt{mypy}, \\texttt{ruff}, repository runners) and any execution of Python code, including reproduction scripts \\\\\n    \\rowcolor{black!6} other & bash & package installation and every remaining command, for example \\texttt{sed}, \\texttt{rm}, \\texttt{mkdir} \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Tool-call classification into phases]{Fixed assignment of tool calls to trajectory phases.}\n  \\label{tab:phase-rule}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "4.1",
+      "label": "tab:testset-funnel",
+      "printed_page": "48",
+      "pdf_page": 57,
+      "caption_position": 1641,
+      "short_caption_tex": "Test-set construction",
+      "caption_tex": "Construction of the final task set. A calibrated task satisfies both benchmark anchors; the final step applies the pilot-informed floor/ceiling rule.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\begin{tabular}{@{}p{3.0cm}rrp{7.0cm}@{}}\n    \\toprule\n    Stage & In & Out & Exclusion rule \\\\\n    \\midrule\n    Positive anchor & 138 & 89 & Gold patch must pass both gates: 18 errors, 22 Gate~B failures, 9 Gate~A failures. \\\\\n    \\rowcolor{black!6} Negative anchor & 89 & 74 & Empty patch must fail Gate~A: 11 passes and 4 errors removed. \\\\\n    Floor/ceiling & 74 & 71 & Baseline $\\hat p_{\\mathrm{K0},t}$ over 20 repetitions must lie strictly between 0 and 1: 2 floor and 1 ceiling task removed. \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Test-set construction]{Construction of the final task set. A calibrated task satisfies both benchmark anchors; the final step applies the pilot-informed floor/ceiling rule.}\n  \\label{tab:testset-funnel}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "4.2",
+      "label": "tab:pilot-inputs",
+      "printed_page": "49",
+      "pdf_page": 58,
+      "caption_position": 1340,
+      "short_caption_tex": "Variance-pilot measurements",
+      "caption_tex": "Measurements from the two complete $10\\times20$ pilot matrices. Both $s_Y$ and $\\bar v_{\\mathrm{within}}$ use all $n=20$ repetitions. Only the GLM value $\\bar v_{\\mathrm{within}}=0.1187$ enters the prospective dimensioning calculation; the later Qwen pilot is a transfer and runtime check. Generated from the versioned pilot summaries by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[!htb]\n  \\centering\n  \\footnotesize\n  \\resizebox{\\textwidth}{!}{\\input{chapters/tables/tab-pilot-summary-v2}}\n  \\caption[Variance-pilot measurements]{Measurements from the two complete $10\\times20$ pilot matrices. Both $s_Y$ and $\\bar v_{\\mathrm{within}}$ use all $n=20$ repetitions. Only the GLM value $\\bar v_{\\mathrm{within}}=0.1187$ enters the prospective dimensioning calculation; the later Qwen pilot is a transfer and runtime check. Generated from the versioned pilot summaries by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.}\n  \\label{tab:pilot-inputs}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-pilot-summary-v2.tex": "6b16a72ccf17fe5c2c166e75ffd2ea9b4c7e4d7a51863e9b1e37359cd086ba71"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-20_01-vp-stufe1/analysis/variance-pilot-v2/summary.json",
+        "experiments/2026-08-22_02-vplight-qwen/analysis/variance-pilot-v2/summary.json"
+      ]
+    },
+    {
+      "kind": "figure",
+      "number": "4.1",
+      "label": "fig:vp-outcomes-glm",
+      "printed_page": "50",
+      "pdf_page": 59,
+      "caption_position": 1373,
+      "short_caption_tex": "GLM variance pilot: outcome of every run",
+      "caption_tex": "Outcome of every run in the GLM variance pilot: task-set size $|T_P|=10$ by repetition count $n=20$. Each tile is one measurable run; the final column gives the solved-run count per task. Generated from \\texttt{raw\\_status\\_mapping.csv} by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{figure}[!htb]\n  \\centering\n  \\includegraphics[width=\\textwidth]{vp-outcomes-glm}\n  \\caption[GLM variance pilot: outcome of every run]{Outcome of every run in the GLM variance pilot: task-set size $|T_P|=10$ by repetition count $n=20$. Each tile is one measurable run; the final column gives the solved-run count per task. Generated from \\texttt{raw\\_status\\_mapping.csv} by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.}\n  \\label{fig:vp-outcomes-glm}\n\\end{figure}",
+      "files": {
+        "figures/vp-outcomes-glm.svg": "2906edfd7a643e8c72b717e6aa38964eb294afd433f45e3f02de852ca7fdc3b0",
+        "figures/vp-outcomes-glm.pdf": "9baa53ed5251c5b261a5df7ef2177e4ea54791a7a0f74533090dfcf86a572181"
+      },
+      "analysis_sources": [
+        "Generated by thesis-results-assets from experiments/2026-08-20_01-vp-stufe1/analysis/variance-pilot-v2/raw_status_mapping.csv"
+      ]
+    },
+    {
+      "kind": "figure",
+      "number": "4.2",
+      "label": "fig:vp-outcomes-qwen",
+      "printed_page": "50",
+      "pdf_page": 59,
+      "caption_position": 3379,
+      "short_caption_tex": "Qwen variance pilot: outcome of every run",
+      "caption_tex": "Outcome of every run in the Qwen transfer and runtime pilot: task-set size $|T_P|=10$ by repetition count $n=20$. The timeout markings show where the configured agent ran but did not submit a solution before the process limit. Generated from \\texttt{raw\\_status\\_mapping.csv} by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{figure}[!htb]\n  \\centering\n  \\includegraphics[width=\\textwidth]{vp-outcomes-qwen}\n  \\caption[Qwen variance pilot: outcome of every run]{Outcome of every run in the Qwen transfer and runtime pilot: task-set size $|T_P|=10$ by repetition count $n=20$. The timeout markings show where the configured agent ran but did not submit a solution before the process limit. Generated from \\texttt{raw\\_status\\_mapping.csv} by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.}\n  \\label{fig:vp-outcomes-qwen}\n\\end{figure}",
+      "files": {
+        "figures/vp-outcomes-qwen.svg": "0775d496736027b1f49c7d6dfec5cbeb2730b58b3062259f31337b6ed663262d",
+        "figures/vp-outcomes-qwen.pdf": "ce233a12f567a43529332e1b5e30fcfab3ceead8ca701adb0ddce0022c69fb61"
+      },
+      "analysis_sources": [
+        "Generated by thesis-results-assets from experiments/2026-08-22_02-vplight-qwen/analysis/variance-pilot-v2/raw_status_mapping.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.3",
+      "label": "tab:dimensioning",
+      "printed_page": "51",
+      "pdf_page": 60,
+      "caption_position": 1123,
+      "short_caption_tex": "Prospective main-run dimensioning",
+      "caption_tex": "Prospective precision and compute requirements based on the GLM planning proxy $\\bar v_{\\mathrm{within}}=0.1187$. The bold row is the selected design per coding-agent configuration. The half-width is nominal and belongs to the planning approximation; it is not a confidence interval subsequently assigned to the main-run contrasts. Generated from \\texttt{design\\_precision.csv} by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[!htb]\n  \\centering\n  \\small\n  \\input{chapters/tables/tab-pilot-design-v2}\n  \\caption[Prospective main-run dimensioning]{Prospective precision and compute requirements based on the GLM planning proxy $\\bar v_{\\mathrm{within}}=0.1187$. The bold row is the selected design per coding-agent configuration. The half-width is nominal and belongs to the planning approximation; it is not a confidence interval subsequently assigned to the main-run contrasts. Generated from \\texttt{design\\_precision.csv} by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.}\n  \\label{tab:dimensioning}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-pilot-design-v2.tex": "de874d0b552b5c40c03b12de6c8c7179413adf86e504f8b14042f6c52f2034e2"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-20_01-vp-stufe1/analysis/variance-pilot-v2/design_precision.csv",
+        "scripts/analysis/configs/vp_glm.json"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.4",
+      "label": "tab:material",
+      "printed_page": "52",
+      "pdf_page": 61,
+      "caption_position": 1047,
+      "short_caption_tex": "Categorization of context statements by repository",
+      "caption_tex": "Categorization of context statements by repository. Counts refer to the 352 statements across the twelve context-file versions used to construct the treatment material; shared context files are not multiplied by task count. Procedural, descriptive and normative are the three knowledge types, whereas meta is a residual category. A bold zero marks the absence of material for a procedural or descriptive treatment. Alternating grey and white rows support comparison across repositories. Generated from the reviewed \\texttt{statements.csv} by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\small\n  \\input{chapters/tables/tab-context-categorization}\n  \\caption[Categorization of context statements by repository]{Categorization of context statements by repository. Counts refer to the 352 statements across the twelve context-file versions used to construct the treatment material; shared context files are not multiplied by task count. Procedural, descriptive and normative are the three knowledge types, whereas meta is a residual category. A bold zero marks the absence of material for a procedural or descriptive treatment. Alternating grey and white rows support comparison across repositories. Generated from the reviewed \\texttt{statements.csv} by \\texttt{thesis-results-assets}; reproduction details are given in Appendix~\\ref{app:scripts}.}\n  \\label{tab:material}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-context-categorization.tex": "6f401694f97409648f7e5f52248ede85c519d0d6186cd1246d1fbbd69774086d"
+      },
+      "analysis_sources": [
+        "benchmark/categorized-data-set/coding/statements.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.5",
+      "label": "tab:main-outcome-counts",
+      "printed_page": "53",
+      "pdf_page": 62,
+      "caption_position": 3223,
+      "short_caption_tex": "Main-run outcome counts by cell",
+      "caption_tex": "Absolute run outcomes by cell, with 142 planned runs per row. Column groups distinguish measurable outcomes ($X$ defined) from pipeline errors ($X$ undefined); $M_{g,c}$ counts measurable runs. ``Other error'' comprises serving errors and missing required artefacts. Generated from the audited run records; reproduction details are provided in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\scriptsize\n  \\resizebox{\\textwidth}{!}{\\input{chapters/tables/tab-main-overview-v2}}\n  \\caption[Main-run outcome counts by cell]{Absolute run outcomes by cell, with 142 planned runs per row. Column groups distinguish measurable outcomes ($X$ defined) from pipeline errors ($X$ undefined); $M_{g,c}$ counts measurable runs. ``Other error'' comprises serving errors and missing required artefacts. Generated from the audited run records; reproduction details are provided in Appendix~\\ref{app:scripts}.}\n  \\label{tab:main-outcome-counts}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-main-overview-v2.tex": "9ff84bdad4142716558208fc6d4c71166c47d0c630cca07f912c5a4d884ed761"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/raw_status_mapping.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/raw_status_mapping.csv",
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/cell_summaries.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/cell_summaries.csv"
+      ]
+    },
+    {
+      "kind": "figure",
+      "number": "4.3",
+      "label": "fig:main-outcome-composition",
+      "printed_page": "54",
+      "pdf_page": 63,
+      "caption_position": 658,
+      "short_caption_tex": "Composition of main-run outcomes",
+      "caption_tex": "Absolute run outcomes aggregated across the six cells, with 852 planned runs per coding-agent configuration. Colours distinguish outcome categories; evaluation errors are not measurable. Generated from the audited run records by \\texttt{thesis-results-assets}; reproduction details are provided in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{figure}[H]\n  \\centering\n  \\includegraphics[width=\\textwidth]{main-outcome-composition}\n  \\caption[Composition of main-run outcomes]{Absolute run outcomes aggregated across the six cells, with 852 planned runs per coding-agent configuration. Colours distinguish outcome categories; evaluation errors are not measurable. Generated from the audited run records by \\texttt{thesis-results-assets}; reproduction details are provided in Appendix~\\ref{app:scripts}.}\n  \\label{fig:main-outcome-composition}\n\\end{figure}",
+      "files": {
+        "figures/main-outcome-composition.svg": "f86ef6cf084783cd6718850afc96963c67a24cd2e5d21c6c4a132d58cda00e68",
+        "figures/main-outcome-composition.pdf": "32f43a44b1146b1c2376ea41edf2564f494487eca9665635a6f66af1a1c91d95"
+      },
+      "analysis_sources": [
+        "Generated by thesis-results-assets from experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/raw_status_mapping.csv and experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/raw_status_mapping.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.6",
+      "label": "tab:main-contrast-sets",
+      "printed_page": "54",
+      "pdf_page": 63,
+      "caption_position": 4587,
+      "short_caption_tex": "Complete task sets for the planned contrasts",
+      "caption_tex": "Planned and complete task-set sizes generated from the two versioned \\texttt{contrast\\_sample\\_sizes.csv} files. Data rows alternate grey and white; shading does not encode the model. ``Non-meas. runs'' counts non-measurable runs among the four outcomes required for each excluded task; it is not an additional task count. Reproduction details are given in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\small\n  \\resizebox{\\textwidth}{!}{\\input{chapters/tables/tab-main-contrast-sets-v2}}\n  \\caption[Complete task sets for the planned contrasts]{Planned and complete task-set sizes generated from the two versioned \\texttt{contrast\\_sample\\_sizes.csv} files. Data rows alternate grey and white; shading does not encode the model. ``Non-meas. runs'' counts non-measurable runs among the four outcomes required for each excluded task; it is not an additional task count. Reproduction details are given in Appendix~\\ref{app:scripts}.}\n  \\label{tab:main-contrast-sets}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-main-contrast-sets-v2.tex": "cb1097c7b676ef6ba47b274ad3fc8e0fa5eb37398cf35b7f5ac36e641df0bc4e"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/contrast_sample_sizes.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/contrast_sample_sizes.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.7",
+      "label": "tab:rq1-pass1",
+      "printed_page": "55",
+      "pdf_page": 64,
+      "caption_position": 1578,
+      "short_caption_tex": "RQ1: paired solve-rate contrasts",
+      "caption_tex": "Paired pass@1 contrasts for RQ1. The tests are two-sided paired t-tests over complete task sets $T^{(g)}_{ab}$; Holm adjustment is applied separately within each configuration. ``Not established'' means that $p^{\\mathrm{Holm}}\\geq0.05$, not that the cells are equivalent. Data rows alternate grey and white.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\scriptsize\n  \\resizebox{\\textwidth}{!}{\\input{chapters/tables/tab-pass1-rq1}}\n  \\caption[RQ1: paired solve-rate contrasts]{Paired pass@1 contrasts for RQ1. The tests are two-sided paired t-tests over complete task sets $T^{(g)}_{ab}$; Holm adjustment is applied separately within each configuration. ``Not established'' means that $p^{\\mathrm{Holm}}\\geq0.05$, not that the cells are equivalent. Data rows alternate grey and white.}\n  \\label{tab:rq1-pass1}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-pass1-rq1.tex": "1fb3ecbf491dce51736ae5ff230bb611883a07c1fb601d985ea8cc1d7423fc60"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/contrast_results.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/contrast_results.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.8",
+      "label": "tab:rq1-effort",
+      "printed_page": "56",
+      "pdf_page": 65,
+      "caption_position": 1498,
+      "short_caption_tex": "RQ1: mean-effort contrasts",
+      "caption_tex": "Mean effort per measurable attempt in cells $a$ and $b$, their difference and individual paired task-bootstrap 95\\,\\% interval for RQ1. Both cells use the same complete task set. Units in each resource heading apply to both means, the difference and the interval.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\small\n  \\setlength{\\tabcolsep}{4pt}\n  \\input{chapters/tables/tab-effort-rq1}\n  \\caption[RQ1: mean-effort contrasts]{Mean effort per measurable attempt in cells $a$ and $b$, their difference and individual paired task-bootstrap 95\\,\\% interval for RQ1. Both cells use the same complete task set. Units in each resource heading apply to both means, the difference and the interval.}\n  \\label{tab:rq1-effort}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-effort-rq1.tex": "6ae00f011d0b88e51e85160dba6bacb8619f6e22366fb5c03d8fa3d0477393dc"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/effort_bootstrap.json",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/effort_bootstrap.json"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.9",
+      "label": "tab:activation",
+      "printed_page": "57",
+      "pdf_page": 66,
+      "caption_position": 688,
+      "short_caption_tex": "\\skillfile{} activation in the main runs",
+      "caption_tex": "Observed \\skillfile{} activation generated from the main-run trajectories. K1s is delivered in 124/142 runs because \\texttt{tinygrad} contains no procedural material; K2s is delivered in all 142. Data rows alternate grey and white.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\input{chapters/tables/tab-activation-v2}\n  \\caption[\\skillfile{} activation in the main runs]{Observed \\skillfile{} activation generated from the main-run trajectories. K1s is delivered in 124/142 runs because \\texttt{tinygrad} contains no procedural material; K2s is delivered in all 142. Data rows alternate grey and white.}\n  \\label{tab:activation}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-activation-v2.tex": "60185b03f187fe18ef17aae3457165aa0ec6196a0968b31283ac324c4d3b9e01"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/raw_status_mapping.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/raw_status_mapping.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.10",
+      "label": "tab:rq2-pass1",
+      "printed_page": "57",
+      "pdf_page": 66,
+      "caption_position": 2773,
+      "short_caption_tex": "RQ2: paired solve-rate contrasts",
+      "caption_tex": "Paired pass@1 contrasts and two-sided t-tests for RQ2. Holm adjustment is applied to the two delivery-format tests separately in each configuration. Data rows alternate grey and white.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\scriptsize\n  \\resizebox{\\textwidth}{!}{\\input{chapters/tables/tab-pass1-rq2}}\n  \\caption[RQ2: paired solve-rate contrasts]{Paired pass@1 contrasts and two-sided t-tests for RQ2. Holm adjustment is applied to the two delivery-format tests separately in each configuration. Data rows alternate grey and white.}\n  \\label{tab:rq2-pass1}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-pass1-rq2.tex": "8baeeb68d2c9d468676ea138022430f3c3009d9f2d634f5ea6e68c8a32b54adc"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/contrast_results.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/contrast_results.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.11",
+      "label": "tab:rq2-effort",
+      "printed_page": "58",
+      "pdf_page": 67,
+      "caption_position": 1515,
+      "short_caption_tex": "RQ2: mean-effort contrasts",
+      "caption_tex": "Mean effort per measurable attempt and individual paired task-bootstrap 95\\,\\% intervals for RQ2. Cell $a$ supplies the extract through \\skillfile{}, cell $b$ through \\agentsfile{}; negative differences indicate lower mean effort in $a$. Resource-heading units apply to means, differences and intervals.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\small\n  \\setlength{\\tabcolsep}{4pt}\n  \\input{chapters/tables/tab-effort-rq2}\n  \\caption[RQ2: mean-effort contrasts]{Mean effort per measurable attempt and individual paired task-bootstrap 95\\,\\% intervals for RQ2. Cell $a$ supplies the extract through \\skillfile{}, cell $b$ through \\agentsfile{}; negative differences indicate lower mean effort in $a$. Resource-heading units apply to means, differences and intervals.}\n  \\label{tab:rq2-effort}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-effort-rq2.tex": "f27fd11c609c41555344c56debe9b998b9f5fcc70b169bbafc38458e4a403584"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/effort_bootstrap.json",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/effort_bootstrap.json"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.12",
+      "label": "tab:rq3-pass1",
+      "printed_page": "59",
+      "pdf_page": 68,
+      "caption_position": 1474,
+      "short_caption_tex": "RQ3: paired solve-rate contrasts",
+      "caption_tex": "Paired pass@1 contrasts and two-sided t-tests for RQ3. Holm adjustment is applied to the three tests separately in each configuration. Data rows alternate grey and white.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\scriptsize\n  \\resizebox{\\textwidth}{!}{\\input{chapters/tables/tab-pass1-rq3}}\n  \\caption[RQ3: paired solve-rate contrasts]{Paired pass@1 contrasts and two-sided t-tests for RQ3. Holm adjustment is applied to the three tests separately in each configuration. Data rows alternate grey and white.}\n  \\label{tab:rq3-pass1}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-pass1-rq3.tex": "5fb3da8fcd450320cd21f4c0f599b71dac2cb82d353bcf3b5170e8952937c639"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/contrast_results.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/contrast_results.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.13",
+      "label": "tab:rq3-effort",
+      "printed_page": "60",
+      "pdf_page": 69,
+      "caption_position": 1988,
+      "short_caption_tex": "RQ3: mean-effort contrasts",
+      "caption_tex": "Mean effort per measurable attempt, differences and individual paired task-bootstrap 95\\,\\% intervals for RQ3 and its status-quo contrast. Positive differences indicate greater mean effort in the first-named cell. Resource-heading units apply to means, differences and intervals.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\small\n  \\setlength{\\tabcolsep}{4pt}\n  \\input{chapters/tables/tab-effort-rq3}\n  \\caption[RQ3: mean-effort contrasts]{Mean effort per measurable attempt, differences and individual paired task-bootstrap 95\\,\\% intervals for RQ3 and its status-quo contrast. Positive differences indicate greater mean effort in the first-named cell. Resource-heading units apply to means, differences and intervals.}\n  \\label{tab:rq3-effort}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-effort-rq3.tex": "271aa8d7f999a526d4ef3f4bd6f84f83d218aecf54d2999686ecbf90645c0509"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/effort_bootstrap.json",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/effort_bootstrap.json"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.14",
+      "label": "tab:rq4-recurrence",
+      "printed_page": "61",
+      "pdf_page": 70,
+      "caption_position": 1498,
+      "short_caption_tex": "Pass@1 recurrence across coding-agent configurations",
+      "caption_tex": "Summary of all planned pass@1 contrasts. The confidence intervals are individual t-based intervals; the adjusted p-values belong to the RQ-specific Holm families. Recurring evidence requires the same sign and $p^{\\mathrm{Holm}}<0.05$ in both configurations.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\scriptsize\n  \\resizebox{\\textwidth}{!}{\\input{chapters/tables/tab-pass1-recurrence}}\n  \\caption[Pass@1 recurrence across coding-agent configurations]{Summary of all planned pass@1 contrasts. The confidence intervals are individual t-based intervals; the adjusted p-values belong to the RQ-specific Holm families. Recurring evidence requires the same sign and $p^{\\mathrm{Holm}}<0.05$ in both configurations.}\n  \\label{tab:rq4-recurrence}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-pass1-recurrence.tex": "2e48337873e11211358bac195990f67988c450b699d98b2ab0535221b9718272"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/contrast_results.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/contrast_results.csv"
+      ]
+    },
+    {
+      "kind": "figure",
+      "number": "4.4",
+      "label": "fig:pass1-contrast-forest",
+      "printed_page": "61",
+      "pdf_page": 70,
+      "caption_position": 2352,
+      "short_caption_tex": "Pass@1 contrasts across configurations",
+      "caption_tex": "Mean paired pass@1 differences [pp] and individual t-based 95\\,\\% confidence intervals, grouped by research question. Points and lines show estimates and uncertainty, not Holm decisions. Colour and marker shape identify the coding-agent configuration. Generated from the v3 contrast outputs; reproduction details are given in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{figure}[H]\n  \\centering\n  \\includegraphics[width=\\textwidth]{pass1-contrast-forest}\n  \\caption[Pass@1 contrasts across configurations]{Mean paired pass@1 differences [pp] and individual t-based 95\\,\\% confidence intervals, grouped by research question. Points and lines show estimates and uncertainty, not Holm decisions. Colour and marker shape identify the coding-agent configuration. Generated from the v3 contrast outputs; reproduction details are given in Appendix~\\ref{app:scripts}.}\n  \\label{fig:pass1-contrast-forest}\n\\end{figure}",
+      "files": {
+        "figures/pass1-contrast-forest.svg": "a7e1d8f48291be4c2a1a00dd40e8127ff8cdb68dcad1fc4c5079dd2a6d879d98",
+        "figures/pass1-contrast-forest.pdf": "6e645da9335e3b74f5c36fe13e4eb53a11759bbe8db4a32a8280f5322a1b17c5"
+      },
+      "analysis_sources": [
+        "Generated by thesis-results-assets from experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/contrast_results.csv and experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/contrast_results.csv"
+      ]
+    },
+    {
+      "kind": "figure",
+      "number": "4.5",
+      "label": "fig:mean-effort-contrast-forest",
+      "printed_page": "62",
+      "pdf_page": 71,
+      "caption_position": 1127,
+      "short_caption_tex": "Mean-effort contrasts across configurations",
+      "caption_tex": "Differences in mean effort per measurable attempt, grouped by research question. The three panels use separate resource scales; points show estimates and lines individual paired task-bootstrap 95\\,\\% intervals. Negative differences indicate lower mean effort in the first-named cell. Colour and marker shape identify configuration, not statistical evidence. Generated from the v3 effort outputs; reproduction details are given in Appendix~\\ref{app:scripts}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{figure}[H]\n  \\centering\n  \\includegraphics[width=\\textwidth]{mean-effort-contrast-forest}\n  \\caption[Mean-effort contrasts across configurations]{Differences in mean effort per measurable attempt, grouped by research question. The three panels use separate resource scales; points show estimates and lines individual paired task-bootstrap 95\\,\\% intervals. Negative differences indicate lower mean effort in the first-named cell. Colour and marker shape identify configuration, not statistical evidence. Generated from the v3 effort outputs; reproduction details are given in Appendix~\\ref{app:scripts}.}\n  \\label{fig:mean-effort-contrast-forest}\n\\end{figure}",
+      "files": {
+        "figures/mean-effort-contrast-forest.svg": "08aeb2cdc8b9c23a5adbbf249d47d6a6fa5a682242f9b531b3e225832ee69ea5",
+        "figures/mean-effort-contrast-forest.pdf": "eb4a4a2f90eb7484af9ab1abb5a04abd8cef3088c84e13de848dc45fc9699a5a"
+      },
+      "analysis_sources": [
+        "Generated by thesis-results-assets from experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/effort_bootstrap.json and experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/effort_bootstrap.json"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.15",
+      "label": "tab:behaviour",
+      "printed_page": "63",
+      "pdf_page": 72,
+      "caption_position": 3158,
+      "short_caption_tex": "Behaviour profile per cell",
+      "caption_tex": "Behaviour profile per cell and configuration generated from the audited main-run trajectories. Means use measurable acting runs, which contain at least one tool call; loop runs are included in the means and counted separately. No-action and timeout runs are absolute cell counts. For \\skillfile{} cells, activation is the share of acting runs that read the \\skillfile{}. Data rows alternate grey and white.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\small\n  \\resizebox{\\textwidth}{!}{\\input{chapters/tables/tab-behaviour-v2}}\n  \\caption[Behaviour profile per cell]{Behaviour profile per cell and configuration generated from the audited main-run trajectories. Means use measurable acting runs, which contain at least one tool call; loop runs are included in the means and counted separately. No-action and timeout runs are absolute cell counts. For \\skillfile{} cells, activation is the share of acting runs that read the \\skillfile{}. Data rows alternate grey and white.}\n  \\label{tab:behaviour}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-behaviour-v2.tex": "b801bd19e9b55fbb5f4640e796baca4ea1c55761a4e8d3b34714690747d762dc"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/raw_status_mapping.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/raw_status_mapping.csv"
+      ]
+    },
+    {
+      "kind": "figure",
+      "number": "4.6",
+      "label": "fig:phase-profile",
+      "printed_page": "64",
+      "pdf_page": 73,
+      "caption_position": 2243,
+      "short_caption_tex": "Mean tool calls per phase and cell",
+      "caption_tex": "Mean tool calls per measurable acting run, stacked by phase from the base (explore, edit, validate, other), for every cell of both configurations. The number above each bar is the total. Generated from the two versioned \\texttt{raw\\_status\\_mapping.csv} files and their linked trajectories by \\texttt{thesis-results-assets}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{figure}[H]\n  \\centering\n  \\includegraphics[width=\\textwidth]{phase-profile-v2}\n  \\caption[Mean tool calls per phase and cell]{Mean tool calls per measurable acting run, stacked by phase from the base (explore, edit, validate, other), for every cell of both configurations. The number above each bar is the total. Generated from the two versioned \\texttt{raw\\_status\\_mapping.csv} files and their linked trajectories by \\texttt{thesis-results-assets}.}\n  \\label{fig:phase-profile}\n\\end{figure}",
+      "files": {
+        "figures/phase-profile-v2.svg": "c8e378d6385ec41523789461f47d66350c88ffa65e5518e0055384edf26815d4",
+        "figures/phase-profile-v2.pdf": "ebf4509be84a28b9288673eaf43e51dacc4359ad8da8f8da11b98bd4fa13eada"
+      },
+      "analysis_sources": [
+        "Generated by thesis-results-assets from experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/raw_status_mapping.csv and experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/raw_status_mapping.csv"
+      ]
+    },
+    {
+      "kind": "figure",
+      "number": "4.7",
+      "label": "fig:pairwise-disagreement",
+      "printed_page": "65",
+      "pdf_page": 74,
+      "caption_position": 1661,
+      "short_caption_tex": "Pairwise disagreement probability by cell",
+      "caption_tex": "Observed share of tasks whose two measurable repetitions differ in solved outcome. Denominators are cell-specific because a task enters only when both repetitions are measurable. Generated from the two versioned \\texttt{pairwise\\_disagreement.csv} files by \\texttt{thesis-results-assets}.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{figure}[H]\n  \\centering\n  \\includegraphics[width=0.88\\textwidth]{pairwise-disagreement}\n  \\caption[Pairwise disagreement probability by cell]{Observed share of tasks whose two measurable repetitions differ in solved outcome. Denominators are cell-specific because a task enters only when both repetitions are measurable. Generated from the two versioned \\texttt{pairwise\\_disagreement.csv} files by \\texttt{thesis-results-assets}.}\n  \\label{fig:pairwise-disagreement}\n\\end{figure}",
+      "files": {
+        "figures/pairwise-disagreement.svg": "7c74b419145688da705f70a2e22f2a1171fc67361c6e1eed8432d3a26181f9c1",
+        "figures/pairwise-disagreement.pdf": "523ffe86a4d08223a55422d2234056a635d3732c9b417e678d9b9f708976fe30"
+      },
+      "analysis_sources": [
+        "Generated by thesis-results-assets from experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/pairwise_disagreement.csv and experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/pairwise_disagreement.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "4.16",
+      "label": "tab:delivered-only",
+      "printed_page": "65",
+      "pdf_page": 74,
+      "caption_position": 3296,
+      "short_caption_tex": "Delivered-only sensitivity analysis",
+      "caption_tex": "Procedural pass@1 contrasts after excluding tasks without procedural treatment material. No additional hypothesis test or Holm decision is made. Data rows alternate grey and white.",
+      "source_tex": "chapters/04_results.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\small\n  \\input{chapters/tables/tab-delivered-only-v2}\n  \\caption[Delivered-only sensitivity analysis]{Procedural pass@1 contrasts after excluding tasks without procedural treatment material. No additional hypothesis test or Holm decision is made. Data rows alternate grey and white.}\n  \\label{tab:delivered-only}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-delivered-only-v2.tex": "1647132d8ac58268a460adb0a81132999532ec541f3c7ba6c2ec575d477bd52f"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/delivered_only_sensitivity.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/delivered_only_sensitivity.csv"
+      ]
+    },
+    {
+      "kind": "table",
+      "number": "A.1",
+      "label": "tab:fork-deltas",
+      "printed_page": "80",
+      "pdf_page": 89,
+      "caption_position": 1502,
+      "short_caption_tex": "Validity-relevant changes to the evaluation fork",
+      "caption_tex": "Validity-relevant changes to the replicated evaluation setup.",
+      "source_tex": "chapters/07_appendix.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\small\n  \\begin{tabular}{@{}p{1.1cm}p{4.2cm}p{8.2cm}@{}}\n    \\toprule\n    Fork & Component & Change and purpose \\\\\n    \\midrule\n    \\#2/3 & planner and manifest & Inject the six declared context conditions; fail loudly on missing material. \\\\\n    \\rowcolor{black!6} \\#4 & task runtime & Apply fixed CPU and memory limits on the shared server. \\\\\n    \\#15 & evaluator & Record evaluation errors separately from agent outcomes. \\\\\n    \\rowcolor{black!6} \\#19 & generation & Commit setup artefacts and injected context before computing the agent patch. \\\\\n    \\#23 & harness & Add the pinned Pi adapter and keep its session data outside the repository. \\\\\n    \\rowcolor{black!6} \\#26 & system prompt & Replace the assistant-oriented default with the declared minimal autonomous-agent prompt. \\\\\n    \\#27 & process control & Enforce the declared per-run timeout and termination grace period. \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Validity-relevant changes to the evaluation fork]{Validity-relevant changes to the replicated evaluation setup.}\n  \\label{tab:fork-deltas}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "A.2",
+      "label": "tab:scripts",
+      "printed_page": "81",
+      "pdf_page": 90,
+      "caption_position": 1637,
+      "short_caption_tex": "Principal analysis and reporting commands",
+      "caption_tex": "Principal commands, their purpose and the thesis elements they produce. The complete invocations, versioned configurations and locked dependencies are included in the accompanying submission repository.",
+      "source_tex": "chapters/07_appendix.tex",
+      "source_excerpt_tex": "\\begin{table}[H]\n  \\centering\n  \\footnotesize\n  \\begin{tabular}{@{}p{4.3cm}p{5.5cm}p{3.7cm}@{}}\n    \\toprule\n    Script & Purpose & Produces \\\\\n    \\midrule\n    \\texttt{thesis-variance-pilot} \\newline \\small\\texttt{--config <pilot.json> --output-dir <dir>} & Verify the complete $10\\times20$ pilot matrix; write status mapping, task estimates, round counts and prospective precision. & Section~\\ref{sec:results-variance-pilot}; Tables~\\ref{tab:pilot-inputs}, \\ref{tab:dimensioning}; Figures~\\ref{fig:vp-outcomes-glm}--\\ref{fig:vp-outcomes-qwen} \\\\\n    \\rowcolor{black!6} \\texttt{thesis-main-run} \\newline \\small\\texttt{--config <main.json> --output-dir <dir>} & Write the outcome audit, cell summaries, complete paired contrast sets, paired t-tests, Holm adjustments, effort bootstrap, pairwise disagreement and delivered-only sensitivity outputs. & Sections~\\ref{sec:results-overview}--\\ref{sec:results-sensitivity} \\\\\n    \\texttt{thesis-results-assets} & Generate categorization and pilot assets, outcome and coverage tables, pass@1 and mean-effort tables, recurrence and sensitivity tables, and audited main-run figures. The five subcommands and \\texttt{--render} option are documented in the accompanying README. & Tables~\\ref{tab:material}--\\ref{tab:delivered-only}; Figures~\\ref{fig:vp-outcomes-glm}--\\ref{fig:vp-outcomes-qwen}, \\ref{fig:main-outcome-composition}, \\ref{fig:pass1-contrast-forest}, \\ref{fig:mean-effort-contrast-forest}, \\ref{fig:phase-profile}, \\ref{fig:pairwise-disagreement} \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Principal analysis and reporting commands]{Principal commands, their purpose and the thesis elements they produce. The complete invocations, versioned configurations and locked dependencies are included in the accompanying submission repository.}\n  \\label{tab:scripts}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "A.3",
+      "label": "tab:boundary-rules",
+      "printed_page": "83",
+      "pdf_page": 92,
+      "caption_position": 2209,
+      "short_caption_tex": "Boundary rules",
+      "caption_tex": "The twelve boundary questions decided in the categorization review and the resulting rules.",
+      "source_tex": "chapters/07_appendix.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\small\n  \\begin{tabular}{@{}lp{6.6cm}p{5.6cm}@{}}\n    \\toprule\n    Rule & Boundary question & Decision \\\\\n    \\midrule\n    G1 & Style rules that only a linter would check, and no linter runs in the evaluation (line length, whitespace, import order, quote style). & Normative: no style rule can flip a test gate. \\\\\n    \\rowcolor{black!6} G2 & ``Minimise the diff'', ``do not reformat globally''. & Procedural: a large reformat can break passing tests. \\\\\n    G3 & Prohibitions with a task effect (no hard-coding, no bare \\texttt{except}, never edit generated files). & Procedural. \\\\\n    \\rowcolor{black!6} G4 & ``Familiarise yourself with X'' without an executable step. & Procedural: an exploration action with an effort effect. \\\\\n    G5 & Instructions the agent cannot fulfil in an autonomous run (ask for confirmation, release and PR rules). & Normative: context that points nowhere. \\\\\n    \\rowcolor{black!6} G6 & Instructions for using the product rather than developing the repository. & Normative, flagged off-task. \\\\\n    G7 & Facts that carry an obligation in the same sentence. & Split: fact part descriptive, obligation part normative. \\\\\n    \\rowcolor{black!6} G8 & A repository (tinygrad) with no procedural statement at all. & Reported as empty and kept in the pool; its K1 cells run without a file. \\\\\n    G9 & Task-list tool instructions categorized inconsistently across two statements. & Both normative: work organisation, tool absent from the harness. \\\\\n    \\rowcolor{black!6} G10 & ``Prefer the standard library'' versus ``use existing code''. & The first procedural (a new dependency fails offline), the second normative. \\\\\n    G11 & Tool or permission frames without an executable command. & Normative. \\\\\n    \\rowcolor{black!6} G12 & A pitfall rule as the only procedural statement of a repository (wagtail). & Procedural: ``you need to use X'' has direct code effect. \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\caption[Boundary rules]{The twelve boundary questions decided in the categorization review and the resulting rules.}\n  \\label{tab:boundary-rules}\n\\end{table}",
+      "files": {},
+      "analysis_sources": []
+    },
+    {
+      "kind": "table",
+      "number": "A.4",
+      "label": "tab:loops",
+      "printed_page": "84",
+      "pdf_page": 93,
+      "caption_position": 1390,
+      "short_caption_tex": "Loop runs",
+      "caption_tex": "Loop runs, three or more identical tool calls in succession, by configuration, cell, task and repetition. Generated from the audited main-run trajectories by \\texttt{thesis-results-assets}.",
+      "source_tex": "chapters/07_appendix.tex",
+      "source_excerpt_tex": "\\begin{table}[htbp]\n  \\centering\n  \\small\n  \\input{chapters/tables/tab-loops-v2}\n  \\caption[Loop runs]{Loop runs, three or more identical tool calls in succession, by configuration, cell, task and repetition. Generated from the audited main-run trajectories by \\texttt{thesis-results-assets}.}\n  \\label{tab:loops}\n\\end{table}",
+      "files": {
+        "chapters/tables/tab-loops-v2.tex": "56e8b75d3c3954c485ce8b860b2282706038045871212ca8c9f7eecece805e23"
+      },
+      "analysis_sources": [
+        "experiments/2026-08-21_01-hauptrun/analysis/statistics-v3/raw_status_mapping.csv",
+        "experiments/2026-08-25_01-hauptrun-qwen/analysis/statistics-v3/raw_status_mapping.csv"
+      ]
+    }
+  ]
+}

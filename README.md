@@ -1,5 +1,27 @@
 # AGENTBench Harness
 
+## Bachelor thesis analysis
+
+The final thesis analysis is the separate locked Python project in
+[scripts/analysis](scripts/analysis/README.md). It contains explicit GLM/Qwen
+pilot and main-run configurations, outcome auditing, paired pass@1 tests with
+Holm adjustment, and mean effort per measurable attempt with paired task-bootstrap
+intervals. Exact measurement inputs are provided in the checksummed archive under
+`data/analysis/`; accepted pilot and main-run v3 outputs are under `experiments/`.
+The analysis README documents extraction, recalculation, tests and asset generation.
+These commands reproduce recorded results without running a model server.
+
+The [thesis asset register](data/analysis/thesis-assets.json) records every
+numbered table and figure, its caption, source and checksum. Exact companion
+assets are bundled in `data/analysis/thesis-assets/`. The analysis README provides
+one fresh-directory workflow for all four analyses and all reporting commands.
+The archive verifier also checks the bundled source, configurations, accepted
+results, reviewed statement data, colour guide and registered asset files.
+
+The experiment scripts below and `final_scripts/` refer to the upstream reference
+paper, not to the final statistical source of this thesis. Historical thesis
+analysis scripts and temporary metric reviews are not included in the new project.
+
 This repository contains the harness used in our paper for evaluating coding agents with different repository-level context settings (`NONE`, `LLM`, `HUMAN`) on:
 
 - AGENTBench datasets (for example `eth-sri/agentbench`)

@@ -1,0 +1,78 @@
+{
+  "name": "variance-pilot-qwen",
+  "analysis_type": "variance_pilot",
+  "run_directory": "experiments/2026-08-22_02-vplight-qwen",
+  "task_manifest": "data/analysis/pilot_tasks.txt",
+  "cells": [
+    "no_plan"
+  ],
+  "repetitions": [
+    "run_0",
+    "run_1",
+    "run_2",
+    "run_3",
+    "run_4",
+    "run_5",
+    "run_6",
+    "run_7",
+    "run_8",
+    "run_9",
+    "run_10",
+    "run_11",
+    "run_12",
+    "run_13",
+    "run_14",
+    "run_15",
+    "run_16",
+    "run_17",
+    "run_18",
+    "run_19"
+  ],
+  "timeout_seconds": 1320,
+  "planning_proxy": 0.1187,
+  "planning_role": "transfer_check_only",
+  "engine_allocation": [
+    {
+      "repetitions": [
+        "run_0",
+        "run_1",
+        "run_2",
+        "run_3",
+        "run_4",
+        "run_5",
+        "run_6",
+        "run_7",
+        "run_8",
+        "run_9"
+      ],
+      "engine": "A",
+      "port": 4002
+    },
+    {
+      "repetitions": [
+        "run_10",
+        "run_11",
+        "run_12",
+        "run_13",
+        "run_14",
+        "run_15",
+        "run_16",
+        "run_17",
+        "run_18",
+        "run_19"
+      ],
+      "engine": "B",
+      "port": 4003
+    }
+  ],
+  "model": {
+    "name": "qwen3.6-27b-t06",
+    "family": "Qwen",
+    "temperature": 0.6
+  },
+  "expected": {
+    "planned_runs": 200,
+    "measurable_runs": 200,
+    "timeouts": 81
+  }
+}

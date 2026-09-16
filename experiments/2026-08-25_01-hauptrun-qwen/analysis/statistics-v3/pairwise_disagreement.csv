@@ -1,0 +1,7 @@
+cell,cell_label,tasks_with_two_measurable_repetitions,disagreeing_tasks,pairwise_disagreement_probability
+no_plan,K0,70,11,0.15714285714285714
+curated_k0d,K0d,70,8,0.11428571428571428
+curated_k1,K1,69,5,0.07246376811594203
+curated_k1s,K1s,71,11,0.15492957746478872
+curated_k2,K2,70,8,0.11428571428571428
+curated_k2s,K2s,68,13,0.19117647058823528

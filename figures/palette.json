@@ -1,0 +1,192 @@
+{
+  "_comment": [
+    "SINGLE SOURCE OF TRUTH für alle Figuren-Farben (Thesis + Präsentation).",
+    "Diese Datei wird von Hand editiert; alles andere wird daraus generiert:",
+    "  python3 scripts/figures_palette.py --sync   -> VS-Code-Palette + Shape-Library",
+    "  python3 scripts/figures_palette.py --recolor -> färbt bestehende .drawio/.svg um",
+    "Regel: NIE einen Hex-Wert direkt in eine Figur tippen, der hier nicht steht.",
+    "Prosa-Fassung + Verwendungsregeln: design-schema.md",
+    "v2.1 (03.09.2026): vier Serien-Rollen fuer Daten-Plots ergaenzt (series-glm/-qwen + Fills) — Beschluss Francisco: GLM tuerkis, Qwen lila; Paar validiert (dataviz-Validator: L-Band, Chroma, CVD dE 15–19, Kontrast >= 3:1).",
+    "v2.2 (15.09.2026): eigene semantische Outcome-Rollen ergaenzt. Modellfarben duerfen nicht stellvertretend fuer Ergebnisarten verwendet werden."
+  ],
+  "version": "2.3",
+  "frozen": "2026-08-26",
+  "supersedes": "v1 (09.08.2026)",
+  "roles": {
+    "harness": {
+      "hex": "#5b83d6",
+      "label": "Harness",
+      "use": "Kontur von Harness-Boxen; in Ablauf-Figuren die Skripte (planner, agent, apply, gates)"
+    },
+    "harness-fill": {
+      "hex": "#dde5f8",
+      "label": "Harness Fläche",
+      "use": "Füllung von Harness-Boxen und -Rahmen"
+    },
+    "harness-dark": {
+      "hex": "#2f5ba8",
+      "label": "Harness Text",
+      "use": "Text auf Harness-Fläche; zugleich Füllung des Fokus-Locus"
+    },
+    "focus": {
+      "hex": "#2f5ba8",
+      "label": "Fokus-Locus",
+      "use": "GENAU EIN Element pro Figur: solide Füllung + weiße Schrift. Alias von harness-dark"
+    },
+    "artifact": {
+      "hex": "#f7d15c",
+      "label": "Artefakt",
+      "use": "Daten und Dateien: Task, Patch, Trajectory, Report, Context-File"
+    },
+    "artifact-stroke": {
+      "hex": "#b8912c",
+      "label": "Artefakt Kontur",
+      "use": "Kontur von Artefakt-Boxen — im Druck nötig, sonst franst Gelb auf Weiß aus"
+    },
+    "environment": {
+      "hex": "#b0763f",
+      "label": "Environment",
+      "use": "Systemgrenze: Kontur von Repo/FS/Shell/Container, immer gestrichelt 7 5"
+    },
+    "environment-fill": {
+      "hex": "#e6e5e1",
+      "label": "Environment Fläche",
+      "use": "Lane- bzw. Rahmenfüllung des Environments (Container, Repo)"
+    },
+    "model": {
+      "hex": "#f0efec",
+      "label": "Modell",
+      "use": "Füllung des Modells (in dieser Studie fixiert) und neutraler Struktur-Boxen"
+    },
+    "model-stroke": {
+      "hex": "#52514e",
+      "label": "Modell Kontur",
+      "use": "Kontur neutraler Boxen; identisch mit ink-secondary"
+    },
+    "ink": {
+      "hex": "#0b0b0b",
+      "label": "Ink primär",
+      "use": "Box-Titel, Kernlabels"
+    },
+    "ink-secondary": {
+      "hex": "#52514e",
+      "label": "Ink sekundär",
+      "use": "Fließlabels, Pfeile, Pfeilspitzen"
+    },
+    "ink-muted": {
+      "hex": "#898781",
+      "label": "Ink muted",
+      "use": "Nebenlabels, Annotationen"
+    },
+    "hairline": {
+      "hex": "#e1e0d9",
+      "label": "Hairline",
+      "use": "Banner, feine Trennlinien"
+    },
+    "rule": {
+      "hex": "#c3c2b7",
+      "label": "Rahmen neutral",
+      "use": "neutrale Rahmen, Achsen"
+    },
+    "paper": {
+      "hex": "#ffffff",
+      "label": "Papier",
+      "use": "Hintergrund — immer deckend, kein Dark Mode (Print-Medium)"
+    },
+    "sequence-low": {
+      "hex": "#5b83d6",
+      "label": "Rampe hell",
+      "use": "Sonderregel Kurven-Schemata: unteres Ende der sequenziellen Ein-Farb-Rampe (geringe Magnitude). Alias von harness"
+    },
+    "sequence-high": {
+      "hex": "#24406f",
+      "label": "Rampe dunkel",
+      "use": "Sonderregel Kurven-Schemata: oberes Ende der Rampe (hohe Magnitude, z. B. längerer Input)"
+    },
+    "series-glm": {
+      "hex": "#2aa198",
+      "label": "Serie GLM",
+      "use": "Daten-Plots (Kap. 4): Modell 1 GLM-4.5-Air — nur fuer Serien in Daten-Plots, nie in Schema-Figuren"
+    },
+    "series-glm-fill": {
+      "hex": "#d4efec",
+      "label": "Serie GLM Flaeche",
+      "use": "helle Flaeche/Kontext der GLM-Serie (z. B. Vorstufen einer Treppe)"
+    },
+    "series-qwen": {
+      "hex": "#8250df",
+      "label": "Serie Qwen",
+      "use": "Daten-Plots (Kap. 4): Modell 2 Qwen3.6-27B — nur fuer Serien in Daten-Plots, nie in Schema-Figuren"
+    },
+    "series-qwen-fill": {
+      "hex": "#e6dcf8",
+      "label": "Serie Qwen Flaeche",
+      "use": "helle Flaeche/Kontext der Qwen-Serie"
+    },
+    "phase-explore": {
+      "hex": "#5b83d6",
+      "label": "Phase Explore",
+      "use": "Erkundungs-Tool-Calls; gleiche Phasefarbe in beiden Konfigurationen"
+    },
+    "phase-edit": {
+      "hex": "#f7d15c",
+      "label": "Phase Edit",
+      "use": "Editing-Tool-Calls; nicht Modellidentitaet"
+    },
+    "phase-validate": {
+      "hex": "#b0763f",
+      "label": "Phase Validate",
+      "use": "Validierungs-Tool-Calls; nicht Modellidentitaet"
+    },
+    "phase-other": {
+      "hex": "#e6e5e1",
+      "label": "Phase Other",
+      "use": "Sonstige Tool-Calls; nicht Modellidentitaet"
+    },
+    "outcome-solved": {
+      "hex": "#4f789b",
+      "label": "Outcome Solved",
+      "use": "geloeste Runs in Outcome-Zusammensetzungen"
+    },
+    "outcome-failed-patch": {
+      "hex": "#adc5d8",
+      "label": "Outcome Failed Patch",
+      "use": "messbarer Misserfolg mit nicht bestehendem Patch"
+    },
+    "outcome-empty-patch": {
+      "hex": "#d8d8d4",
+      "label": "Outcome Empty Patch",
+      "use": "messbarer Misserfolg ohne eingereichten Patch"
+    },
+    "outcome-no-action": {
+      "hex": "#e3bd65",
+      "label": "Outcome No Action",
+      "use": "messbarer Misserfolg ohne Agentenaktion"
+    },
+    "outcome-timeout": {
+      "hex": "#b98355",
+      "label": "Outcome Timeout",
+      "use": "messbarer Misserfolg am Laufzeitlimit"
+    },
+    "outcome-evaluation-error": {
+      "hex": "#b85c5c",
+      "label": "Outcome Evaluation Error",
+      "use": "nicht messbarer Fehler der Evaluationspipeline"
+    }
+  },
+  "migrations": {
+    "v1_to_v2": {
+      "#2a78d6": "#5b83d6",
+      "#cde2fb": "#dde5f8",
+      "#1c5cab": "#2f5ba8",
+      "#eb6834": "#b0763f",
+      "#fbdfd2": "#e6e5e1",
+      "#104281": "#24406f"
+    }
+  },
+  "recolor_exclude": {},
+  "retired": {
+    "#1baf7a": "Reserve-Akzent Aqua aus v1 — in keiner einzigen Figur verwendet, in v2 gestrichen",
+    "#d3f1e4": "Aqua-Tint aus v1 — desgleichen"
+  }
+}

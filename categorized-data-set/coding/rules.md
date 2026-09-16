@@ -1,13 +1,13 @@
-# Coding guide
+# Categorization guide
 
 Every statement of a developer-written context file (`AGENTS.md` or `CLAUDE.md`)
-is assigned to exactly one of four buckets. The buckets define the treatment
+is assigned to exactly one of four categories. The categories define the treatment
 cells of the experiment: procedural statements form the K1 material, descriptive
 statements the K2 material, normative and meta statements are excluded.
 
-## Buckets and leading questions
+## Categories and leading questions
 
-| Bucket | Cells | Leading question |
+| Category | Cells | Leading question |
 |---|---|---|
 | **P** procedural | K1, K1s | Can the agent act on it directly? Does it name an action, a command, a workflow, a tool choice? |
 | **D** descriptive | K2, K2s | Does it state a fact about the repository (architecture, structure, purpose, location) without prescribing an action? |
@@ -64,7 +64,7 @@ Every rule lists the statements it decided.
 | G6 | Instructions for using the product rather than developing the repository. | GRA-43 | **N**, flagged off-task in the note. |
 | G7 | Facts that carry an obligation in the same sentence: fact in form, obligation in function. | ANS-08, FMC-30, PRA-26, PRA-31 | Split consistently: fact part **D**, obligation part **N**. ANS-08 is a pure fact and becomes D; PRA-31 is split into PRA-31 (D) and PRA-31b (N). |
 | G8 | A repository (tinygrad) with no procedural statement at all. | TIN-* | Reported as empty and kept in the pool; its K1 and K1s cells run without a file or skill and are identical to the baseline. |
-| G9 | Two statements about a task-list tool (TodoWrite) coded inconsistently as P and N. | ANS-04, ANS-56 | Both **N**: work organisation, test-blind, and the tool does not exist in the harness (G5 logic). |
+| G9 | Two statements about a task-list tool (TodoWrite) categorized inconsistently as P and N. | ANS-04, ANS-56 | Both **N**: work organisation, test-blind, and the tool does not exist in the harness (G5 logic). |
 | G10 | Preference pair: "prefer the standard library" versus "use existing code". | ANS-69, ANS-70 | ANS-69 stays **P** (a new dependency fails in the offline container), ANS-70 stays **N** (test-blind). |
 | G11 | Tool or permission frames without an executable command: naming a tool, granting permission, consistency frames. | GRA-30, PRA-40, PRA-42, PRA-44 | All **N**. Without a command or API there is no P; PRA-03 stays P because it names a concrete mechanism. |
 | G12 | A pitfall rule as the only procedural statement of a repository (wagtail). | WAG-08 | **P** confirmed. "You need to use X" is an action rule with direct code effect. |
@@ -72,15 +72,15 @@ Every rule lists the statements it decided.
 ## Second file versions
 
 Two repositories ship their context file in two versions across the pool
-tasks. The second version is coded against the first, so only the differing
+tasks. The second version is categorized against the first, so only the differing
 lines receive a new decision.
 
 - **fastmcp** `842e552a` versus `e7202ff0`: the later version drops one block
   ("Before creating a PR, evaluate whether documentation needs updating"), which
-  is coded N and therefore excluded in both versions. The generated K1 and K2
+  is categorized as N and therefore excluded in both versions. The generated K1 and K2
   files are identical.
 - **tinygrad** `b73aa6d4` versus `54541e66`: the second version rewords the
   same statements (two sentences merged, a renamed heading, a reformatted
-  indentation rule) without adding or removing any. The bucket assignment is
+  indentation rule) without adding or removing any. The category assignment is
   unchanged; the treatment files follow the wording of the version each task
   uses.

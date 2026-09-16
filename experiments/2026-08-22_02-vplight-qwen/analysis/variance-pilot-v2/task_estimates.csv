@@ -1,0 +1,11 @@
+task,solved_first_10,pass_at_1_first_10,solved_all_20,pass_at_1_all_20,within_task_sample_variance
+ansible_ansible-85487,0,0.0,1,0.05,0.05
+ansible_ansible-85488,4,0.4,9,0.45,0.26052631578947366
+getzep_graphiti-843,10,1.0,20,1.0,0
+huggingface_transformers-41412,8,0.8,15,0.75,0.19736842105263158
+huggingface_transformers-41612,0,0.0,0,0.0,0
+huggingface_transformers-41757,9,0.9,18,0.9,0.09473684210526316
+openai_openai-agents-python-1798,7,0.7,13,0.65,0.2394736842105263
+openai_openai-agents-python-1852,10,1.0,20,1.0,0
+openai_openai-agents-python-2014,1,0.1,1,0.05,0.05
+qodo-ai_pr-agent-1594,10,1.0,20,1.0,0

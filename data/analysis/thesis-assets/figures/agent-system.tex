@@ -1,0 +1,22 @@
+% Agent boundary and bidirectional interaction, agreed 2026-09-05.
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=2pt, minimum width=3cm, minimum height=0.85cm, fill=white},
+  flow/.style={-{Stealth[length=2mm]}, thick},
+  every node/.style={font=\small}
+]
+  \node[box] (model) at (0,0) {Model};
+  \node[box] (harness) at (0,-2.4) {Harness};
+  \node[box] (environment) at (0,-5.1) {Environment};
+  \begin{scope}[on background layer]
+    \node[draw, rounded corners=4pt, inner xsep=4.2cm, inner ysep=0.45cm,
+      fit=(model)(harness), label={[font=\small\bfseries]above:Agent = Model + Harness}] {};
+  \end{scope}
+  \draw[flow] ([xshift=-0.3cm]model.south) --
+    node[left, align=right] {Action requests /\\tool calls} ([xshift=-0.3cm]harness.north);
+  \draw[flow] ([xshift=0.3cm]harness.north) --
+    node[right, align=left] {Assembled context /\\observations} ([xshift=0.3cm]model.south);
+  \draw[flow] ([xshift=-0.3cm]harness.south) --
+    node[left, align=right] {Tool execution /\\actions} ([xshift=-0.3cm]environment.north);
+  \draw[flow] ([xshift=0.3cm]environment.north) --
+    node[right, align=left] {Tool results /\\observations} ([xshift=0.3cm]harness.south);
+\end{tikzpicture}

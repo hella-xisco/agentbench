@@ -1,0 +1,43 @@
+{
+  "name": "main-run-qwen",
+  "analysis_type": "main_run",
+  "run_directory": "experiments/2026-08-25_01-hauptrun-qwen",
+  "task_manifest": "data/analysis/main_tasks.txt",
+  "cells": [
+    "no_plan",
+    "curated_k0d",
+    "curated_k1",
+    "curated_k1s",
+    "curated_k2",
+    "curated_k2s"
+  ],
+  "repetitions": [
+    "run_0",
+    "run_1"
+  ],
+  "timeout_seconds": 1320,
+  "bootstrap_repetitions": 10000,
+  "bootstrap_seed": 42,
+  "delivered_only_exclude_prefixes": [
+    "tinygrad_"
+  ],
+  "model": {
+    "name": "qwen3.6-27b-t06",
+    "family": "Qwen",
+    "temperature": 0.6
+  },
+  "expected": {
+    "planned_runs": 852,
+    "evaluation_errors": 8,
+    "timeouts": 180,
+    "contrast_sample_sizes": [
+      68,
+      69,
+      69,
+      68,
+      69,
+      68,
+      69
+    ]
+  }
+}

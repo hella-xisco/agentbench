@@ -1,0 +1,81 @@
+# Hauptlauf-Testmenge n' = 71 (vorregistriert 21.08.2026)
+# Regel: Pool-74 (pool_ok_74.txt) MINUS Floor/Ceiling aus VP K0 k=20 (mean@20 in {0,1}).
+# Keine Stratifizierung, keine Auswahl -- der volle kalibrierte Pool minus gemessener Extremfaelle.
+# Erzeugt: scripts/build_testmenge.py · Doku: context/these/testmenge.dynamic.md
+#
+# Ausgeschlossen (3):
+#   ansible_ansible-85487 -- Floor: mean@20 = 0,00 (handelt nur 3/20, loest nie)
+#   huggingface_transformers-41612 -- Floor: mean@20 = 0,00 (handelt 10/20, loest nie)
+#   qodo-ai_pr-agent-1594 -- Ceiling: mean@20 = 1,00 (loest 20/20)
+#
+ansible_ansible-83217
+ansible_ansible-84999
+ansible_ansible-85187
+ansible_ansible-85488
+ansible_ansible-85516
+ansible_ansible-85709
+ansible_ansible-85728
+ansible_ansible-85930
+ansible_ansible-86047
+getzep_graphiti-829
+getzep_graphiti-843
+huggingface_transformers-41359
+huggingface_transformers-41412
+huggingface_transformers-41661
+huggingface_transformers-41750
+huggingface_transformers-41757
+jlowin_fastmcp-2674
+jlowin_fastmcp-2749
+jlowin_fastmcp-2768
+jlowin_fastmcp-2776
+jlowin_fastmcp-2800
+openai_openai-agents-python-1745
+openai_openai-agents-python-1752
+openai_openai-agents-python-1753
+openai_openai-agents-python-1757
+openai_openai-agents-python-1779
+openai_openai-agents-python-1798
+openai_openai-agents-python-1833
+openai_openai-agents-python-1843
+openai_openai-agents-python-1852
+openai_openai-agents-python-1869
+openai_openai-agents-python-1884
+openai_openai-agents-python-1934
+openai_openai-agents-python-2014
+openai_openai-agents-python-2082
+openai_openai-agents-python-2105
+opshin_opshin-118
+opshin_opshin-171
+opshin_opshin-176
+opshin_opshin-178
+opshin_opshin-238
+opshin_opshin-28
+opshin_opshin-340
+opshin_opshin-387
+opshin_opshin-389
+opshin_opshin-545
+opshin_opshin-97
+pdm-project_pdm-2019
+qodo-ai_pr-agent-1359
+qodo-ai_pr-agent-1406
+qodo-ai_pr-agent-1407
+qodo-ai_pr-agent-1412
+qodo-ai_pr-agent-1839
+qodo-ai_pr-agent-1851
+qodo-ai_pr-agent-2018
+tinygrad_tinygrad-11351
+tinygrad_tinygrad-11840
+tinygrad_tinygrad-11916
+tinygrad_tinygrad-13541
+tinygrad_tinygrad-13610
+tinygrad_tinygrad-13760
+tinygrad_tinygrad-13855
+tinygrad_tinygrad-3096
+tinygrad_tinygrad-5040
+wagtail_wagtail-10412
+wagtail_wagtail-12965
+wagtail_wagtail-13173
+wagtail_wagtail-13237
+wagtail_wagtail-13280
+wagtail_wagtail-13326
+wagtail_wagtail-13377

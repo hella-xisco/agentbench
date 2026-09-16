@@ -1,0 +1,65 @@
+{
+  "analysis": "variance_pilot",
+  "category_counts": {
+    "failed_patch": 2,
+    "solved": 117,
+    "timeout": 81
+  },
+  "config_name": "variance-pilot-qwen",
+  "engine_allocation": [
+    {
+      "engine": "A",
+      "port": 4002,
+      "repetitions": [
+        "run_0",
+        "run_1",
+        "run_2",
+        "run_3",
+        "run_4",
+        "run_5",
+        "run_6",
+        "run_7",
+        "run_8",
+        "run_9"
+      ]
+    },
+    {
+      "engine": "B",
+      "port": 4003,
+      "repetitions": [
+        "run_10",
+        "run_11",
+        "run_12",
+        "run_13",
+        "run_14",
+        "run_15",
+        "run_16",
+        "run_17",
+        "run_18",
+        "run_19"
+      ]
+    }
+  ],
+  "mean_within_task_sample_variance": 0.08921052631578948,
+  "measurable_runs": 200,
+  "model": {
+    "family": "Qwen",
+    "name": "qwen3.6-27b-t06",
+    "temperature": 0.6
+  },
+  "pass_at_1_all_20": 0.585,
+  "pass_at_1_first_10": 0.59,
+  "planned_runs": 200,
+  "planning_proxy": 0.1187,
+  "planning_role": "transfer_check_only",
+  "repetition_count": 20,
+  "round_count_sample_sd": 0.9333020044867295,
+  "task_count": 10,
+  "timeout_seconds": 1320,
+  "wall_seconds": {
+    "count": 200,
+    "maximum": 1589.26,
+    "median": 1251.395,
+    "p95": 1508.963
+  }
+}

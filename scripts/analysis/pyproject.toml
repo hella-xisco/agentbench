@@ -1,0 +1,22 @@
+[project]
+name = "thesis-analysis"
+version = "0.1.0"
+description = "Reproducible statistical audit for the thesis experiments"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy>=2,<3",
+  "scipy>=1.14,<2",
+]
+
+[project.scripts]
+thesis-variance-pilot = "thesis_analysis.variance_pilot:main"
+thesis-main-run = "thesis_analysis.main_run:main"
+thesis-results-assets = "thesis_analysis.reporting:main"
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

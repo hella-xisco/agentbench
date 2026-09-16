@@ -1,0 +1,43 @@
+{
+  "name": "main-run-glm",
+  "analysis_type": "main_run",
+  "run_directory": "experiments/2026-08-21_01-hauptrun",
+  "task_manifest": "data/analysis/main_tasks.txt",
+  "cells": [
+    "no_plan",
+    "curated_k0d",
+    "curated_k1",
+    "curated_k1s",
+    "curated_k2",
+    "curated_k2s"
+  ],
+  "repetitions": [
+    "run_0",
+    "run_1"
+  ],
+  "timeout_seconds": 660,
+  "bootstrap_repetitions": 10000,
+  "bootstrap_seed": 42,
+  "delivered_only_exclude_prefixes": [
+    "tinygrad_"
+  ],
+  "model": {
+    "name": "glm-4.5-air-t0",
+    "family": "GLM",
+    "temperature": 0
+  },
+  "expected": {
+    "planned_runs": 852,
+    "evaluation_errors": 18,
+    "timeouts": 31,
+    "contrast_sample_sizes": [
+      68,
+      69,
+      67,
+      70,
+      69,
+      68,
+      69
+    ]
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "analysis_version": 3,
+  "bootstrap_unit": "task",
+  "confidence_interval": "percentile_95",
+  "config_name": "main-run-glm",
+  "contrasts": [
+    {
+      "accepted_draws": 10000,
+      "cell_a": "K1",
+      "cell_b": "K0",
+      "contrast": "K1-K0",
+      "estimator": "mean_effort_per_measurable_run",
+      "family": "RQ1",
+      "measurable_runs_per_cell": 136,
+      "metrics": {
+        "api_calls": {
+          "ci_high": 14.786764705882353,
+          "ci_low": -1.9264705882352942,
+          "effect": 5.992647058823529,
+          "mean_a": 32.13235294117647,
+          "mean_b": 26.139705882352942
+        },
+        "tokens": {
+          "ci_high": 692224.453125,
+          "ci_low": -26386.375735294117,
+          "effect": 320886.375,
+          "mean_a": 1053807.0514705882,
+          "mean_b": 732920.6764705882
+        },
+        "wall_seconds": {
+          "ci_high": 87.74198529411764,
+          "ci_low": 12.58208639705882,
+          "effect": 49.50470588235288,
+          "mean_a": 279.14573529411757,
+          "mean_b": 229.6410294117647
+        }
+      },
+      "n_tasks": 68,
+      "requested_draws": 10000,
+      "runs_per_task": 2,
+      "seed": 42
+    },
+    {
+      "accepted_draws": 10000,
+      "cell_a": "K2",
+      "cell_b": "K0",
+      "contrast": "K2-K0",
+      "estimator": "mean_effort_per_measurable_run",
+      "family": "RQ1",
+      "measurable_runs_per_cell": 138,
+      "metrics": {
+        "api_calls": {
+          "ci_high": 10.094202898550725,
+          "ci_low": -4.275905797101449,
+          "effect": 2.3260869565217384,
+          "mean_a": 28.55072463768116,
+          "mean_b": 26.22463768115942
+        },
+        "tokens": {
+          "ci_high": 438771.8380434778,
+          "ci_low": -130654.93605072465,
+          "effect": 125207.60144927539,
+          "mean_a": 860610.0072463768,
+          "mean_b": 735402.4057971014
+        },
+        "wall_seconds": {
+          "ci_high": 41.90057971014491,
+          "ci_low": -17.28396376811593,
+          "effect": 11.429202898550727,
+          "mean_a": 240.5486231884058,
+          "mean_b": 229.11942028985507
+        }
+      },
+      "n_tasks": 69,
+      "requested_draws": 10000,
+      "runs_per_task": 2,
+      "seed": 42
+    },
+    {
+      "accepted_draws": 10000,
+      "cell_a": "K1s",
+      "cell_b": "K1",
+      "contrast": "K1s-K1",
+      "estimator": "mean_effort_per_measurable_run",
+      "family": "RQ2",
+      "measurable_runs_per_cell": 134,
+      "metrics": {
+        "api_calls": {
+          "ci_high": 12.544962686567162,
+          "ci_low": -7.022574626865672,
+          "effect": 3.097014925373138,
+          "mean_a": 35.30597014925373,
+          "mean_b": 32.208955223880594
+        },
+        "tokens": {
+          "ci_high": 480752.46473880595,
+          "ci_low": -376512.7688432836,
+          "effect": 53308.73134328355,
+          "mean_a": 1113497.828358209,
+          "mean_b": 1060189.0970149254
+        },
+        "wall_seconds": {
+          "ci_high": 22.653244402985056,
+          "ci_low": -63.953826492537345,
+          "effect": -21.925298507462628,
+          "mean_a": 256.954552238806,
+          "mean_b": 278.87985074626863
+        }
+      },
+      "n_tasks": 67,
+      "requested_draws": 10000,
+      "runs_per_task": 2,
+      "seed": 42
+    },
+    {
+      "accepted_draws": 10000,
+      "cell_a": "K2s",
+      "cell_b": "K2",
+      "contrast": "K2s-K2",
+      "estimator": "mean_effort_per_measurable_run",
+      "family": "RQ2",
+      "measurable_runs_per_cell": 140,
+      "metrics": {
+        "api_calls": {
+          "ci_high": 10.57160714285714,
+          "ci_low": -5.9071428571428575,
+          "effect": 2.328571428571429,
+          "mean_a": 30.62857142857143,
+          "mean_b": 28.3
+        },
+        "tokens": {
+          "ci_high": 274445.2744642856,
+          "ci_low": -351779.19232142856,
+          "effect": -31853.885714285774,
+          "mean_a": 818378.0142857142,
+          "mean_b": 850231.9
+        },
+        "wall_seconds": {
+          "ci_high": 46.47307142857144,
+          "ci_low": -28.906119642857146,
+          "effect": 8.209071428571349,
+          "mean_a": 247.3792142857142,
+          "mean_b": 239.17014285714285
+        }
+      },
+      "n_tasks": 70,
+      "requested_draws": 10000,
+      "runs_per_task": 2,
+      "seed": 42
+    },
+    {
+      "accepted_draws": 10000,
+      "cell_a": "K0d",
+      "cell_b": "K0",
+      "contrast": "K0d-K0",
+      "estimator": "mean_effort_per_measurable_run",
+      "family": "RQ3",
+      "measurable_runs_per_cell": 138,
+      "metrics": {
+        "api_calls": {
+          "ci_high": 1.644927536231884,
+          "ci_low": -11.833514492753624,
+          "effect": -5.137681159420293,
+          "mean_a": 21.08695652173913,
+          "mean_b": 26.22463768115942
+        },
+        "tokens": {
+          "ci_high": 65370.07807971011,
+          "ci_low": -411674.39673913043,
+          "effect": -163747.44202898548,
+          "mean_a": 571654.963768116,
+          "mean_b": 735402.4057971014
+        },
+        "wall_seconds": {
+          "ci_high": 20.56580072463768,
+          "ci_low": -50.10460688405797,
+          "effect": -14.134637681159404,
+          "mean_a": 214.98478260869567,
+          "mean_b": 229.11942028985507
+        }
+      },
+      "n_tasks": 69,
+      "requested_draws": 10000,
+      "runs_per_task": 2,
+      "seed": 42
+    },
+    {
+      "accepted_draws": 10000,
+      "cell_a": "K1",
+      "cell_b": "K0d",
+      "contrast": "K1-K0d",
+      "estimator": "mean_effort_per_measurable_run",
+      "family": "RQ3",
+      "measurable_runs_per_cell": 136,
+      "metrics": {
+        "api_calls": {
+          "ci_high": 21.492830882352937,
+          "ci_low": 1.8819852941176474,
+          "effect": 11.051470588235293,
+          "mean_a": 32.13235294117647,
+          "mean_b": 21.080882352941178
+        },
+        "tokens": {
+          "ci_high": 923193.41875,
+          "ci_low": 85535.52022058825,
+          "effect": 478151.9632352941,
+          "mean_a": 1053807.0514705882,
+          "mean_b": 575655.0882352941
+        },
+        "wall_seconds": {
+          "ci_high": 104.23976654411763,
+          "ci_low": 24.469707720588236,
+          "effect": 63.23014705882346,
+          "mean_a": 279.14573529411757,
+          "mean_b": 215.9155882352941
+        }
+      },
+      "n_tasks": 68,
+      "requested_draws": 10000,
+      "runs_per_task": 2,
+      "seed": 42
+    },
+    {
+      "accepted_draws": 10000,
+      "cell_a": "K2",
+      "cell_b": "K0d",
+      "contrast": "K2-K0d",
+      "estimator": "mean_effort_per_measurable_run",
+      "family": "RQ3",
+      "measurable_runs_per_cell": 138,
+      "metrics": {
+        "api_calls": {
+          "ci_high": 13.84800724637681,
+          "ci_low": 1.6447463768115944,
+          "effect": 7.463768115942031,
+          "mean_a": 28.55072463768116,
+          "mean_b": 21.08695652173913
+        },
+        "tokens": {
+          "ci_high": 566681.623731884,
+          "ci_low": 49946.2365942029,
+          "effect": 288955.04347826086,
+          "mean_a": 860610.0072463768,
+          "mean_b": 571654.963768116
+        },
+        "wall_seconds": {
+          "ci_high": 56.733286231884065,
+          "ci_low": -5.448125000000003,
+          "effect": 25.56384057971013,
+          "mean_a": 240.5486231884058,
+          "mean_b": 214.98478260869567
+        }
+      },
+      "n_tasks": 69,
+      "requested_draws": 10000,
+      "runs_per_task": 2,
+      "seed": 42
+    }
+  ],
+  "estimator": "mean_effort_per_measurable_run"
+}

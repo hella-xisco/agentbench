@@ -1,0 +1,95 @@
+<mxfile host="65bd71144e">
+    <diagram name="run-pipeline" id="run-pipeline">
+        <mxGraphModel dx="1169" dy="831" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="700" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="hostTop" value="Orchestrator — host filesystem" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=#c3c2b7;strokeWidth=1;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontFamily=Helvetica;fontSize=12;fontColor=#898781;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="40" width="980" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="task" value="Task&#xa;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;one row of the CTXBENCH dataset&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f7d15c;strokeColor=#b8912c;fontColor=#0b0b0b;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="63" width="180" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="trajectory" value="Trajectory" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f7d15c;strokeColor=#b8912c;fontColor=#0b0b0b;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="70" width="160" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="report" value="Report" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f7d15c;strokeColor=#b8912c;fontColor=#0b0b0b;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="762.5" y="68.5" width="160" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="genContainer" value="Generate container" style="rounded=1;arcSize=4;html=1;fillColor=#e6e5e1;strokeColor=#b0763f;strokeWidth=1.6;dashed=1;dashPattern=7 5;verticalAlign=top;align=right;spacingRight=14;spacingTop=6;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="175" width="980" height="175" as="geometry"/>
+                </mxCell>
+                <mxCell id="repo" value="Repository @ base commit" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f0efec;strokeColor=#52514e;fontColor=#52514e;strokeWidth=1.4;verticalAlign=top;spacingTop=6;fontFamily=Helvetica;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="105" y="200" width="190" height="125" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctxfile" value="Context file (ablation cell)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f7d15c;strokeColor=#2f5ba8;fontColor=#0b0b0b;strokeWidth=3;fontStyle=1;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="118" y="240" width="164" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="annotCtx" value="the only thing that varies across cells" style="text;html=1;align=left;verticalAlign=top;fontStyle=2;fontFamily=Helvetica;fontSize=12;fontColor=#2f5ba8;" parent="1" vertex="1">
+                    <mxGeometry x="106" y="292" width="200" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="planner" value="Planner&#xa;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;injects or removes context files&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="231" width="180" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="agent" value="Agent loop&#xa;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;harness × model&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="231" width="160" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="hostSeam" value="Orchestrator — host filesystem" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=#c3c2b7;strokeWidth=1;verticalAlign=top;align=left;spacingLeft=12;spacingTop=4;fontFamily=Helvetica;fontSize=12;fontColor=#898781;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="380" width="980" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="patch" value="Agent patch" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#f7d15c;strokeColor=#b8912c;fontColor=#0b0b0b;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="392" width="160" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="annotSeam" value="nothing but the diff crosses between containers" style="text;html=1;align=left;verticalAlign=middle;fontStyle=2;fontFamily=Helvetica;fontSize=12;fontColor=#2f5ba8;" parent="1" vertex="1">
+                    <mxGeometry x="725" y="405" width="320" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="evalContainer" value="Evaluate container — fresh checkout at base commit" style="rounded=1;arcSize=4;html=1;fillColor=#e6e5e1;strokeColor=#b0763f;strokeWidth=1.6;dashed=1;dashPattern=7 5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=6;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="480" width="980" height="175" as="geometry"/>
+                </mxCell>
+                <mxCell id="apply" value="Apply agent patch" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="543" width="180" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="gateB" value="Gate B — repo regression tests&#xa;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;vs. results with the gold patch&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="420" y="537" width="215" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="gateA" value="Gate A — instance tests&#xa;&lt;font color=&quot;#52514e&quot; style=&quot;font-size: 11px&quot;&gt;from the dataset — never seen by the agent&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#dde5f8;strokeColor=#5b83d6;fontColor=#2f5ba8;strokeWidth=1.5;fontFamily=Helvetica;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="717.5" y="537" width="250" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="task" target="planner" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="repo" target="planner" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="planner" target="agent" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="logged" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;verticalAlign=middle;align=right;spacingRight=8;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" source="agent" target="trajectory" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="extracted as diff" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;verticalAlign=middle;align=right;spacingRight=8;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" source="agent" target="patch" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="patch cleaning — Python files only" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;verticalAlign=bottom;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" source="patch" target="apply" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="620" y="463"/>
+                            <mxPoint x="230" y="463"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="apply" target="gateB" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="gateB" target="gateA" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" value="resolved" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#52514e;strokeWidth=1.8;endArrow=block;endFill=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;verticalAlign=middle;align=left;spacingLeft=8;fontFamily=Helvetica;fontSize=12;fontColor=#52514e;" parent="1" source="gateA" target="report" edge="1">
+                    <mxGeometry x="-0.55" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

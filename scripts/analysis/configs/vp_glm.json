@@ -1,0 +1,57 @@
+{
+  "name": "variance-pilot-glm",
+  "analysis_type": "variance_pilot",
+  "run_directory": "experiments/2026-08-20_01-vp-stufe1",
+  "task_manifest": "data/analysis/pilot_tasks.txt",
+  "cells": [
+    "no_plan"
+  ],
+  "repetitions": [
+    "run_0",
+    "run_1",
+    "run_2",
+    "run_3",
+    "run_4",
+    "run_5",
+    "run_6",
+    "run_7",
+    "run_8",
+    "run_9",
+    "run_10",
+    "run_11",
+    "run_12",
+    "run_13",
+    "run_14",
+    "run_15",
+    "run_16",
+    "run_17",
+    "run_18",
+    "run_19"
+  ],
+  "timeout_seconds": 660,
+  "minutes_per_run": 1.85,
+  "design_cells": 6,
+  "planning_proxy": 0.1187,
+  "design_task_counts": [
+    50,
+    71
+  ],
+  "design_repetitions": [
+    1,
+    2,
+    3
+  ],
+  "chosen_task_count": 71,
+  "chosen_repetitions": 2,
+  "planning_role": "initial_main_run_repetition_choice",
+  "model": {
+    "name": "glm-4.5-air-t0",
+    "family": "GLM",
+    "temperature": 0
+  },
+  "expected": {
+    "planned_runs": 200,
+    "measurable_runs": 200,
+    "timeouts": 3
+  }
+}
