@@ -65,7 +65,7 @@ Every rule lists the statements it decided.
 | G7 | Facts that carry an obligation in the same sentence: fact in form, obligation in function. | ANS-08, FMC-30, PRA-26, PRA-31 | Split consistently: fact part **D**, obligation part **N**. ANS-08 is a pure fact and becomes D; PRA-31 is split into PRA-31 (D) and PRA-31b (N). |
 | G8 | A repository (tinygrad) with no procedural statement at all. | TIN-* | Reported as empty and kept in the pool; its K1 and K1s cells run without a file or skill and are identical to the baseline. |
 | G9 | Two statements about a task-list tool (TodoWrite) categorized inconsistently as P and N. | ANS-04, ANS-56 | Both **N**: work organisation, test-blind, and the tool does not exist in the harness (G5 logic). |
-| G10 | Preference pair: "prefer the standard library" versus "use existing code". | ANS-69, ANS-70 | ANS-69 stays **P** (a new dependency fails in the offline container), ANS-70 stays **N** (test-blind). |
+| G10 | Preference pair: "prefer the standard library" versus "use existing code". | ANS-69, ANS-70 | ANS-69 stays **P** (a dependency the agent installs during its run does not reach the freshly built evaluation container, so a patch that relies on it fails the tests), ANS-70 stays **N** (test-blind). |
 | G11 | Tool or permission frames without an executable command: naming a tool, granting permission, consistency frames. | GRA-30, PRA-40, PRA-42, PRA-44 | All **N**. Without a command or API there is no P; PRA-03 stays P because it names a concrete mechanism. |
 | G12 | A pitfall rule as the only procedural statement of a repository (wagtail). | WAG-08 | **P** confirmed. "You need to use X" is an action rule with direct code effect. |
 
